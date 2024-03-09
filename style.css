@@ -140,7 +140,7 @@ section {
 }
 
 h1 {
-  font-family: "Cool", sans-serif;
+  font-family: "Coolvetica", sans-serif;
   letter-spacing: 0em;
   font-weight: 100;
   font-size: 4.5em;
@@ -162,7 +162,7 @@ h1 {
 }
 
 .heading {
-  font-family: "Cool", sans-serif;
+  font-family: "Coolvetica", sans-serif;
   letter-spacing: 0;
   font-weight: 100;
   font-size: 8em;
@@ -230,7 +230,7 @@ h2 span {
 }
 
 .imp {
-  font-family: Cool;
+  font-family: "Coolvetica";
   font-size: 1.8rem;
 }
 
@@ -246,7 +246,7 @@ h2 span {
 }
 
 .extra {
-  font-family: Cool;
+  font-family: "Coolvetica";
   font-size: 1.8rem;
 }
 
