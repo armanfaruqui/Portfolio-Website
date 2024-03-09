@@ -1,0 +1,483 @@
+@font-face {
+  font-family: "Cool";
+  src: url("/assets/fonts/coolvetica\ rg.ttf") format("truetype"); /* Adjust the path as needed */
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Work";
+  src: url("/assets/fonts/WorkSans-SemiBold.ttf") format("truetype"); /* Adjust the path as needed */
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+html {
+  scroll-snap-type: y mandatory;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+html {
+  scrollbar-width: none;
+  -ms-overflow-style: none; /* IE and Edge */
+  background-color: #fffdf9;
+}
+
+#logo {
+  position: fixed;
+  max-width: 3rem;
+  top: 1.1rem;
+  left: 1.5rem;
+  cursor: pointer;
+}
+
+.nav {
+  display: flex; /* Enables Flexbox */
+  position: fixed;
+  font-family: Open Sans, monospace;
+  font-weight: 400;
+  font-style: normal;
+  right: 6vw; /* Starts 6vw from the right */
+  width: 40%; /* Occupies 40% of the screen's width */
+  top: 1vh; /* Adjust as needed, assuming you want it at the top */
+  padding: 10px 0; /* Optional: Adds some padding inside the nav bar */
+  z-index: 3;
+  cursor: pointer;
+}
+
+.nav ul {
+  display: flex; /* Apply Flexbox to the list */
+  justify-content: space-between; /* Ensure items are spaced out evenly */
+  width: 100%; /* List spans the full width of the nav container */
+  padding: 0; /* Remove default padding */
+  margin: 0; /* Remove default margin */
+  list-style-type: none; /* Remove default list styling */
+}
+
+.nav li {
+  position: relative; /* Needed for positioning the pseudo-elements */
+  padding: 10px 0; /* Adjust padding as needed */
+}
+
+.nav li::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0; /* Adjust as needed to position the underline */
+  height: 2px; /* Thickness of the underline */
+  width: 0; /* The underline width starts as 0 */
+  background-color: #d57874; /* Color of the underline */
+  transition: width 0.3s ease, left 0.3s ease; /* Animate the width and left position */
+}
+
+.nav li:hover::after {
+  width: 100%; /* Full width on hover */
+  left: 0; /* Align to the full width of the li */
+}
+
+/* Active state */
+.nav li.active {
+  color: #d57874; /* Active section text color */
+}
+
+.vertical-nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  position: fixed;
+  right: 2vw; /* Adjust based on your layout */
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+}
+
+.circle {
+  width: 1rem; /* Size of the circle */
+  height: 1rem; /* Size of the circle */
+  border: 2px solid black; /* Circle outline */
+  border-radius: 50%; /* Makes it round */
+  margin-bottom: 3vh; /* Space between circles */
+  background-color: transparent; /* Initial state not filled */
+  transition: background-color 0.3s; /* Smooth transition for fill effect */
+}
+
+/* Filled state */
+.circle.filled {
+  background-color: #d57874; /* Fill color when the section is active */
+}
+
+section {
+  height: 100vh;
+  scroll-snap-align: start; /* use 'start' for better cross-browser compatibility */
+  scroll-snap-stop: always;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center; /* Center text horizontally */
+  box-sizing: border-box;
+  padding: 20px; /* Add padding for content */
+  background-color: #fffdf9;
+}
+
+.cover {
+  width: 70vw;
+  /* margin-top: 10vh; */
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin-right: 6vw;
+  margin-bottom: 4vw;
+}
+
+h1 {
+  font-family: "Cool", sans-serif;
+  letter-spacing: 0em;
+  font-weight: 100;
+  font-size: 4.5em;
+  color: #212121;
+  margin-bottom: 0.2em;
+  font-stretch: 110%;
+  position: absolute;
+  top: 12.5%;
+  z-index: 4;
+  left: 11.5%;
+}
+
+.arman {
+  max-width: 60vw;
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  right: 6vw;
+}
+
+.heading {
+  font-family: "Cool", sans-serif;
+  letter-spacing: 0;
+  font-weight: 100;
+  font-size: 8em;
+  color: #212121;
+  position: absolute;
+  top: 53.4%;
+  z-index: 4;
+  left: 11.5%;
+  text-align: left;
+}
+
+h2 span {
+  display: block;
+}
+
+.line2 {
+  position: absolute;
+  top: 70%;
+}
+
+.info1,
+.info2,
+.info3,
+.info4 {
+  position: fixed;
+  top: 78vh;
+  right: 6vw;
+  font-family: Open Sans, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  z-index: 3;
+}
+
+.info2 {
+  top: 82vh;
+}
+
+.info3 {
+  top: 86vh;
+}
+
+.info4 {
+  top: 86vh;
+}
+
+.intro {
+  margin-bottom: 10vh;
+}
+
+.aboutContainer {
+  width: 80vw;
+  height: 75vh;
+  display: flex; /* Activates Flexbox layout mode */
+  flex-direction: column; /* Stacks the flex items vertically */
+  justify-content: center; /* Centers items vertically in the container */
+  align-items: center; /* Centers items horizontally, if you need it */
+  margin-top: 3%;
+}
+
+.about {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1.2rem;
+  line-height: 2rem;
+  text-align: left;
+}
+
+.imp {
+  font-family: Cool;
+  font-size: 1.8rem;
+}
+
+#about2 {
+  margin-left: 16.67%;
+  margin-right: 29%;
+  margin-top: 10%;
+}
+
+#about3 {
+  margin-top: 10%;
+  margin-right: 41.6%;
+}
+
+.extra {
+  font-family: Cool;
+  font-size: 1.8rem;
+}
+
+.extra ul {
+  list-style-type: none; /* Removes the default bullet points from the lists */
+  padding: 0; /* Removes default padding */
+}
+
+.extra li {
+  margin-bottom: 10px; /* Adds some space between list items */
+}
+
+#tech {
+  margin-bottom: 15vh;
+}
+
+#soft {
+  margin-top: 15vh;
+}
+
+#show {
+  z-index: 4;
+}
+
+.extra-container {
+  display: none;
+  gap: 10vw;
+}
+
+#swiper-1,
+#swiper-2,
+#swiper-3 {
+  width: 70vw;
+  height: auto;
+}
+
+.swiper-slide {
+  width: 61vw; /* Adjust based on your design needs */
+}
+
+.swiper-slide img {
+  width: 60vw;
+}
+
+.swiper-wrapper {
+  justify-content: flex-start;
+}
+
+#swiper-1 .swiper-pagination-bullet {
+  margin: 0 0.5rem;
+}
+
+#swiper-1 .swiper-pagination-bullet-active {
+  background-color: #d57874;
+}
+
+#swiper-1 .swiper-button-next {
+  color: #d57874;
+}
+
+#swiper-1 .swiper-button-prev {
+  color: #d57874;
+}
+
+#swiper-2 .swiper-pagination-bullet {
+  margin: 0 0.5rem;
+}
+
+#swiper-2 .swiper-pagination-bullet-active {
+  background-color: #d57874;
+}
+
+#swiper-2 .swiper-button-next {
+  color: #d57874;
+}
+
+#swiper-2 .swiper-button-prev {
+  color: #d57874;
+}
+
+#swiper-3 .swiper-pagination-bullet {
+  margin: 0 0.5rem;
+}
+
+#swiper-3 .swiper-pagination-bullet-active {
+  background-color: #d57874;
+}
+
+#swiper-3 .swiper-button-next {
+  color: #d57874;
+}
+
+#swiper-3 .swiper-button-prev {
+  color: #d57874;
+}
+
+.content-wrapper {
+  margin-top: 6vh;
+  width: 100%;
+  height: 85%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.description {
+  width: 80vw;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1.2rem;
+  height: 15vh;
+}
+
+.link {
+  text-decoration: none;
+  color: #d57874;
+}
+
+.link2 {
+  text-decoration: none;
+  color: black;
+}
+
+#contact {
+  background-color: #d57874;
+  height: 20vh;
+}
+
+#five {
+  margin-top: 5vh;
+}
+
+@media (max-width: 600px) {
+  .cover {
+    position: absolute;
+    width: 100vw;
+    max-width: 100%; /* Prevents exceeding the width of the viewport */
+    height: auto; /* Adjust height automatically */
+    /* Additional mobile-specific adjustments */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%);
+    margin-right: 0;
+    margin-bottom: 0;
+  }
+
+  .nav {
+    width: 94%;
+    right: auto; /* Resets the right property */
+    left: 3%; /* Centers the nav by setting equal left and right margins */
+    margin: 0 auto; /* Additionally ensures horizontal centering */
+  }
+
+  section {
+    padding: 0;
+  }
+
+  .vertical-nav {
+    top: 20vh;
+    translate: 0;
+    right: 4vw;
+  }
+
+  .about {
+    font-size: 1rem;
+    line-height: 1.6rem;
+  }
+
+  .imp {
+    font-size: 1.4rem;
+  }
+
+  .aboutContainer {
+    justify-content: space-between;
+    height: 65vh;
+    margin-bottom: 10vh;
+  }
+
+  #about2 {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+  }
+
+  #about3 {
+    margin: 0;
+  }
+
+  .info1 {
+    top: 82vh;
+  }
+
+  .info2 {
+    top: 86vh;
+  }
+
+  .info3 {
+    top: 90vh;
+  }
+
+  .content-wrapper {
+    height: 80%;
+    width: 100%;
+    justify-content: center;
+    margin-top: 20vh;
+  }
+
+  #swiper-1,
+  #swiper-2,
+  #swiper-3 {
+    width: 100vw;
+  }
+
+  .swiper-slide {
+    width: 100vw; /* Adjust based on your design needs */
+  }
+
+  .swiper-slide img {
+    width: 100vw;
+  }
+
+  .description {
+    width: 100%;
+    font-size: 1rem;
+  }
+
+  #logo {
+    top: 8vh;
+  }
+  body,
+  html {
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+  }
+}

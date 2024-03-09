@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Arman Faruqui</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+  </head>
+  <body>
+    <p class="info1"><a class='link2' href='https://www.concordia.ca/academics/undergraduate/comp-arts-computer-science.html' target="_blank"> Specialization in Computation Arts </a></p>
+    <p class="info2"><a class='link2' href='https://www.briqueparbrique.com/' target="_blank"> Intern at Brique par brique </a></p>
+    <p class="info3"><a class='link2' href='assets/pdfs/Resume_Arman.pdf' download='Resume_Arman.pdf'>Download Resume</a></p>
+    <!-- <p class="info4">Linkedin . Github . Blog</p> -->
+
+    <img src="assets/images/logo.png" id="logo" />
+
+    <nav class="nav">
+      <ul>
+        <li class="shift" data-target="two">About Me</li>
+        <li class="shift" data-target="three">Esthetica</li>
+        <li class="shift" data-target="four">Web</li>
+        <li class="shift" data-target="five">Art</li>
+        <li class="shift"><a href="mailto:armanfaruqui@hotmail.com" class="link2">Contact </a></li>
+      </ul>
+    </nav>
+
+    <div class="vertical-nav">
+      <div class="circle" data-target="one"></div>
+      <div class="circle" data-target="two"></div>
+      <div class="circle" data-target="three"></div>
+      <div class="circle" data-target="four"></div>
+      <div class="circle" data-target="five"></div>
+    </div>
+
+    <div class="items">
+      <section id="one">
+        <div class="grid-container">
+          <picture>
+            <source
+              media="(max-width: 600px)"
+              srcset="assets/images/mobileCover3.jpg"
+            />
+            <img
+              src="assets/images/cover3.jpg"
+              class="cover"
+              alt="Cover Image"
+            />
+          </picture>
+        </div>
+      </section>
+      <section id="two">
+        <div class="aboutContainer">
+          <p id="about1" class="about">
+            I am a senior 
+            <span class="imp">Computation Arts</span> student at Concordia University.
+            My time in the program provided me with a thorough
+            <span class="imp">understanding of the creative process,</span>
+            alongside a foundation of
+            <span class="imp">techincal and software skills,</span> allowing me
+            to rapidly bring ideas to life.
+          </p>
+          <p id="about2" class="about">
+            I specialize in <span class="imp">front-end web design.</span> I am
+            well versed working with HTML, CSS, Javascript, and various related
+            frameworks and libraries
+          </p>
+          <p id="about3" class="about">
+            I have worked on multiple projects using
+            <span class="imp">design tools</span>
+            including Figma, the Adobe Suite, Blender, Touch Designer, and
+            Unity.
+          </p>
+          <div class="extra-container">
+            <div id="tech" class="extra">
+              <ul>
+                <li>Front-end Web Dev</li>
+                <li>Video Production</li>
+                <li>3D Production</li>
+                <li>Studio Lighting</li>
+                <li>Content Creation</li>
+                <li>Graphic Design</li>
+                <li>AI Art Production</li>
+              </ul>
+            </div>
+
+            <div id="soft" class="extra">
+              <ul>
+                <li>Adobe Suite</li>
+                <li>Figma</li>
+                <li>Node + React</li>
+                <li>Blender</li>
+                <li>Touch Designer</li>
+                <li>Unity</li>
+                <li>Stable Diffusion</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="three">
+        <div class="content-wrapper">
+          <div class="swiper" id="swiper-1" data-description-id="description-1">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <a href="https://esthetica.netlify.app/" target="_blank">
+                  <img src="assets/images/esthetica-website.jpg" class="" />
+                </a>
+              </div>
+              <div class="swiper-slide">
+                <a href="https://esthetica.netlify.app/" target="_blank"
+                  ><img src="assets/images/esthetica-product.jpg" class="" />
+                </a>
+              </div>
+              <div class="swiper-slide">
+                <a href="https://esthetica.netlify.app/" target="_blank"
+                  ><img src="assets/images/esthetica-website.jpg" class="" />
+                </a>
+              </div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+          </div>
+          <p class="description" id="description-1">
+            Esthetica is a tool, platform, and format used to create and share
+            aesthetic experiences. Each 'esthetic' conists of a combination of
+            images, videos, and texts, sandwiched by a pantone pallete at the
+            top, and a embedded playlist at the bottom. Once created, the
+            content can be visualized in a variety of ways,and easily shared on
+            social media. The app is currently in the early stages of
+            development. <br />
+            <br />
+            <a
+              href="https://esthetica.netlify.app/"
+              target="_blank"
+              class="link"
+            >
+              https://esthetica.netlify.app/
+            </a>
+          </p>
+        </div>
+      </section>
+      <section id="four">
+        <div class="content-wrapper">
+          <div class="swiper" id="swiper-2" data-description-id="description-2">
+            <div class="swiper-wrapper">
+              <div
+                class="swiper-slide"
+                data-description="Aided in developing a content strategy, designing sketches,
+                flow diagrams, wireframes, and eventually the website for Yeul; A specialized Visa payment tool designed for businesses managing vehicle fleets, offering discounts on fuel, real-time expense tracking, customizable spending controls, and environmental sustainability options. <br> <br> <a
+                href='https://www.yeulpay.com/'
+                target='_blank'
+                class='link'>Website 
+                </a> "
+              >
+                
+              >
+                <a href="https://www.yeulpay.com/" target="_blank"
+                  ><img src="assets/images/yeul.jpg" class="" />
+                </a>
+              </div>
+              <div
+                class="swiper-slide"
+                data-description="Various programs in Concordia involve students working with and creating digital media. While we all share the same campus, there is little to no initiative taken for us to interact and collaborate. I took it into my own hands to host informal gatherings on campus which I would name 'Vienna Sessions', named after the art movement called 'Vienna Secession'. The goal was to create a space where students could get to know each other, share what they are working on, and potentially come up with ideas for further collaborations. <a
+                href='https://viennasessions.netlify.app/'
+                target='_blank'
+                class='link'>Website 
+                </a> "
+              >
+                <a href="https://esthetica.netlify.app/" target="_blank"
+                  ><img src="assets/images/vienna.jpg" class="" />
+                </a>
+              </div>
+              <div
+                class="swiper-slide"
+                data-description="Brique par brique is a nonprofit organization with a focus on building infrastructure for social change in and beyond the neighborhood of Parc Extention. In my time volunteering, interning, and collaborating with the BxB, I have helped with the design of their website, event promotion, and community center. <a
+                href='https://www.briqueparbrique.com/en/home'
+                target='_blank'
+                class='link'>Website 
+                </a> "
+              >
+                <a
+                  href="https://www.briqueparbrique.com/en/home"
+                  target="_blank"
+                  ><img src="assets/images/bxb.jpg" class="" />
+                </a>
+              </div>
+              <div
+                class="swiper-slide"
+                data-description="A previous, more adventurous version of my portfolio website. <br> <br>  <a
+                href='https://www.briqueparbrique.com/en/home'
+                target='_blank'
+                class='link'>Video Demo 
+                </a> ""
+              >
+                <a href="https://armanfaruqui.netlify.app/" target="_blank"
+                  ><img src="assets/images/ogPort.jpg" class="" />
+                </a>
+              </div>
+              <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+          <p class="description" id="description-2">
+            Esthetica is a tool, platform, and format used to create and share
+            aesthetic experiences. Each 'esthetic' conists of a combination of
+            images, videos, and texts, sandwiched by a pantone pallete at the
+            top, and a embedded playlist at the bottom. Once created, the
+            content can be visualized in a variety of ways,and easily shared on
+            social media. The app is currently in the early stages of
+            development. <br />
+            <br />
+            <a
+              href="https://esthetica.netlify.app/"
+              target="_blank"
+              class="link"
+            >
+              https://esthetica.netlify.app/
+            </a>
+          </p>
+        </div>
+      </section>
+      <section id="five">
+        <div class="content-wrapper">
+          <div class="swiper" id="swiper-3" data-description-id="description-3">
+            <div class="swiper-wrapper">
+              <div
+                class="swiper-slide"
+                data-description="A collection of my 3D design and animation made using Blender, Substance Painter, and Adobe Premiere Pro. It includes a variety of evironmental and product design and re-creation. <br> <br> <a
+                href='https://esthetica.netlify.app/'
+                target='_blank'
+                class='link'
+              >
+              Youtube video link
+              </a>"
+              >
+                <a href="https://youtu.be/bqENOKjUbxI" target="_blank"
+                  ><img src="assets/images/3dreel.jpg" class="" />
+                </a>
+              </div>
+              <div
+                class="swiper-slide"
+                data-description="Nomadic is a digital art piece I made that takes the format of an online video platform. Its design critically examines the nature of algorithm-driven video platforms such as TikTok and Instagram, which curate content based on users' viewing habits to present more of what they're presumed to like. In contrast, Nomadic adopts a unique approach: it deliberately presents users with videos that are likely to be outside their usual interests, challenging them to explore beyond their comfort zones. 
+                <a
+                href='https://hybrid.concordia.ca/A_FARUQ/Nomadic/'
+                target='_blank'
+                class='link'>Link. 
+                </a>
+                <a class='link' href='assets/pdfs/Arman_Nomadic.pdf' download='Arman_Nomadic.pdf'>Essay.</a>">
+              
+                <a
+                  href="https://hybrid.concordia.ca/A_FARUQ/Nomadic/"
+                  target="_blank"
+                  ><img src="assets/images/nomadic.jpg" class="" />
+                </a>
+              </div>
+              <div class="swiper-slide" data-description="A music video I made in high school as an attempt to express my relationship with my native city Karachi. The beginning of my creative journey! <br> <br> <a
+                href='https://youtu.be/-EMR1DlUvD4?si=N3Ec-HEgkRHHf8Cx'
+                target='_blank'
+                class='link'
+              >
+              Youtube video link
+              </a>">
+                <a href="https://youtu.be/-EMR1DlUvD4?si=N3Ec-HEgkRHHf8Cx" target="_blank"
+                  ><img src="assets/images/nights.jpg" class="" />
+                </a>
+              </div>
+              <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+          <p class="description" id="description-3">
+            Esthetica is a tool, platform, and format used to create and share
+            aesthetic experiences. Each 'esthetic' conists of a combination of
+            images, videos, and texts, sandwiched by a pantone pallete at the
+            top, and a embedded playlist at the bottom. Once created, the
+            content can be visualized in a variety of ways,and easily shared on
+            social media. The app is currently in the early stages of
+            development. <br />
+            <br />
+            <a
+              href="https://esthetica.netlify.app/"
+              target="_blank"
+              class="link"
+            >
+              https://esthetica.netlify.app/
+            </a>
+          </p>
+        </div>
+      </section>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="js/scroll.js"></script>
+    <script src="js/content.js"></script>
+    <script src="js/swipe.js"></script>
+  </body>
+</html>
