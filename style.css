@@ -1,13 +1,13 @@
 @font-face {
   font-family: "Cool";
-  src: url("/assets/fonts/coolvetica.otf") format("truetype"); /* Adjust the path as needed */
+  src: url("/assets/fonts/coolvetica.otf") format("opentype");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Work";
-  src: url("/assets/fonts/WorkSans-SemiBold.ttf") format("truetype"); /* Adjust the path as needed */
+  src: url("/assets/fonts/WorkSans-SemiBold.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
