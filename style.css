@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Cool";
-  src: url("/assets/fonts/coolvetica\ rg.ttf") format("truetype"); /* Adjust the path as needed */
+  src: url("/assets/fonts/coolvetica.ttf") format("truetype"); /* Adjust the path as needed */
   font-weight: normal;
   font-style: normal;
 }
