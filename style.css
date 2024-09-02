@@ -24,6 +24,7 @@ html {
   scrollbar-width: none;
   -ms-overflow-style: none; /* IE and Edge */
   background-color: #fffdf9;
+  font-size: 1vw;
 }
 
 #logo {
@@ -228,14 +229,14 @@ h2 span {
 }
 
 #about2 {
-  margin-left: 16.67%;
-  margin-right: 29%;
-  margin-top: 10%;
+  margin-left: 10%; /* Adjusted margin-left to be consistent with the container */
+  margin-right: 30%; /* Adjusted margin-right for consistent spacing */
+  margin-top: 3%; /* Adjusted margin-top to be proportional to the container */
 }
 
 #about3 {
-  margin-top: 10%;
-  margin-right: 41.6%;
+  margin-top: 3%; /* Adjusted margin-top to match the spacing */
+  margin-right: 25%; /* Adjusted margin-right to be consistent with #about2 */
 }
 
 .extra {
