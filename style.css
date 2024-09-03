@@ -374,6 +374,9 @@ h2 span {
 }
 
 @media (max-width: 600px) {
+  html {
+    font-size: 2vh;
+  }
   .cover {
     position: absolute;
     width: 100vw;
@@ -387,15 +390,34 @@ h2 span {
     margin-bottom: 0;
   }
 
+  .link2,
+  #show,
+  .info1,
+  #logo {
+    display: none;
+  }
+
   .nav {
     width: 94%;
     right: auto; /* Resets the right property */
     left: 3%; /* Centers the nav by setting equal left and right margins */
     margin: 0 auto; /* Additionally ensures horizontal centering */
+    background-color: #fffdf9;
   }
 
   section {
     padding: 0;
+    height: 80vh;
+  }
+
+  #five,
+  #four {
+    margin-top: 0;
+    height: 70vh;
+  }
+
+  div.content-wrapper {
+    margin-top: 0;
   }
 
   .vertical-nav {
