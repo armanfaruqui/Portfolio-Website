@@ -155,6 +155,10 @@ h1 {
   right: 6vw;
 }
 
+section.el-container {
+  display: none;
+}
+
 .heading {
   font-family: "Coolvetica", sans-serif;
   letter-spacing: 0;
