@@ -826,6 +826,13 @@ function zineClick(side) {
 }
 zineRenderStatic();
 
+(function() {
+  for (let i = 1; i <= 16; i++) {
+    const img = new Image();
+    img.src = 'zine/' + i + '.jpg';
+  }
+})();
+
 const MOB_CLASS = { about:'m-active-about', desire:'m-active-desire', alter:'m-active-alter' };
 
 function mobGo(id) {
