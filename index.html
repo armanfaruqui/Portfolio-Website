@@ -1,349 +1,843 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <title>Arman Faruqui</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-    />
-    <link href="https://fonts.cdnfonts.com/css/coolvetica" rel="stylesheet">
-  </head>
-  <body>
-    <p class="info1"><a class='link2' href='https://www.concordia.ca/academics/undergraduate/comp-arts-computer-science.html' target="_blank"> Specialization in Computation Arts </a></p>
-    <p class="info2"><a class='link2' href='https://www.briqueparbrique.com/' target="_blank"> Creative Coordinator at Brique par brique </a></p>
-    <p class="info3"><a class='link2' href='assets/pdfs/Resume_Arman.pdf' download='Resume_Arman.pdf'>Download Resume</a></p>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>www.armans.work</title>
+<link rel="preconnect" href="https://www.youtube.com">
+<link rel="preconnect" href="https://i.ytimg.com">
+<link rel="dns-prefetch" href="https://www.youtube-nocookie.com">
+<style>
+@font-face {
+  font-family: 'Coolvetica';
+  src: url('fonts/coolvetica-rg.woff2') format('woff2'),
+       url('fonts/coolvetica-rg.ttf') format('truetype');
+  font-display: swap;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #EBEBEB;
+  --text: #111;
+  --green:  #b3cd1e;
+  --pink:   #F06ACA;
+  --yellow: #F5F56A;
+  --g: 10vw; /* 1 grid cell = 10vw */
+  --body: 'Hiragino Kaku Gothic Pro','ヒラギノ角ゴ Pro W3','Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+html, body { background: var(--bg); color: var(--text); }
 
-    <img src="assets/images/logo.png" id="logo" />
+/* ── SHARED PILL STYLES ── */
+.nav-title {
+  font-family: 'Coolvetica', sans-serif;
+  font-weight: normal;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.nav-pills { display: flex; gap: 10px; flex-wrap: wrap; }
+.pill {
+  font-family: var(--body);
+  font-size: 14px;
+  padding: 6px 22px;
+  min-width: 110px;
+  text-align: center;
+  border-radius: 100px;
+  border: 1.5px solid var(--text);
+  background: transparent;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--text);
+  transition: opacity 0.15s, transform 0.12s;
+}
+.pill:hover { opacity: 0.85; transform: scale(0.97); }
 
-    <nav class="nav">
-      <ul>
-        <li class="shift" data-target="two">About Me</li>
-        <li class="shift" data-target="three">Esthetica</li>
-        <li class="shift" data-target="four">Web</li>
-        <li class="shift" data-target="five">Art</li>
-        <li class="shift"><a href="mailto:armanfaruqui@hotmail.com" class="link2">Contact </a></li>
-      </ul>
+/* ════════════════════════════════════
+   DESKTOP
+════════════════════════════════════ */
+@media (min-width: 769px) {
+  html {
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    height: 100%;
+  }
+  body { height: 100%; }
+  .mobile-only { display: none !important; }
+
+  /* All desktop pills with liquid/bubble glossy effect */
+  #pill-about  {
+    background:
+      radial-gradient(ellipse 60% 40% at 30% 25%, rgba(255,255,255,0.7) 0%, transparent 50%),
+      radial-gradient(ellipse 40% 30% at 70% 70%, rgba(255,255,255,0.3) 0%, transparent 40%),
+      radial-gradient(ellipse 100% 100% at 50% 100%, rgba(0,0,0,0.1) 0%, transparent 50%),
+      linear-gradient(180deg, #c8e030 0%, #b3cd1e 40%, #9ab818 100%);
+    border-color: #9ab818;
+    box-shadow:
+      inset 0 2px 4px rgba(255,255,255,0.5),
+      inset 0 -2px 4px rgba(0,0,0,0.1),
+      0 2px 6px rgba(179,205,30,0.4);
+  }
+  #pill-desire {
+    background:
+      radial-gradient(ellipse 60% 40% at 30% 25%, rgba(255,255,255,0.7) 0%, transparent 50%),
+      radial-gradient(ellipse 40% 30% at 70% 70%, rgba(255,255,255,0.3) 0%, transparent 40%),
+      radial-gradient(ellipse 100% 100% at 50% 100%, rgba(0,0,0,0.1) 0%, transparent 50%),
+      linear-gradient(180deg, #f59ddc 0%, #F06ACA 40%, #d855b5 100%);
+    border-color: #d855b5;
+    box-shadow:
+      inset 0 2px 4px rgba(255,255,255,0.5),
+      inset 0 -2px 4px rgba(0,0,0,0.1),
+      0 2px 6px rgba(240,106,202,0.4);
+  }
+  #pill-alter  {
+    background:
+      radial-gradient(ellipse 60% 40% at 30% 25%, rgba(255,255,255,0.7) 0%, transparent 50%),
+      radial-gradient(ellipse 40% 30% at 70% 70%, rgba(255,255,255,0.3) 0%, transparent 40%),
+      radial-gradient(ellipse 100% 100% at 50% 100%, rgba(0,0,0,0.1) 0%, transparent 50%),
+      linear-gradient(180deg, #f9f99a 0%, #F5F56A 40%, #e0e050 100%);
+    border-color: #e0e050;
+    box-shadow:
+      inset 0 2px 4px rgba(255,255,255,0.5),
+      inset 0 -2px 4px rgba(0,0,0,0.1),
+      0 2px 6px rgba(245,245,106,0.4);
+  }
+
+  .section {
+    scroll-snap-align: start;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* ━━━ ABOUT (nav lives here, not sticky) ━━━ */
+  #about {
+    display: flex;
+    flex-direction: column;
+    padding: 32px var(--g) 10vh;
+  }
+  #about .desk-nav { flex-shrink: 0; margin-bottom: 0; }
+  #about .desk-nav .nav-title {
+    font-size: clamp(52px, 5.3vw, 76px);
+    margin-bottom: 10px;
+  }
+  #about .about-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding-top: 16px;
+  }
+  #about .headlines {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  #about h1 {
+    font-family: 'Coolvetica', sans-serif;
+    font-size: clamp(38px, 4vw, 56px);
+    font-weight: normal;
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    margin-bottom: 24px;
+  }
+  .creds {
+    font-family: var(--body);
+    font-size: clamp(13px, 1.05vw, 15px);
+    line-height: 1.65;
+    color: #444;
+    margin-top: 6px;
+  }
+  .tool-row {
+    display: flex;
+    gap: 18px;
+    margin-top: 22px;
+    align-items: center;
+  }
+  .tool-row img { width: 48px; height: 48px; object-fit: contain; }
+
+  /* ━━━ DÉSIRÉ ━━━ */
+  #desire {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+  }
+
+  .d-left {
+    width: 47%;
+    flex-shrink: 0;
+    position: relative;
+    padding: 10vh 0 10vh var(--g);
+    display: flex;
+  }
+
+  .d-img-wrap {
+    width: 100%;
+    border-radius: 30px;
+    overflow: hidden;
+  }
+  .d-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 8%;
+    display: block;
+  }
+
+  .d-brand {
+    position: absolute;
+    bottom: 4vh;
+    left: calc(50% + var(--g) / 2);
+    transform: translateX(-50%);
+    width: 42%;
+    height: auto;
+    pointer-events: none;
+  }
+
+  .d-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 2.5vh;
+    padding: 10vh 8vw 10vh 6vw;
+  }
+
+  .d-igsnip { border-radius: 30px; overflow: hidden; width: 100%; flex-shrink: 0; }
+  .d-igsnip img { width: 100%; height: auto; display: block; }
+
+  .d-desc {
+    font-family: var(--body);
+    font-size: clamp(13px, 1.05vw, 15px);
+    line-height: 1.7;
+    color: #333;
+    flex-shrink: 0;
+  }
+
+  .d-webss { border-radius: 30px; overflow: hidden; border: 1px solid #ccc; margin-top: auto; }
+  .d-webss img { width: 100%; display: block; }
+
+  /* ━━━ ZINE ━━━ */
+  #zine {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10vh var(--g);
+    gap: 2.5vh;
+  }
+  .zine-hint {
+    font-family: var(--body);
+    font-size: 12px;
+    color: #888;
+    letter-spacing: 0.06em;
+    text-align: center;
+    min-height: 18px;
+    flex-shrink: 0;
+    user-select: none;
+  }
+  /* Stage: holds both page slots + flipping element */
+  .zine-stage {
+    position: relative;
+    height: 64vh;
+    width: 72vw;
+    flex-shrink: 0;
+  }
+  /* Static page slots */
+  .zp {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 36vw;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  .zp-l { left: 0;     justify-content: flex-end;   cursor: pointer; }
+  .zp-r { left: 36vw;  justify-content: flex-start;  cursor: pointer; }
+  .zp img {
+    max-height: 100%;
+    max-width: 36vw;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+  .zp-l img { border-radius: 4px 0 0 4px; box-shadow: -4px 4px 18px rgba(0,0,0,0.2); }
+  .zp-r img { border-radius: 0 4px 4px 0; box-shadow:  4px 4px 18px rgba(0,0,0,0.2); }
+  .zine-spine { display: none; }
+  /* 3D flip element */
+  .zf-persp {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 36vw;
+    perspective: 2200px;
+    z-index: 10;
+    display: none;
+  }
+  .zf-page {
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    position: relative;
+  }
+  .zf-face {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+  .zf-front { justify-content: flex-start; }
+  .zf-back  { justify-content: flex-end;   }
+  .zf-face img {
+    max-height: 100%;
+    max-width: 36vw;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+  .zf-front img { border-radius: 0 4px 4px 0; box-shadow:  4px 4px 18px rgba(0,0,0,0.2); }
+  .zf-back  img { border-radius: 4px 0 0 4px; box-shadow: -4px 4px 18px rgba(0,0,0,0.2); }
+  .zine-text {
+    font-family: var(--body);
+    font-size: clamp(13px, 1.05vw, 15px);
+    line-height: 1.7;
+    color: #333;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .zine-text a { color: var(--pink); text-decoration: none; }
+
+  /* ━━━ CROSS ━━━ */
+  #cross {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--g) 10vh;
+  }
+  .cross-img-wrap {
+    flex-shrink: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .cross-img-wrap img {
+    max-height: 76vh;
+    max-width: 50vw;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+  }
+  .cross-text {
+    font-family: var(--body);
+    font-size: clamp(13px, 1.05vw, 15px);
+    line-height: 1.8;
+    color: #333;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .cross-text .cross-title { font-weight: 600; color: var(--text); }
+  .cross-text a { color: #4a6fd4; text-decoration: none; }
+  .cross-text a:hover { text-decoration: underline; }
+
+  /* ━━━ ALTER-MODE ━━━ */
+  #alter {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    padding: 10vh var(--g) 10vh;
+    gap: 4vw;
+    overflow: hidden;
+  }
+
+  .a-left {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .a-left h2 {
+    font-family: 'Coolvetica', sans-serif;
+    font-size: clamp(44px, 5vw, 68px);
+    font-weight: normal;
+    letter-spacing: -0.02em;
+    line-height: 0.95;
+  }
+  .a-desc {
+    font-family: var(--body);
+    font-size: clamp(13px, 1.1vw, 16px);
+    line-height: 1.7;
+    color: #444;
+    max-width: 38vw;
+  }
+  .a-above {
+    flex: 1;
+    min-height: 30vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .a-desc-bottom { padding-top: 3vh; }
+  .video-row { display: flex; gap: 14px; }
+  .v-wrap {
+    flex: 1;
+    aspect-ratio: 16/9;
+    border-radius: 30px;
+    overflow: hidden;
+    background: var(--pink);
+  }
+  .v-wrap iframe { width: 100%; height: 100%; border: none; display: block; }
+
+  .a-right {
+    width: 27vw;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 2.5vh;
+  }
+  .a-poster { border-radius: 30px; overflow: hidden; }
+  .a-poster img { width: 100%; height: auto; display: block; }
+  .a-stats { display: flex; flex-direction: column; gap: 22px; }
+  .a-stat {
+    font-family: 'Coolvetica', sans-serif;
+    font-size: clamp(15px, 1.25vw, 19px);
+    font-weight: normal;
+    text-align: right;
+    line-height: 1.4;
+  }
+}
+
+/* ════════════════════════════════════
+   MOBILE
+════════════════════════════════════ */
+@media (max-width: 768px) {
+  html, body { height: 100%; overflow: hidden; }
+  .desktop-only { display: none !important; }
+
+  #mobile-nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: var(--bg);
+    padding: 16px 20px 12px;
+  }
+  #mobile-nav .nav-title { font-size: clamp(40px, 11vw, 54px); margin-bottom: 10px; text-align: center; }
+  #mobile-nav .nav-pills { justify-content: center; gap: 10px; flex-wrap: nowrap; }
+  .pill { font-size: 14px; padding: 7px 0; width: calc((100% - 20px) / 3); min-width: 0; text-align: center; }
+
+  .pill.m-active-about  {
+    background:
+      radial-gradient(ellipse 60% 40% at 30% 25%, rgba(255,255,255,0.7) 0%, transparent 50%),
+      radial-gradient(ellipse 40% 30% at 70% 70%, rgba(255,255,255,0.3) 0%, transparent 40%),
+      radial-gradient(ellipse 100% 100% at 50% 100%, rgba(0,0,0,0.1) 0%, transparent 50%),
+      linear-gradient(180deg, #c8e030 0%, #b3cd1e 40%, #9ab818 100%);
+    border-color: #9ab818;
+    box-shadow:
+      inset 0 2px 4px rgba(255,255,255,0.5),
+      inset 0 -2px 4px rgba(0,0,0,0.1),
+      0 2px 6px rgba(179,205,30,0.4);
+  }
+  .pill.m-active-desire {
+    background:
+      radial-gradient(ellipse 60% 40% at 30% 25%, rgba(255,255,255,0.7) 0%, transparent 50%),
+      radial-gradient(ellipse 40% 30% at 70% 70%, rgba(255,255,255,0.3) 0%, transparent 40%),
+      radial-gradient(ellipse 100% 100% at 50% 100%, rgba(0,0,0,0.1) 0%, transparent 50%),
+      linear-gradient(180deg, #f59ddc 0%, #F06ACA 40%, #d855b5 100%);
+    border-color: #d855b5;
+    box-shadow:
+      inset 0 2px 4px rgba(255,255,255,0.5),
+      inset 0 -2px 4px rgba(0,0,0,0.1),
+      0 2px 6px rgba(240,106,202,0.4);
+  }
+  .pill.m-active-alter  {
+    background:
+      radial-gradient(ellipse 60% 40% at 30% 25%, rgba(255,255,255,0.7) 0%, transparent 50%),
+      radial-gradient(ellipse 40% 30% at 70% 70%, rgba(255,255,255,0.3) 0%, transparent 40%),
+      radial-gradient(ellipse 100% 100% at 50% 100%, rgba(0,0,0,0.1) 0%, transparent 50%),
+      linear-gradient(180deg, #f9f99a 0%, #F5F56A 40%, #e0e050 100%);
+    border-color: #e0e050;
+    box-shadow:
+      inset 0 2px 4px rgba(255,255,255,0.5),
+      inset 0 -2px 4px rgba(0,0,0,0.1),
+      0 2px 6px rgba(245,245,106,0.4);
+  }
+
+  .m-section {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    padding-top: 96px;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .m-section.active { display: flex; }
+
+  /* MOBILE ABOUT */
+  #m-about {
+    padding: 96px 22px 28px;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  #m-about h1 {
+    font-family: 'Coolvetica', sans-serif;
+    font-size: clamp(26px, 7.5vw, 40px);
+    font-weight: normal;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-align: center;
+  }
+  .m-creds {
+    font-family: var(--body);
+    font-size: 13px;
+    line-height: 1.6;
+    color: #555;
+    text-align: center;
+  }
+  .m-tools { display: flex; gap: 14px; justify-content: center; }
+  .m-tools img { width: 40px; height: 40px; object-fit: contain; }
+
+  /* MOBILE DÉSIRÉ */
+  #m-desire {
+    padding: 126px 18px 24px;
+    gap: 18px;
+    overflow-y: auto;
+    align-items: center;
+  }
+  .m-gamja {
+    width: 100%; border-radius: 30px; overflow: hidden;
+    height: 36vh; flex-shrink: 0;
+  }
+  .m-gamja img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: 50% 20%; display: block;
+  }
+  .m-desc {
+    font-family: var(--body);
+    font-size: 15px; line-height: 1.65;
+    color: #333; flex-shrink: 0;
+    text-align: center;
+  }
+  .m-igsnip {
+    width: 100%; border-radius: 30px;
+    display: block; flex-shrink: 0;
+  }
+  .m-ig-meta { font-family: var(--body); font-size: 13px; color: #555; text-align: center; flex-shrink: 0; }
+  .m-link { font-family: var(--body); font-size: 15px; flex-shrink: 0; text-align: center; }
+  .m-link a { color: var(--pink); text-decoration: none; }
+
+  /* MOBILE ALTER */
+  #m-alter {
+    padding: 132px 18px 20px;
+    gap: 22px; overflow-y: auto; align-items: center;
+  }
+  .m-alter-desc { font-family: var(--body); font-size: 13px; line-height: 1.6; color: #444; text-align: center; flex-shrink: 0; }
+  .m-poster { width: 62%; border-radius: 24px; overflow: hidden; flex-shrink: 0; }
+  .m-poster img { width: 100%; display: block; }
+  .m-video { width: 100%; height: 190px; border-radius: 26px; overflow: hidden; background: var(--pink); flex-shrink: 0; }
+  .m-video iframe { width: 100%; height: 100%; border: none; display: block; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════ DESKTOP ══════ -->
+<div class="desktop-only">
+
+  <section class="section" id="about">
+    <nav class="desk-nav">
+      <div class="nav-title">www.armans.work</div>
+      <div class="nav-pills">
+        <a class="pill" id="pill-about"  href="#" onclick="deskGo('about');  return false;">about</a>
+        <a class="pill" id="pill-desire" href="#" onclick="deskGo('desire'); return false;">désiré</a>
+        <a class="pill" id="pill-alter"  href="#" onclick="deskGo('alter');  return false;">alter-mode</a>
+      </div>
     </nav>
-
-    <div class="vertical-nav">
-      <div class="circle" data-target="one"></div>
-      <div class="circle" data-target="two"></div>
-      <div class="circle" data-target="three"></div>
-      <div class="circle" data-target="four"></div>
-      <div class="circle" data-target="five"></div>
+    <div class="about-body">
+      <div class="headlines">
+        <h1>I take ideas from concept to completion.</h1>
+        <h1>Using design, technology, and systems to carry them into the real world.</h1>
+        <h1>Based in Montréal, I work with real people on real projects that live beyond the screen.</h1>
+      </div>
+      <div class="creds">
+        <p>Major in Design and Computer Science from Concordia University</p>
+        <p>Project Manager at Brique par brique</p>
+      </div>
+      <div class="tool-row">
+        <img src="images/blendericon.png" alt="Blender">
+        <img src="images/Photoshop.png" alt="Photoshop">
+        <img src="images/Premiere.png" alt="Premiere">
+        <img src="images/td.png" alt="TouchDesigner">
+        <img src="images/vscode.png" alt="VS Code">
+      </div>
     </div>
+  </section>
 
-    <div class="items">
-      <section id="one">
-        <div class="grid-container">
-          <picture>
-            <source
-              media="(max-width: 600px)"
-              srcset="assets/images/mobileCover3.jpg"
-            />
-            <img
-              src="assets/images/cover3.jpg"
-              class="cover"
-              alt="Cover Image"
-            />
-          </picture>
-        </div>
-      </section>
-      <section id="two">
-        <div class="aboutContainer">
-          <p id="about1" class="about">
-            I am a recent graduate with a degree in <span class="imp">Computation Arts</span> from Concordia University.
-            My time in the program equipped me with a thorough understanding of the <span class="imp">creative process</span>, alongside a foundation of <span class="imp">technical and software skills.</span>
-            
-          </p>
-          <p id="about2" class="about">
-            I'm passionate about shaping products from concept to completion, ensuring that each step is executed with an outlined <span class="imp">intention.</span>
-          </p>
-          <p id="about3" class="about">
-            While I’m focused on building my expertise in product roles, I also bring a solid foundation in <span class="imp">UX design and research</span>, which supports my ability to create user-centered, functional products. I’m committed to growing my skills in both areas to contribute effectively to the entire product lifecycle.
-          </p>
-          <div class="extra-container">
-            <div id="tech" class="extra">
-              <ul>
-                <li>Front-end Web Dev</li>
-                <li>Video Production</li>
-                <li>3D Production</li>
-                <li>Studio Lighting</li>
-                <li>Content Creation</li>
-                <li>Graphic Design</li>
-                <li>AI Art Production</li>
-              </ul>
-            </div>
-
-            <div id="soft" class="extra">
-              <ul>
-                <li>Adobe Suite</li>
-                <li>Figma</li>
-                <li>Node + React</li>
-                <li>Blender</li>
-                <li>Touch Designer</li>
-                <li>Unity</li>
-                <li>Stable Diffusion</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section id="three">
-        <div class="content-wrapper">
-          <div class="swiper" id="swiper-1" data-description-id="description-1">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide">
-                <a href="https://esthetica.netlify.app/" target="_blank">
-                  <img src="assets/images/esthetica-website.jpg" class="" />
-                </a>
-              </div>
-              <div class="swiper-slide">
-                <a href="https://esthetica.netlify.app/" target="_blank"
-                  ><img src="assets/images/esthetica-product.jpg" class="" />
-                </a>
-              </div>
-              <div class="swiper-slide">
-                <a href="https://esthetica.netlify.app/" target="_blank"
-                  ><img src="assets/images/EstheCover.jpg" class="" />
-                </a>
-              </div>
-            </div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-pagination"></div>
-          </div>
-          <p class="description" id="description-1">
-            Esthetica is a tool, platform, and format used to create and share
-            aesthetic experiences. Each 'esthetic' conists of a combination of
-            images, videos, and texts, sandwiched by a pantone pallete at the
-            top, and a embedded playlist at the bottom. Once created, the
-            content can be visualized in a variety of ways,and easily shared on
-            social media. The app is currently in the early stages of
-            development. <br />
-            <br />
-            <a
-              href="https://esthetica.netlify.app/"
-              target="_blank"
-              class="link"
-            >
-              https://esthetica.netlify.app/
-            </a>
-          </p>
-        </div>
-      </section>
-      <section id="four">
-        <div class="content-wrapper">
-          <div class="swiper" id="swiper-2" data-description-id="description-2">
-            <div class="swiper-wrapper">
-              <div
-                class="swiper-slide"
-                data-description="A short presentation touching upon the concept, branding, product, and outreach strategy of i.deal. <br> <br> <a
-                href='https://idealshowcase.netlify.app/'
-                target='_blank'
-                class='link'>Presentation 
-                </a> "
-              >
-              
-                <a href="https://idealshowcase.netlify.app/" target="_blank"
-                  ><img src="assets/images/i.deal_cover.jpg" class="" />
-                </a>
-              </div>
-              <div
-                class="swiper-slide"
-                data-description="An interactive UX case study proposing a feature that digitally recreates the experience of physical music ownership while directly supporting artists and enhancing fan engagement with exclusive content and personalized experiences. <br> <br> <a
-                href='https://armanscasestudy-spotify.netlify.app/'
-                target='_blank'
-                class='link'>Case Study 
-                </a> "
-              >
-              
-                <a href="https://armanscasestudy-spotify.netlify.app/" target="_blank"
-                  ><img src="assets/images/casestudy_cover.png" class="" />
-                </a>
-              </div>
-              <div
-                class="swiper-slide"
-                data-description="Aided in developing a content strategy, designing sketches,
-                flow diagrams, wireframes, and eventually the website for Yeul; A specialized Visa payment tool designed for businesses managing vehicle fleets, offering discounts on fuel, real-time expense tracking, customizable spending controls, and environmental sustainability options. <br> <br> <a
-                href='https://www.yeulpay.com/'
-                target='_blank'
-                class='link'>Website 
-                </a> "
-              >
-              
-                <a href="https://www.yeulpay.com/" target="_blank"
-                  ><img src="assets/images/yeul.jpg" class="" />
-                </a>
-              </div>
-              <div
-                class="swiper-slide"
-                data-description="At Concordia, numerous programs engage students in digital media creation, yet there's limited interaction and collaboration across disciplines. To bridge this gap, I initiated 'Vienna Sessions,' informal gatherings named after the 'Vienna Secession' art movement. These sessions aim to foster connections, encourage knowledge sharing, and inspire collaborative projects among students. <br> <br> <a
-                href='https://viennasessions.netlify.app/'
-                target='_blank'
-                class='link'>Website 
-                </a> "
-              >
-                <a href="https://esthetica.netlify.app/" target="_blank"
-                  ><img src="assets/images/vienna.jpg" class="" />
-                </a>
-              </div>
-              <div
-                class="swiper-slide"
-                data-description="Brique par brique is a nonprofit organization with a focus on building infrastructure for social change in and beyond the neighborhood of Parc Extention. In my time volunteering, interning, and collaborating with the BxB, I have helped with the design of their website, event promotion, and community center.<br> <br> <a
-                href='https://www.briqueparbrique.com/en/home'
-                target='_blank'
-                class='link'>Website 
-                </a> "
-              >
-                <a
-                  href="https://www.briqueparbrique.com/en/home"
-                  target="_blank"
-                  ><img src="assets/images/bxb.jpg" class="" />
-                </a>
-              </div>
-              <div
-                class="swiper-slide"
-                data-description="A previous, more adventurous version of my portfolio website. <br> <br>  <a
-                href='https://www.briqueparbrique.com/en/home'
-                target='_blank'
-                class='link'>Video Demo 
-                </a> ""
-              >
-                <a href="https://armanfaruqui.netlify.app/" target="_blank"
-                  ><img src="assets/images/ogPort.jpg" class="" />
-                </a>
-              </div>
-              <div class="swiper-button-next"></div>
-              <div class="swiper-button-prev"></div>
-              <div class="swiper-pagination"></div>
-            </div>
-          </div>
-          <p class="description" id="description-2">
-            Esthetica is a tool, platform, and format used to create and share
-            aesthetic experiences. Each 'esthetic' conists of a combination of
-            images, videos, and texts, sandwiched by a pantone pallete at the
-            top, and a embedded playlist at the bottom. Once created, the
-            content can be visualized in a variety of ways,and easily shared on
-            social media. The app is currently in the early stages of
-            development. <br />
-            <br />
-            <a
-              href="https://esthetica.netlify.app/"
-              target="_blank"
-              class="link"
-            >
-              https://esthetica.netlify.app/
-            </a>
-          </p>
-        </div>
-      </section>
-      <section id="five">
-        <div class="content-wrapper">
-          <div class="swiper" id="swiper-3" data-description-id="description-3">
-            <div class="swiper-wrapper">
-              <div
-              class="swiper-slide"
-              data-description="A collection of my 3D design and animation made using Blender, Substance Painter, and Adobe Premiere Pro. It includes a variety of evironmental and product design and re-creation. <br> <br> <a
-              href='https://youtu.be/bqENOKjUbxI'
-              target='_blank'
-              class='link'
-            >
-            Youtube video link
-            </a>"
-            >
-              <a href="https://youtu.be/bqENOKjUbxI" target="_blank"
-                ><img src="assets/images/3dreel.jpg" class="" />
-              </a>
-            </div>
-
-              <div
-                class="swiper-slide"
-                data-description="A collection of photographs I creatively directed, modeled in, and did the lighting and post production for. <br> <br> <a
-                href=https://vsco.co/arman-farq
-                target='_blank'
-                class='link'
-              >
-              VSCO Link
-              </a>"
-              >
-                <a href="https://vsco.co/arman-farq" target="_blank"
-                  ><img src="assets/images/model.jpg" class="" />
-                </a>
-              </div>
-
-              
-              
-              <div
-                class="swiper-slide"
-                data-description="Nomadic is a digital art piece I made that takes the format of an online video platform. Its design critically examines the nature of algorithm-driven video platforms such as TikTok and Instagram, which curate content based on users' viewing habits to present more of what they're presumed to like. In contrast, Nomadic adopts a unique approach: it deliberately presents users with videos that are likely to be outside their usual interests, challenging them to explore beyond their comfort zones. 
-                <a
-                href='https://hybrid.concordia.ca/A_FARUQ/Nomadic/'
-                target='_blank'
-                class='link'>Link. 
-                </a>
-                <a class='link' href='assets/pdfs/Arman_Nomadic.pdf' download='Arman_Nomadic.pdf'>Essay.</a>">
-              
-                <a
-                  href="https://hybrid.concordia.ca/A_FARUQ/Nomadic/"
-                  target="_blank"
-                  ><img src="assets/images/nomadic.jpg" class="" />
-                </a>
-              </div>
-              <div class="swiper-slide" data-description="A music video I made in high school as an attempt to express my relationship with my native city Karachi. The beginning of my creative journey! <br> <br> <a
-                href='https://youtu.be/-EMR1DlUvD4?si=N3Ec-HEgkRHHf8Cx'
-                target='_blank'
-                class='link'
-              >
-              Youtube video link
-              </a>">
-                <a href="https://youtu.be/-EMR1DlUvD4?si=N3Ec-HEgkRHHf8Cx" target="_blank"
-                  ><img src="assets/images/nights.jpg" class="" />
-                </a>
-              </div>
-              <div class="swiper-button-next"></div>
-              <div class="swiper-button-prev"></div>
-              <div class="swiper-pagination"></div>
-            </div>
-          </div>
-          <p class="description" id="description-3">
-            Esthetica is a tool, platform, and format used to create and share
-            aesthetic experiences. Each 'esthetic' conists of a combination of
-            images, videos, and texts, sandwiched by a pantone pallete at the
-            top, and a embedded playlist at the bottom. Once created, the
-            content can be visualized in a variety of ways,and easily shared on
-            social media. The app is currently in the early stages of
-            development. <br />
-            <br />
-            <a
-              href="https://esthetica.netlify.app/"
-              target="_blank"
-              class="link"
-            >
-              https://esthetica.netlify.app/
-            </a>
-          </p>
-        </div>
-      </section>
+  <section class="section" id="desire">
+    <div class="d-left">
+      <div class="d-img-wrap">
+        <img src="images/Gamja.jpg" alt="Désiré jewelry" loading="lazy">
+      </div>
+      <img class="d-brand" src="images/desire.png" alt="Désiré brand">
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="js/scroll.js"></script>
-    <script src="js/content.js"></script>
-    <script src="js/swipe.js"></script>
-  </body>
+    <div class="d-right">
+      <div class="d-igsnip">
+        <a href="https://www.instagram.com/desires.atelier/" target="_blank" rel="noopener">
+          <img src="images/IGSnip.jpg" alt="Instagram" loading="lazy">
+        </a>
+      </div>
+      <p class="d-desc">Désiré is a luxury jewelry brand that exists at the intersection of digital culture and physical craft.<br><br>Every piece is designed in 3D software, lost-wax cast, and hand-finished. I run the entire pipeline — concept, modeling, production, web, and marketing — myself.</p>
+      <div class="d-webss">
+        <a href="https://desire.jewelry/" target="_blank" rel="noopener">
+          <img src="images/webiteSS.jpg" alt="desire.jewelry website" loading="lazy">
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="zine">
+    <div class="zine-hint" id="zine-hint">Click to open &nbsp;→</div>
+    <div class="zine-stage">
+      <div class="zp zp-l" id="zp-l" onclick="zineClick('left')"><img id="zp-l-img" src="" alt=""></div>
+      <div class="zp zp-r" id="zp-r" onclick="zineClick('right')"><img id="zp-r-img" src="" alt=""></div>
+      <div class="zine-spine"></div>
+      <div class="zf-persp" id="zf-persp">
+        <div class="zf-page" id="zf-page">
+          <div class="zf-face zf-front"><img id="zf-front-img" src="" alt=""></div>
+          <div class="zf-face zf-back"><img id="zf-back-img" src="" alt=""></div>
+        </div>
+      </div>
+    </div>
+    <div class="zine-text">
+      <p>To launch the brand, I designed a zine consisting of artwork, photoshoots, and product pictures.</p>
+      <p>They were mass printed and distributed across cafes, art centers, and third spaces across Montreal and Chicago.</p>
+      <p>For the digital release, I animated each page and rendered a unique virtual 3D environment for them to be placed in.</p>
+      <p>Watch the video compilation <a href="https://www.youtube.com/watch?v=dnWNuXRdaj4" target="_blank" rel="noopener">here</a></p>
+    </div>
+  </section>
+
+  <section class="section" id="cross">
+    <div class="cross-img-wrap">
+      <a href="https://armanfaruqui.github.io/GA_Cross_Design/" target="_blank" rel="noopener">
+        <picture>
+          <source srcset="images/cross.webp" type="image/webp">
+          <img src="images/Cross.png" alt="God's Algorithm Pendant" loading="lazy">
+        </picture>
+      </a>
+    </div>
+    <div class="cross-text">
+      <p>Désiré x Sean Leon : God's Algorithm Pendant (in production)</p>
+      <p>A pendant designed in collaboration with grammy nominee artist Sean Leon for his upcoming album</p>
+      <p class="cross-title">GOD'S ALGORITHM</p>
+      <p><a href="https://armanfaruqui.github.io/GA_Cross_Design/" target="_blank" rel="noopener">Interactive Design Document</a> &nbsp;·&nbsp; Password: crown</p>
+    </div>
+  </section>
+
+  <section class="section" id="alter">
+    <div class="a-left">
+      <div class="a-above">
+        <h2>Altermode</h2>
+        <p class="a-desc">Community-based clothing repair and creative reuse. Alter-mode brings together asylum-seeking women from Parc-Extension that have years of sewing, tailoring, and textile experience.</p>
+        <div class="video-row">
+          <div class="v-wrap">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/dnWNuXRdaj4?si=bbUKu0wzSPMTAfpp" title="YouTube video player" loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+          <div class="v-wrap">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/KdIOFlqd9jk?si=Uhy3LYWjxj0NiqhE" title="YouTube video player" loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+      <p class="a-desc a-desc-bottom">Through regular repair and alteration events, community members are invited to bring clothes they love that need some TLC. These pieces upcycled to help Montrealers waste less and share more.<br><br>By extending the life of clothing and centering skill-sharing, and social connection, Altermode contributes to sustainable fashion practices while fostering integration, economic participation, and stronger community ties within Parc-Extension and beyond.</p>
+    </div>
+    <div class="a-right">
+      <div class="a-poster">
+        <a href="https://www.briqueparbrique.com/en/altermode" target="_blank" rel="noopener">
+          <img src="images/AMPoster.jpg" alt="Altermode poster" loading="lazy">
+        </a>
+      </div>
+      <div class="a-stats">
+        <div class="a-stat">5 events held so far</div>
+        <div class="a-stat">Over 300 items of clothing upcycled</div>
+        <div class="a-stat">Over 500 distinct attendees at our events</div>
+        <div class="a-stat">Thousands of dollars raised directly for our aunties</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ══════ MOBILE ══════ -->
+<div class="mobile-only">
+
+  <nav id="mobile-nav">
+    <div class="nav-title">www.armans.work</div>
+    <div class="nav-pills">
+      <a class="pill m-active-about" id="mpill-about"  href="#" onclick="mobGo('about');  return false;">about</a>
+      <a class="pill"               id="mpill-desire" href="#" onclick="mobGo('desire'); return false;">désiré</a>
+      <a class="pill"               id="mpill-alter"  href="#" onclick="mobGo('alter');  return false;">alter-mode</a>
+    </div>
+  </nav>
+
+  <div class="m-section active" id="m-about">
+    <h1>I take ideas from concept to completion.</h1>
+    <h1>Using design, technology, and systems to carry them into the real world.</h1>
+    <h1>Based in Montréal, I work with real people on real projects that live beyond the screen.</h1>
+    <div class="m-creds">
+      <p>Major in Design and Computer Science from Concordia University</p>
+      <p>Project Manager at Brique par brique</p>
+    </div>
+    <div class="m-tools">
+      <img src="images/blendericon.png" alt="Blender">
+      <img src="images/Photoshop.png" alt="Photoshop">
+      <img src="images/Premiere.png" alt="Premiere">
+      <img src="images/td.png" alt="TouchDesigner">
+      <img src="images/vscode.png" alt="VS Code">
+    </div>
+  </div>
+
+  <div class="m-section" id="m-desire">
+    <div class="m-gamja">
+      <img src="images/GamjaMobile.jpg" alt="Désiré jewelry" loading="lazy">
+    </div>
+    <p class="m-desc">Désiré is a luxury jewelry brand that exists at the intersection of digital culture and physical craft.<br><br>Every piece is designed in 3D software, lost-wax cast, and hand-finished. I run the entire pipeline — concept, modeling, production, web, and marketing — myself.</p>
+    <img class="m-igsnip" src="images/IGSnip.jpg" alt="Instagram snippet" loading="lazy">
+<p class="m-link">Website - <a href="https://www.desire.jewelry" target="_blank">www.desire.jewelry</a></p>
+  </div>
+
+  <div class="m-section" id="m-alter">
+    <p class="m-alter-desc">Community-based clothing repair and creative reuse. Alter-mode brings together asylum-seeking women from Parc-Extension that have years of sewing, tailoring, and textile experience.</p>
+    <div class="m-poster">
+      <a href="https://www.briqueparbrique.com/en/altermode" target="_blank" rel="noopener">
+        <img src="images/AMPoster.jpg" alt="Altermode poster">
+      </a>
+    </div>
+    <div class="m-video">
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/dnWNuXRdaj4?si=bbUKu0wzSPMTAfpp" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function deskGo(id) {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth' });
+}
+
+let zineState = 0, zineFlipping = false;
+
+function zinePage(s) {
+  if (s === 0) return { l: '',             r: 'zine/1.jpg'  };
+  if (s === 8) return { l: 'zine/16.jpg',  r: ''            };
+  return { l: 'zine/' + (s*2) + '.jpg', r: 'zine/' + (s*2+1) + '.jpg' };
+}
+function zineSetImg(el, src) {
+  el.src = src || '';
+  el.style.visibility = src ? 'visible' : 'hidden';
+}
+function zineUpdateHint() {
+  const h = document.getElementById('zine-hint');
+  if (!h) return;
+  if      (zineState === 0) h.innerHTML = 'Click to open &nbsp;→';
+  else if (zineState === 8) h.innerHTML = '← &nbsp;Click to go back';
+  else                      h.innerHTML = '← Click left page &nbsp;·&nbsp; Click right page →';
+}
+function zineUpdateCursor() {
+  const l = document.getElementById('zp-l'), r = document.getElementById('zp-r');
+  if (!l) return;
+  l.style.cursor = zineState > 0 ? 'pointer' : 'default';
+  r.style.cursor = zineState < 8 ? 'pointer' : 'default';
+}
+function zineRenderStatic() {
+  const d = zinePage(zineState);
+  zineSetImg(document.getElementById('zp-l-img'), d.l);
+  zineSetImg(document.getElementById('zp-r-img'), d.r);
+  document.getElementById('zf-persp').style.display = 'none';
+  zineUpdateHint(); zineUpdateCursor();
+}
+function zineFlipAnim(dir) {
+  if (zineFlipping) return;
+  const next = dir === 'fwd' ? zineState + 1 : zineState - 1;
+  if (next < 0 || next > 8) return;
+  zineFlipping = true;
+
+  const curr = zinePage(zineState), nx = zinePage(next);
+  const persp = document.getElementById('zf-persp');
+  const page  = document.getElementById('zf-page');
+  const front = document.getElementById('zf-front-img');
+  const back  = document.getElementById('zf-back-img');
+  const bFace = document.querySelector('.zf-back');
+  const lImg  = document.getElementById('zp-l-img');
+  const rImg  = document.getElementById('zp-r-img');
+
+  // Both directions use the same pivot (left edge of right slot = spine).
+  // Forward:  start 0°   → end -180°  (right page peels to the left)
+  // Backward: start -180° → end 0°    (exact reverse — left page un-peels from the left)
+  persp.style.left              = '36vw';
+  persp.style.perspectiveOrigin = '0% 50%';
+  page.style.transformOrigin    = 'left center';
+  bFace.style.transform         = 'rotateY(180deg)';
+
+  if (dir === 'fwd') {
+    zineSetImg(lImg, curr.l);   // static left: current left (stays visible)
+    zineSetImg(rImg, nx.r);     // static right: next right (revealed behind flip)
+    zineSetImg(front, curr.r);  // flip front: current right page (being turned)
+    zineSetImg(back,  nx.l);    // flip back: next left page (revealed on underside)
+  } else {
+    zineSetImg(lImg, nx.l);     // static left: prev left (revealed as flip sweeps right)
+    zineSetImg(rImg, curr.r);   // static right: current right (visible while flip is on left)
+    zineSetImg(front, nx.r);    // flip front: prev right (destination — shown at end)
+    zineSetImg(back,  curr.l);  // flip back: current left (visible at animation start)
+  }
+
+  const startAngle = dir === 'fwd' ? 'rotateY(0deg)'    : 'rotateY(-180deg)';
+  const endAngle   = dir === 'fwd' ? 'rotateY(-180deg)' : 'rotateY(0deg)';
+
+  page.style.transition = 'none';
+  page.style.transform  = startAngle;
+  persp.style.display   = 'block';
+
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    page.style.transition = 'transform 0.7s cubic-bezier(0.645,0.045,0.355,1.000)';
+    page.style.transform  = endAngle;
+  }));
+
+  setTimeout(() => {
+    zineState = next;
+    zineRenderStatic();
+    zineFlipping = false;
+  }, 700);
+}
+function zineClick(side) {
+  if (zineFlipping) return;
+  if (side === 'right' && zineState < 8) zineFlipAnim('fwd');
+  if (side === 'left'  && zineState > 0) zineFlipAnim('bwd');
+}
+zineRenderStatic();
+
+const MOB_CLASS = { about:'m-active-about', desire:'m-active-desire', alter:'m-active-alter' };
+
+function mobGo(id) {
+  ['about','desire','alter'].forEach(k => {
+    const p = document.getElementById('mpill-' + k);
+    p.classList.remove('m-active-about','m-active-desire','m-active-alter');
+    if (k === id) p.classList.add(MOB_CLASS[k]);
+  });
+  document.querySelectorAll('.m-section').forEach(s => s.classList.remove('active'));
+  const sec = document.getElementById('m-' + id);
+  if (sec) sec.classList.add('active');
+}
+</script>
+</body>
 </html>

@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm --version)",
+      "Bash(python -c \"from PIL import Image; print\\('Pillow OK'\\)\")",
+      "Bash(python -c \"from fonttools import version; print\\('fonttools OK'\\)\")",
+      "Bash(python -c ' *)",
+      "Bash(pip install *)",
+      "Bash(python -c \"import fonttools; print\\('OK'\\)\")",
+      "Bash(python -c \"from fonttools.ttLib import TTFont; from fonttools.ttLib.sfnt import USE_ZOPFLI; print\\('fonttools ready'\\)\")",
+      "Bash(python -c \"import fontTools; print\\('fontTools ready'\\)\")"
+    ]
+  }
+}
