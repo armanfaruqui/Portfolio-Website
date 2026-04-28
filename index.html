@@ -315,6 +315,12 @@ html, body { background: var(--bg); color: var(--text); }
     flex-shrink: 0;
   }
   .zine-text a { color: var(--pink); text-decoration: none; }
+  .zine-cta { font-weight: 700; display: inline-block; animation: zinePulse 2s ease-in-out infinite; }
+  .zine-cta a { color: var(--pink); text-decoration: none; }
+  @keyframes zinePulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.65; transform: scale(1.04); }
+  }
 
   /* ━━━ CROSS ━━━ */
   #cross {
@@ -622,8 +628,8 @@ html, body { background: var(--bg); color: var(--text); }
     <div class="zine-text">
       <p>To launch the brand, I designed a zine consisting of artwork, photoshoots, and product pictures.</p>
       <p>They were mass printed and distributed across cafes, art centers, and third spaces across Montreal and Chicago.</p>
-      <p>For the digital release, I animated each page and rendered a unique virtual 3D environment for them to be placed in.</p>
-      <p>Watch the video compilation <a href="https://youtu.be/7FWumSi2Ue4" target="_blank" rel="noopener">here</a></p>
+      <p>For the digital release, I animated each page and rendered a unique <strong>virtual 3D environment</strong> for them to be placed in.</p>
+      <p class="zine-cta">Watch the video compilation <a href="https://youtu.be/7FWumSi2Ue4" target="_blank" rel="noopener">here →</a></p>
     </div>
   </section>
 
