@@ -741,8 +741,7 @@ const ZINE_V = '?v=3';
 function zinePage(s) {
   if (s === 0) return { l: '',                          r: 'zine/1.jpg' + ZINE_V  };
   if (s === 8) return { l: 'zine/16.jpg' + ZINE_V,     r: ''                      };
-  const fn = n => 'zine/' + (n === 6 ? '6.2' : n) + '.jpg' + ZINE_V;
-  return { l: fn(s*2), r: fn(s*2+1) };
+  return { l: 'zine/' + (s*2) + '.jpg' + ZINE_V, r: 'zine/' + (s*2+1) + '.jpg' + ZINE_V };
 }
 function zineSetImg(el, src) {
   el.src = src || '';
@@ -831,7 +830,7 @@ zineRenderStatic();
 (function() {
   for (let i = 1; i <= 16; i++) {
     const img = new Image();
-    img.src = 'zine/' + (i === 6 ? '6.2' : i) + '.jpg' + ZINE_V;
+    img.src = 'zine/' + i + '.jpg' + ZINE_V;
   }
 })();
 
