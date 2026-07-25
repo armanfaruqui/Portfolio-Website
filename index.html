@@ -2,856 +2,762 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>www.armans.work</title>
-<link rel="preconnect" href="https://www.youtube.com">
-<link rel="preconnect" href="https://i.ytimg.com">
-<link rel="dns-prefetch" href="https://www.youtube-nocookie.com">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arman Faruqui — Work</title>
+<link rel="preload" as="image" href="media/icon.png">
 <style>
-@font-face {
-  font-family: 'Coolvetica';
-  src: url('fonts/coolvetica-rg.woff2') format('woff2'),
-       url('fonts/coolvetica-rg.ttf') format('truetype');
-  font-display: swap;
-}
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
 :root {
-  --bg: #EBEBEB;
-  --text: #111;
-  --green:  #b3cd1e;
-  --pink:   #F06ACA;
-  --yellow: #F5F56A;
-  --g: 10vw; /* 1 grid cell = 10vw */
-  --body: 'Hiragino Kaku Gothic Pro','ヒラギノ角ゴ Pro W3','Helvetica Neue',Helvetica,Arial,sans-serif;
+  --bg: #ffffff;
+  --ink: #3d3d3d;
+  --ink-soft: #9c9c9c;
+  --card-light: #f5f3ee;
+  --card-dark: #0e0e0e;
+  --font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
-html, body { background: var(--bg); color: var(--text); }
 
-/* ── SHARED PILL STYLES ── */
-.nav-title {
-  font-family: 'Coolvetica', sans-serif;
-  font-weight: normal;
-  letter-spacing: -0.02em;
-  line-height: 1;
+html, body {
+  height: 100%;
+  overflow: hidden;               /* no scrollbar — the cursor is the scroll */
+  background: var(--bg);
+  font-family: var(--font);
+  color: var(--ink);
+  touch-action: none;             /* the page owns all touch gestures */
+  -webkit-tap-highlight-color: transparent;
 }
-.nav-pills { display: flex; gap: 10px; flex-wrap: wrap; }
-.pill {
-  font-family: var(--body);
-  font-size: 14px;
-  padding: 6px 22px;
-  min-width: 110px;
-  text-align: center;
-  border-radius: 100px;
-  border: 1.5px solid var(--text);
-  background: transparent;
-  cursor: pointer;
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 26px;
+  left: 0; right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 34px;
+  z-index: 5000;
+}
+nav a {
+  font-size: 15px;
+  letter-spacing: 0.01em;
   text-decoration: none;
-  color: var(--text);
-  transition: opacity 0.15s, transform 0.12s;
+  color: var(--ink-soft);
+  transition: color 0.2s;
 }
-.pill:hover { opacity: 0.85; transform: scale(0.97); }
-
-/* ════════════════════════════════════
-   DESKTOP
-════════════════════════════════════ */
-@media (min-width: 769px) {
-  html {
-    scroll-snap-type: y mandatory;
-    overflow-y: scroll;
-    height: 100%;
-  }
-  body { height: 100%; }
-  .mobile-only { display: none !important; }
-
-  /* All desktop pills with liquid/bubble glossy effect */
-  #pill-about  {
-    background:
-      radial-gradient(ellipse 60% 40% at 30% 25%, rgba(255,255,255,0.7) 0%, transparent 50%),
-      radial-gradient(ellipse 40% 30% at 70% 70%, rgba(255,255,255,0.3) 0%, transparent 40%),
-      radial-gradient(ellipse 100% 100% at 50% 100%, rgba(0,0,0,0.1) 0%, transparent 50%),
-      linear-gradient(180deg, #c8e030 0%, #b3cd1e 40%, #9ab818 100%);
-    border-color: #9ab818;
-    box-shadow:
-      inset 0 2px 4px rgba(255,255,255,0.5),
-      inset 0 -2px 4px rgba(0,0,0,0.1),
-      0 2px 6px rgba(179,205,30,0.4);
-  }
-  #pill-desire {
-    background:
-      radial-gradient(ellipse 60% 40% at 30% 25%, rgba(255,255,255,0.7) 0%, transparent 50%),
-      radial-gradient(ellipse 40% 30% at 70% 70%, rgba(255,255,255,0.3) 0%, transparent 40%),
-      radial-gradient(ellipse 100% 100% at 50% 100%, rgba(0,0,0,0.1) 0%, transparent 50%),
-      linear-gradient(180deg, #f59ddc 0%, #F06ACA 40%, #d855b5 100%);
-    border-color: #d855b5;
-    box-shadow:
-      inset 0 2px 4px rgba(255,255,255,0.5),
-      inset 0 -2px 4px rgba(0,0,0,0.1),
-      0 2px 6px rgba(240,106,202,0.4);
-  }
-  #pill-alter  {
-    background:
-      radial-gradient(ellipse 60% 40% at 30% 25%, rgba(255,255,255,0.7) 0%, transparent 50%),
-      radial-gradient(ellipse 40% 30% at 70% 70%, rgba(255,255,255,0.3) 0%, transparent 40%),
-      radial-gradient(ellipse 100% 100% at 50% 100%, rgba(0,0,0,0.1) 0%, transparent 50%),
-      linear-gradient(180deg, #f9f99a 0%, #F5F56A 40%, #e0e050 100%);
-    border-color: #e0e050;
-    box-shadow:
-      inset 0 2px 4px rgba(255,255,255,0.5),
-      inset 0 -2px 4px rgba(0,0,0,0.1),
-      0 2px 6px rgba(245,245,106,0.4);
-  }
-
-  .section {
-    scroll-snap-align: start;
-    height: 100vh;
-    height: 100dvh;
-    overflow: hidden;
-    position: relative;
-  }
-
-  /* ━━━ ABOUT (nav lives here, not sticky) ━━━ */
-  #about {
-    display: flex;
-    flex-direction: column;
-    padding: 32px var(--g) 10vh;
-  }
-  #about .desk-nav { flex-shrink: 0; margin-bottom: 0; }
-  #about .desk-nav .nav-title {
-    font-size: clamp(52px, 5.3vw, 76px);
-    margin-bottom: 10px;
-  }
-  #about .about-body {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    padding-top: 16px;
-  }
-  #about .headlines {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  #about h1 {
-    font-family: 'Coolvetica', sans-serif;
-    font-size: clamp(38px, 4vw, 56px);
-    font-weight: normal;
-    line-height: 1.08;
-    letter-spacing: -0.01em;
-    margin-bottom: 24px;
-  }
-  .creds {
-    font-family: var(--body);
-    font-size: clamp(13px, 1.05vw, 15px);
-    line-height: 1.65;
-    color: #444;
-    margin-top: 6px;
-  }
-  .tool-row {
-    display: flex;
-    gap: 18px;
-    margin-top: 22px;
-    align-items: center;
-  }
-  .tool-row img { width: 48px; height: 48px; object-fit: contain; }
-
-  /* ━━━ DÉSIRÉ ━━━ */
-  #desire {
-    display: flex;
-    flex-direction: row;
-    height: 100vh;
-  }
-
-  .d-left {
-    width: 47%;
-    flex-shrink: 0;
-    position: relative;
-    padding: 10vh 0 10vh var(--g);
-    display: flex;
-  }
-
-  .d-img-wrap {
-    width: 100%;
-    border-radius: 30px;
-    overflow: hidden;
-  }
-  .d-img-wrap img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 8%;
-    display: block;
-  }
-
-  .d-brand {
-    position: absolute;
-    bottom: 4vh;
-    left: calc(50% + var(--g) / 2);
-    transform: translateX(-50%);
-    width: 42%;
-    height: auto;
-    pointer-events: none;
-  }
-
-  .d-right {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    gap: 2.5vh;
-    padding: 10vh 8vw 10vh 6vw;
-  }
-
-  .d-igsnip { border-radius: 30px; overflow: hidden; width: 100%; flex-shrink: 0; }
-  .d-igsnip img { width: 100%; height: auto; display: block; }
-
-  .d-desc {
-    font-family: var(--body);
-    font-size: clamp(13px, 1.05vw, 15px);
-    line-height: 1.7;
-    color: #333;
-    flex-shrink: 0;
-  }
-
-  .d-webss { border-radius: 30px; overflow: hidden; border: 1px solid #ccc; margin-top: auto; }
-  .d-webss img { width: 100%; display: block; }
-
-  /* ━━━ ZINE ━━━ */
-  #zine {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 10vh var(--g);
-    gap: 2.5vh;
-  }
-  .zine-hint {
-    font-family: var(--body);
-    font-size: 12px;
-    color: #888;
-    letter-spacing: 0.06em;
-    text-align: center;
-    min-height: 18px;
-    flex-shrink: 0;
-    user-select: none;
-  }
-  /* Stage: holds both page slots + flipping element */
-  .zine-stage {
-    position: relative;
-    height: 64vh;
-    width: 72vw;
-    flex-shrink: 0;
-  }
-  /* Static page slots */
-  .zp {
-    position: absolute;
-    top: 0;
-    height: 100%;
-    width: 36vw;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-  }
-  .zp-l { left: 0;     justify-content: flex-end;   cursor: pointer; }
-  .zp-r { left: 36vw;  justify-content: flex-start;  cursor: pointer; }
-  .zp img {
-    max-height: 100%;
-    max-width: 36vw;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    display: block;
-    user-select: none;
-    -webkit-user-drag: none;
-  }
-  .zp-l img { border-radius: 4px 0 0 4px; box-shadow: -4px 4px 18px rgba(0,0,0,0.2); }
-  .zp-r img { border-radius: 0 4px 4px 0; box-shadow:  4px 4px 18px rgba(0,0,0,0.2); }
-  .zine-spine { display: none; }
-  /* 3D flip element */
-  .zf-persp {
-    position: absolute;
-    top: 0;
-    height: 100%;
-    width: 36vw;
-    perspective: 2200px;
-    z-index: 10;
-    display: none;
-  }
-  .zf-page {
-    width: 100%;
-    height: 100%;
-    transform-style: preserve-3d;
-    position: relative;
-  }
-  .zf-face {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-  }
-  .zf-front { justify-content: flex-start; }
-  .zf-back  { justify-content: flex-end;   }
-  .zf-face img {
-    max-height: 100%;
-    max-width: 36vw;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    display: block;
-    user-select: none;
-    -webkit-user-drag: none;
-  }
-  .zf-front img { border-radius: 0 4px 4px 0; box-shadow:  4px 4px 18px rgba(0,0,0,0.2); }
-  .zf-back  img { border-radius: 4px 0 0 4px; box-shadow: -4px 4px 18px rgba(0,0,0,0.2); }
-  .zine-text {
-    font-family: var(--body);
-    font-size: clamp(13px, 1.05vw, 15px);
-    line-height: 1.7;
-    color: #333;
-    text-align: center;
-    flex-shrink: 0;
-  }
-  .zine-text a { color: var(--pink); text-decoration: none; }
-  .zine-cta { font-weight: 700; display: inline-block; animation: zinePulse 2s ease-in-out infinite; }
-  .zine-cta a { color: var(--pink); text-decoration: none; }
-  @keyframes zinePulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.65; transform: scale(1.04); }
-  }
-
-  /* ━━━ CROSS ━━━ */
-  #cross {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 var(--g) 10vh;
-  }
-  .cross-img-wrap {
-    flex-shrink: 0;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-  }
-  .cross-img-wrap img {
-    max-height: 76vh;
-    max-width: 50vw;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    display: block;
-  }
-  .cross-text {
-    font-family: var(--body);
-    font-size: clamp(13px, 1.05vw, 15px);
-    line-height: 1.8;
-    color: #333;
-    text-align: center;
-    flex-shrink: 0;
-  }
-  .cross-text .cross-title { font-weight: 600; color: var(--text); }
-  .cross-text a { color: #4a6fd4; text-decoration: none; }
-  .cross-text a:hover { text-decoration: underline; }
-
-  /* ━━━ ALTER-MODE ━━━ */
-  #alter {
-    display: flex;
-    flex-direction: row;
-    align-items: stretch;
-    padding: 10vh var(--g) 10vh;
-    gap: 4vw;
-    overflow: hidden;
-  }
-
-  .a-left {
-    flex: 1;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-  }
-  .a-left h2 {
-    font-family: 'Coolvetica', sans-serif;
-    font-size: clamp(44px, 5vw, 68px);
-    font-weight: normal;
-    letter-spacing: -0.02em;
-    line-height: 0.95;
-  }
-  .a-desc {
-    font-family: var(--body);
-    font-size: clamp(13px, 1.1vw, 16px);
-    line-height: 1.7;
-    color: #444;
-    max-width: 38vw;
-  }
-  .a-above {
-    flex: 1;
-    min-height: 30vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  .a-desc-bottom { padding-top: 3vh; }
-  .video-row { display: flex; gap: 14px; }
-  .v-wrap {
-    flex: 1;
-    aspect-ratio: 16/9;
-    border-radius: 30px;
-    overflow: hidden;
-    background: var(--pink);
-  }
-  .v-wrap iframe { width: 100%; height: 100%; border: none; display: block; }
-
-  .a-right {
-    width: 27vw;
-    flex-shrink: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    gap: 2.5vh;
-  }
-  .a-poster { border-radius: 30px; overflow: hidden; }
-  .a-poster img { width: 100%; height: auto; display: block; }
-  .a-stats { display: flex; flex-direction: column; gap: 22px; }
-  .a-stat {
-    font-family: 'Coolvetica', sans-serif;
-    font-size: clamp(15px, 1.25vw, 19px);
-    font-weight: normal;
-    text-align: right;
-    line-height: 1.4;
-  }
+nav a:hover { color: var(--ink); }
+nav a.active {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  text-decoration-thickness: 1px;
 }
 
-/* ════════════════════════════════════
-   MOBILE
-════════════════════════════════════ */
-@media (max-width: 768px) {
-  html, body { height: 100%; overflow: hidden; }
-  .desktop-only { display: none !important; }
+/* ── STAGE ── */
+#stage {
+  position: absolute;
+  inset: 0;
+  perspective: 1200px;
+  perspective-origin: 50% 50%;
+}
 
-  #mobile-nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    background: var(--bg);
-    padding: 16px 20px 12px;
-  }
-  #mobile-nav .nav-title { font-size: clamp(40px, 11vw, 54px); margin-bottom: 10px; text-align: center; }
-  #mobile-nav .nav-pills { justify-content: center; gap: 10px; flex-wrap: nowrap; }
-  .pill { font-size: 14px; padding: 7px 0; width: calc((100% - 20px) / 3); min-width: 0; text-align: center; }
+.card {
+  position: absolute;
+  top: 46%;                       /* sits slightly high — breathing room for the captions */
+  left: 50%;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 26px 90px rgba(0,0,0,0.13), 0 6px 22px rgba(0,0,0,0.07);
+  background: var(--card-light);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+a.card.link { cursor: pointer; }
+.card img,
+.card video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 
-  .pill.m-active-about  {
-    background:
-      radial-gradient(ellipse 60% 40% at 30% 25%, rgba(255,255,255,0.7) 0%, transparent 50%),
-      radial-gradient(ellipse 40% 30% at 70% 70%, rgba(255,255,255,0.3) 0%, transparent 40%),
-      radial-gradient(ellipse 100% 100% at 50% 100%, rgba(0,0,0,0.1) 0%, transparent 50%),
-      linear-gradient(180deg, #c8e030 0%, #b3cd1e 40%, #9ab818 100%);
-    border-color: #9ab818;
-    box-shadow:
-      inset 0 2px 4px rgba(255,255,255,0.5),
-      inset 0 -2px 4px rgba(0,0,0,0.1),
-      0 2px 6px rgba(179,205,30,0.4);
-  }
-  .pill.m-active-desire {
-    background:
-      radial-gradient(ellipse 60% 40% at 30% 25%, rgba(255,255,255,0.7) 0%, transparent 50%),
-      radial-gradient(ellipse 40% 30% at 70% 70%, rgba(255,255,255,0.3) 0%, transparent 40%),
-      radial-gradient(ellipse 100% 100% at 50% 100%, rgba(0,0,0,0.1) 0%, transparent 50%),
-      linear-gradient(180deg, #f59ddc 0%, #F06ACA 40%, #d855b5 100%);
-    border-color: #d855b5;
-    box-shadow:
-      inset 0 2px 4px rgba(255,255,255,0.5),
-      inset 0 -2px 4px rgba(0,0,0,0.1),
-      0 2px 6px rgba(240,106,202,0.4);
-  }
-  .pill.m-active-alter  {
-    background:
-      radial-gradient(ellipse 60% 40% at 30% 25%, rgba(255,255,255,0.7) 0%, transparent 50%),
-      radial-gradient(ellipse 40% 30% at 70% 70%, rgba(255,255,255,0.3) 0%, transparent 40%),
-      radial-gradient(ellipse 100% 100% at 50% 100%, rgba(0,0,0,0.1) 0%, transparent 50%),
-      linear-gradient(180deg, #f9f99a 0%, #F5F56A 40%, #e0e050 100%);
-    border-color: #e0e050;
-    box-shadow:
-      inset 0 2px 4px rgba(255,255,255,0.5),
-      inset 0 -2px 4px rgba(0,0,0,0.1),
-      0 2px 6px rgba(245,245,106,0.4);
-  }
+/* placeholder shown until a real file (1.mp4 / 1.jpg / …) exists in media/ */
+.ph {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  padding: 28px;
+  background:
+    radial-gradient(ellipse 70% 55% at 35% 30%, rgba(255,255,255,0.55) 0%, transparent 60%),
+    radial-gradient(ellipse 90% 90% at 60% 100%, rgba(0,0,0,0.05) 0%, transparent 55%),
+    var(--card-light);
+}
+.ph span {
+  font-size: 15px;
+  color: rgba(0,0,0,0.35);
+  line-height: 1.3;
+}
+.ph.dark {
+  background:
+    radial-gradient(ellipse 60% 50% at 40% 35%, rgba(255,255,255,0.08) 0%, transparent 60%),
+    var(--card-dark);
+}
+.ph.dark span { color: rgba(255,255,255,0.75); }
 
-  .m-section {
-    display: none;
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    padding-top: 96px;
-    flex-direction: column;
-    overflow: hidden;
-  }
-  .m-section.active { display: flex; }
+/* ── TITLE ── */
+#title {
+  position: fixed;
+  bottom: 50px;
+  left: 0; right: 0;
+  text-align: center;
+  font-size: 17px;
+  color: var(--ink);
+  z-index: 5000;
+  pointer-events: none;
+  transition: opacity 0.18s ease;
+}
+#title.hide { opacity: 0; }
+#title > div { max-width: min(86vw, 680px); margin: 0 auto; }
+#title .sub {
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin-top: 6px;
+  line-height: 1.45;
+}
+#title .sub a {
+  color: var(--ink-soft);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  pointer-events: auto;
+}
+#title .sub a:hover { color: var(--ink); }
 
-  /* MOBILE ABOUT */
-  #m-about {
-    padding: 96px 22px 28px;
-    justify-content: space-evenly;
-    align-items: center;
-  }
-  #m-about h1 {
-    font-family: 'Coolvetica', sans-serif;
-    font-size: clamp(26px, 7.5vw, 40px);
-    font-weight: normal;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    text-align: center;
-  }
-  .m-creds {
-    font-family: var(--body);
-    font-size: 13px;
-    line-height: 1.6;
-    color: #555;
-    text-align: center;
-  }
-  .m-tools { display: flex; gap: 14px; justify-content: center; }
-  .m-tools img { width: 40px; height: 40px; object-fit: contain; }
+/* ── PAGES (About / Contact) ── */
+.page {
+  position: fixed;
+  inset: 0;
+  z-index: 4000;
+  display: flex;
+  overflow-y: auto;               /* the page can't scroll — these panels can */
+  overscroll-behavior: contain;
+  touch-action: pan-y;
+  padding: 88px 28px 48px;        /* clears the nav */
+  background: var(--bg);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.38s ease, visibility 0s linear 0.38s;
+}
+.page.show {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.38s ease, visibility 0s;
+}
+/* auto margins center it, but let it scroll from the top when it outgrows the viewport */
+.page .inner {
+  margin: auto;
+  max-width: 620px;
+  text-align: center;
+  font-size: 15px;
+  line-height: 1.6;
+}
+.page p + p { margin-top: 17px; }
+.page .last { margin-top: 26px; color: var(--ink-soft); }
+.page strong { font-weight: 600; }
+.page a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.page a:hover { color: var(--ink); }
+#title.viewhide { opacity: 0; }   /* view switch — independent of the per-card fade */
 
-  /* MOBILE DÉSIRÉ */
-  #m-desire {
-    padding: 126px 18px 24px;
-    gap: 18px;
-    overflow-y: auto;
-    align-items: center;
-  }
-  .m-gamja {
-    width: 100%; border-radius: 30px; overflow: hidden;
-    height: 36vh; flex-shrink: 0;
-  }
-  .m-gamja img {
-    width: 100%; height: 100%;
-    object-fit: cover; object-position: 50% 20%; display: block;
-  }
-  .m-desc {
-    font-family: var(--body);
-    font-size: 15px; line-height: 1.65;
-    color: #333; flex-shrink: 0;
-    text-align: center;
-  }
-  .m-igsnip {
-    width: 100%; border-radius: 30px;
-    display: block; flex-shrink: 0;
-  }
-  .m-ig-meta { font-family: var(--body); font-size: 13px; color: #555; text-align: center; flex-shrink: 0; }
-  .m-link { font-family: var(--body); font-size: 15px; flex-shrink: 0; text-align: center; }
-  .m-link a { color: var(--pink); text-decoration: none; }
+/* ── CONTACT FORM ── */
+#contactForm { margin-top: 26px; }
+#contactForm input,
+#contactForm textarea {
+  width: 100%;
+  font-family: inherit;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink);
+  text-align: center;
+  background: transparent;
+  border: 1px solid rgba(0,0,0,0.13);
+  border-radius: 14px;
+  padding: 12px 16px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+#contactForm input::placeholder,
+#contactForm textarea::placeholder { color: var(--ink-soft); }
+#contactForm input:focus,
+#contactForm textarea:focus { border-color: var(--ink); }
+#contactForm textarea { margin-top: 10px; min-height: 132px; resize: vertical; }
+#contactForm button {
+  margin-top: 14px;
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--bg);
+  background: var(--ink);
+  border: 0;
+  border-radius: 999px;
+  padding: 11px 30px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+#contactForm button:hover { opacity: 0.82; }
+#contactForm .hint { margin-top: 12px; font-size: 13px; color: var(--ink-soft); }
 
-  /* MOBILE ALTER */
-  #m-alter {
-    padding: 132px 18px 20px;
-    gap: 22px; overflow-y: auto; align-items: center;
-  }
-  .m-alter-desc { font-family: var(--body); font-size: 13px; line-height: 1.6; color: #444; text-align: center; flex-shrink: 0; }
-  .m-poster { width: 62%; border-radius: 24px; overflow: hidden; flex-shrink: 0; }
-  .m-poster img { width: 100%; display: block; }
-  .m-video { width: 100%; height: 190px; border-radius: 26px; overflow: hidden; background: var(--pink); flex-shrink: 0; }
-  .m-video iframe { width: 100%; height: 100%; border: none; display: block; }
+/* ── PRELOADER ── */
+#loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.55s ease;
+}
+#loader.done { opacity: 0; pointer-events: none; }
+#loader .wrap {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  animation: loaderBreath 2.4s ease-in-out infinite;
+}
+#loader .ring {
+  position: absolute;
+  inset: 0;
+  transform: rotate(-90deg);      /* progress starts at 12 o'clock */
+}
+#loader .ring circle { fill: none; stroke-width: 1.5; stroke-linecap: round; }
+#loader .ring .track { stroke: rgba(0,0,0,0.08); }
+#loader .ring .prog {
+  stroke: var(--ink);
+  stroke-dasharray: 351.86;       /* 2π × r56 */
+  stroke-dashoffset: 351.86;
+  transition: stroke-dashoffset 0.4s ease;
+}
+#loader .icon {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#loader .icon img { width: 66px; height: 66px; object-fit: contain; }
+@keyframes loaderBreath {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.045); }
+}
+
+/* ── MOBILE ── */
+@media (max-width: 700px) {
+  nav { top: 30px; gap: 28px; }
+  nav a { font-size: 16px; }
+  #title { bottom: 7vh; font-size: 18px; }
+  .card { border-radius: 22px; }
+  .page { padding: 96px 22px 44px; }
+  .page .inner { font-size: 16px; line-height: 1.62; }
+  #contactForm input, #contactForm textarea, #contactForm button { font-size: 16px; }
 }
 </style>
 </head>
 <body>
 
-<!-- ══════ DESKTOP ══════ -->
-<div class="desktop-only">
-
-  <section class="section" id="about">
-    <nav class="desk-nav">
-      <div class="nav-title">www.armans.work</div>
-      <div class="nav-pills">
-        <a class="pill" id="pill-about"  href="#" onclick="deskGo('about');  return false;">about</a>
-        <a class="pill" id="pill-desire" href="#" onclick="deskGo('desire'); return false;">désiré</a>
-        <a class="pill" id="pill-alter"  href="#" onclick="deskGo('alter');  return false;">alter-mode</a>
-      </div>
-    </nav>
-    <div class="about-body">
-      <div class="headlines">
-        <h1>I take ideas from concept to completion.</h1>
-        <h1>Using design, technology, and systems to carry them into the real world.</h1>
-        <h1>Based in Montréal, I work with real people on real projects that live beyond the screen.</h1>
-      </div>
-      <div class="creds">
-        <p>Major in Design and Computer Science from Concordia University</p>
-        <p>Project Manager at Brique par brique</p>
-      </div>
-      <div class="tool-row">
-        <img src="images/blendericon.png" alt="Blender">
-        <img src="images/Photoshop.png" alt="Photoshop">
-        <img src="images/Premiere.png" alt="Premiere">
-        <img src="images/td.png" alt="TouchDesigner">
-        <img src="images/vscode.png" alt="VS Code">
-      </div>
+<div id="loader">
+  <div class="wrap">
+    <svg class="ring" viewBox="0 0 120 120">
+      <circle class="track" cx="60" cy="60" r="56"></circle>
+      <circle class="prog"  cx="60" cy="60" r="56"></circle>
+    </svg>
+    <div class="icon">
+      <img src="media/icon.png" alt="">
     </div>
-  </section>
-
-  <section class="section" id="desire">
-    <div class="d-left">
-      <div class="d-img-wrap">
-        <img src="images/Gamja.jpg" alt="Désiré jewelry" loading="lazy">
-      </div>
-      <img class="d-brand" src="images/desire.png" alt="Désiré brand">
-    </div>
-    <div class="d-right">
-      <div class="d-igsnip">
-        <a href="https://www.instagram.com/desires.atelier/" target="_blank" rel="noopener">
-          <img src="images/IGSnip.jpg" alt="Instagram" loading="lazy">
-        </a>
-      </div>
-      <p class="d-desc">Désiré is a luxury jewelry brand that exists at the intersection of digital culture and physical craft.<br><br>Every piece is designed in 3D software, lost-wax cast, and hand-finished. I run the entire pipeline — concept, modeling, production, web, and marketing — myself.</p>
-      <div class="d-webss">
-        <a href="https://desire.jewelry/" target="_blank" rel="noopener">
-          <img src="images/webiteSS.jpg" alt="desire.jewelry website" loading="lazy">
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="zine">
-    <div class="zine-hint" id="zine-hint">Click to open &nbsp;→</div>
-    <div class="zine-stage">
-      <div class="zp zp-l" id="zp-l" onclick="zineClick('left')"><img id="zp-l-img" src="" alt=""></div>
-      <div class="zp zp-r" id="zp-r" onclick="zineClick('right')"><img id="zp-r-img" src="" alt=""></div>
-      <div class="zine-spine"></div>
-      <div class="zf-persp" id="zf-persp">
-        <div class="zf-page" id="zf-page">
-          <div class="zf-face zf-front"><img id="zf-front-img" src="" alt=""></div>
-          <div class="zf-face zf-back"><img id="zf-back-img" src="" alt=""></div>
-        </div>
-      </div>
-    </div>
-    <div class="zine-text">
-      <p>To launch the brand, I designed a zine consisting of artwork, photoshoots, and product pictures.</p>
-      <p>They were mass printed and distributed across cafes, art centers, and third spaces across Montreal and Chicago.</p>
-      <p>For the digital release, I animated each page and rendered a unique <strong>virtual 3D environment</strong> for them to be placed in.</p>
-      <p class="zine-cta"><a href="https://youtu.be/7FWumSi2Ue4" target="_blank" rel="noopener">Watch the video compilation here ←</a></p>
-    </div>
-  </section>
-
-  <section class="section" id="cross">
-    <div class="cross-img-wrap">
-      <a href="https://armanfaruqui.github.io/GA_Cross_Design/" target="_blank" rel="noopener">
-        <picture>
-          <source srcset="images/cross.webp" type="image/webp">
-          <img src="images/Cross.png" alt="God's Algorithm Pendant" loading="lazy">
-        </picture>
-      </a>
-    </div>
-    <div class="cross-text">
-      <p>Désiré x Sean Leon : God's Algorithm Pendant (in production)</p>
-      <p>A pendant designed in collaboration with grammy nominee artist Sean Leon for his upcoming album</p>
-      <p class="cross-title">GOD'S ALGORITHM</p>
-      <p><a href="https://armanfaruqui.github.io/GA_Cross_Design/" target="_blank" rel="noopener">Interactive Design Document</a> &nbsp;·&nbsp; Password: crown</p>
-    </div>
-  </section>
-
-  <section class="section" id="alter">
-    <div class="a-left">
-      <div class="a-above">
-        <h2>Altermode</h2>
-        <p class="a-desc">Community-based clothing repair and creative reuse. Alter-mode brings together asylum-seeking women from Parc-Extension that have years of sewing, tailoring, and textile experience.</p>
-        <div class="video-row">
-          <div class="v-wrap">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/dnWNuXRdaj4?si=bbUKu0wzSPMTAfpp" title="YouTube video player" loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-          </div>
-          <div class="v-wrap">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/KdIOFlqd9jk?si=Uhy3LYWjxj0NiqhE" title="YouTube video player" loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-          </div>
-        </div>
-      </div>
-      <p class="a-desc a-desc-bottom">Through regular repair and alteration events, community members are invited to bring clothes they love that need some TLC. These pieces upcycled to help Montrealers waste less and share more.<br><br>By extending the life of clothing and centering skill-sharing, and social connection, Altermode contributes to sustainable fashion practices while fostering integration, economic participation, and stronger community ties within Parc-Extension and beyond.</p>
-    </div>
-    <div class="a-right">
-      <div class="a-poster">
-        <a href="https://www.briqueparbrique.com/en/altermode" target="_blank" rel="noopener">
-          <img src="images/AMPoster.jpg" alt="Altermode poster" loading="lazy">
-        </a>
-      </div>
-      <div class="a-stats">
-        <div class="a-stat">5 events held so far</div>
-        <div class="a-stat">Over 300 items of clothing upcycled</div>
-        <div class="a-stat">Over 500 distinct attendees at our events</div>
-        <div class="a-stat">Thousands of dollars raised directly for our aunties</div>
-      </div>
-    </div>
-  </section>
-
+  </div>
 </div>
 
-<!-- ══════ MOBILE ══════ -->
-<div class="mobile-only">
+<nav>
+  <a href="#" data-view="work" class="active">Work</a>
+  <a href="#" data-view="about">About</a>
+  <a href="#" data-view="contact">Contact</a>
+</nav>
 
-  <nav id="mobile-nav">
-    <div class="nav-title">www.armans.work</div>
-    <div class="nav-pills">
-      <a class="pill m-active-about" id="mpill-about"  href="#" onclick="mobGo('about');  return false;">about</a>
-      <a class="pill"               id="mpill-desire" href="#" onclick="mobGo('desire'); return false;">désiré</a>
-      <a class="pill"               id="mpill-alter"  href="#" onclick="mobGo('alter');  return false;">alter-mode</a>
-    </div>
-  </nav>
+<div id="stage"></div>
+<div id="title"></div>
 
-  <div class="m-section active" id="m-about">
-    <h1>I take ideas from concept to completion.</h1>
-    <h1>Using design, technology, and systems to carry them into the real world.</h1>
-    <h1>Based in Montréal, I work with real people on real projects that live beyond the screen.</h1>
-    <div class="m-creds">
-      <p>Major in Design and Computer Science from Concordia University</p>
-      <p>Project Manager at Brique par brique</p>
-    </div>
-    <div class="m-tools">
-      <img src="images/blendericon.png" alt="Blender">
-      <img src="images/Photoshop.png" alt="Photoshop">
-      <img src="images/Premiere.png" alt="Premiere">
-      <img src="images/td.png" alt="TouchDesigner">
-      <img src="images/vscode.png" alt="VS Code">
-    </div>
+<div id="about" class="page">
+  <div class="inner">
+    <p>I'm Arman, a designer and project manager based in Montreal. I build things that live in two places at once: as objects you can hold, and as the digital worlds that make people want them.</p>
+    <p>My degree from Concordia in design and computer science, which meant learning 3D, UX/UI, web development, programming and game design in the same room. That range is the reason both of the projects on this site were built almost entirely in house.</p>
+    <p><strong><a href="https://www.instagram.com/desires.atelier/" target="_blank" rel="noopener">Désiré</a></strong> is my independent luxury jewelry brand, built at the intersection of anime, gaming and alternative fashion. I model every piece in Blender, iterate with manufacturers through to finished sterling silver, enamel and moissanite, then shoot, render, animate, edit and write the campaigns that carry them. The storefront, the site, the social channels and the SEO are mine too. One person, full pipeline.</p>
+    <p><strong><a href="https://www.briqueparbrique.com/en/altermode" target="_blank" rel="noopener">Alter-mode</a></strong> is a clothing repair and alterations initiative I founded at Brique par Brique, a nonprofit in Parc-Extension. Six editions in, it has raised thousands of dollars, upcycled hundreds of garments and earned coverage from CBC and CityNews. I handle the programming, partnerships, production and reporting, alongside the team of aunties whose skill is the whole reason it works.</p>
+    <p>Different scales, same instinct: work out what the thing actually needs, then learn how to make it.</p>
+    <p class="last">Currently open to collaborations — <a href="mailto:armanfaruqui@hotmail.com">armanfaruqui@hotmail.com</a>.</p>
   </div>
+</div>
 
-  <div class="m-section" id="m-desire">
-    <div class="m-gamja">
-      <img src="images/GamjaMobile.jpg" alt="Désiré jewelry" loading="lazy">
-    </div>
-    <p class="m-desc">Désiré is a luxury jewelry brand that exists at the intersection of digital culture and physical craft.<br><br>Every piece is designed in 3D software, lost-wax cast, and hand-finished. I run the entire pipeline — concept, modeling, production, web, and marketing — myself.</p>
-    <img class="m-igsnip" src="images/IGSnip.jpg" alt="Instagram snippet" loading="lazy">
-<p class="m-link">Website - <a href="https://www.desire.jewelry" target="_blank">www.desire.jewelry</a></p>
+<div id="contact" class="page">
+  <div class="inner">
+    <p>Currently open to collaborations and commissions.</p>
+    <p class="last"><a href="mailto:armanfaruqui@hotmail.com">armanfaruqui@hotmail.com</a></p>
+    <form id="contactForm" novalidate>
+      <input type="email" name="from" autocomplete="email" placeholder="your email (optional)">
+      <textarea name="message" placeholder="your message" required></textarea>
+      <button type="submit">Send</button>
+      <p class="hint">Opens in your mail app.</p>
+    </form>
   </div>
-
-  <div class="m-section" id="m-alter">
-    <p class="m-alter-desc">Community-based clothing repair and creative reuse. Alter-mode brings together asylum-seeking women from Parc-Extension that have years of sewing, tailoring, and textile experience.</p>
-    <div class="m-poster">
-      <a href="https://www.briqueparbrique.com/en/altermode" target="_blank" rel="noopener">
-        <img src="images/AMPoster.jpg" alt="Altermode poster">
-      </a>
-    </div>
-    <div class="m-video">
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/dnWNuXRdaj4?si=bbUKu0wzSPMTAfpp" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    </div>
-  </div>
-
 </div>
 
 <script>
-function deskGo(id) {
-  const el = document.getElementById(id);
-  if (el) el.scrollIntoView({ behavior: 'smooth' });
-}
+/* ════════════════════════════════════════════════════════════
+   MEDIA MANIFEST — the carousel ring, in order. `src` is the
+   actual file in ./media/; `title` is the display name shown at
+   the bottom (from descriptions.txt — numbering stripped, and
+   the extension is the one chosen for display, not the real one).
+   `sub` = optional extra caption lines; strings are plain text,
+   {text, href} objects render as links.
+   w  = card width in vw (aspect ratio comes from the media itself)
+   dy = vertical offset (px)   rz = static lean in degrees
+════════════════════════════════════════════════════════════ */
+const ITEMS = [
+  { src: '1.websiteOrb.webm',     title: 'désiré_parkShoot.mp4',       w: 52, dy:  18, rz: -2.0 },
+  { src: '2.veevee_blender.webm', title: 'veevee_design.mp4',          w: 48, dy:  36, rz:  1.6 },
+  { src: '3.Gamja.jpg',           title: 'veevee_worn.JPG',            w: 46, dy: -14, rz:  0.0 },
+  { src: '4.ondule_blender.webm', title: 'ondulé_design.mp4',          w: 50, dy:   8, rz:  2.2 },
+  { src: '5.showingRing.webm',    title: 'ondulé_worn.mp4',            w: 48, dy: -28, rz: -1.2 },
+  { src: '6.kisaWeb.jpg',         title: 'digital_painting1.jpg',      w: 46, dy:  26, rz:  1.0 },
+  { src: '7.2.5D.webm',           title: 'digital_painting2.mp4',      w: 54, dy:  -6, rz: -1.7 },
+  { src: '8.zineComp.webm',       title: 'désiré_zine.mp4',            w: 50, dy:  22, rz:  1.4 },
+  { src: '8.5.readingZine.webm',  title: 'readingZine.mp4',            w: 46, dy: -20, rz: -0.8 },
+  { src: '8.7.Website.webm',      title: 'desire_website.mp4',         w: 50, dy:  12, rz:  1.1,
+    sub: [{ text: 'www.desire.jewelry', href: 'http://www.desire.jewelry/' }] },
+  { src: '9.softServe.webm',      title: '2D_anim_1.mp4',              w: 48, dy:  30, rz:  2.0 },
+  { src: '10.Graduation.webm',    title: '2D_anim2.mp4',               w: 52, dy: -10, rz: -1.4 },
+  { src: '11.Cross.jpg',          title: 'gods_algorithm_pendant.jpg', w: 44, dy:  14, rz:  0.6,
+    sub: ["custom pendant designed for 2x grammy nominee artist Sean Leon for his upcoming album 'Gods Algorithm'"] },
+  { src: '12.SeanWearing.jpg',    title: 'sean_wearing.jpg',           w: 46, dy: -24, rz: -2.2,
+    sub: ["custom pendant designed for 2x grammy nominee artist Sean Leon for his upcoming album 'Gods Algorithm'",
+          'image is property of @donotdisturb_mag'] },
+  { src: '13.Alter-modeNews.jpg', title: 'altermode_cbcNews.jpg',      w: 50, dy:  10, rz:  1.2,
+    sub: [{ text: 'link to the segment', href: 'https://www.youtube.com/watch?v=KdIOFlqd9jk' }] },
+  { src: '14.alterModePoster.jpg', title: 'altermode_poster_august.jpg', w: 40, dy: -16, rz: -0.6,
+    sub: [{ text: 'link to our website', href: 'https://www.briqueparbrique.com/en/altermode' }] },
+  { src: '15.Cereal.jpg',         title: 'désiré_parkShoot_1.jpg',     w: 48, dy:  28, rz:  1.8 },
+  { src: '16.Arman.jpg',          title: 'désiré_parkShoot_2.jpg',     w: 46, dy: -12, rz: -1.0 },
+  { src: '17.Imani.jpg',          title: 'désiré_parkShoot_3.jpg',     w: 44, dy:  20, rz:  0.8 },
+];
+const N = ITEMS.length;
 
-let zineState = 0, zineFlipping = false;
-const ZINE_V = '';
+/* ── TUNING ── */
+const SPACING    = 0.23;   // distance between card centers, in viewport widths
+                           // (cards are 44–57vw wide → heavy stacking)
+const DEAD_ZONE  = 0.18;   // no drift while cursor is within ±18vw of center
+const FULL_ZONE  = 0.42;   // ±42vw from center (≈92vw) → max speed
+const MAX_SPEED  = 0.72;   // cards per second at max — deliberately unhurried
+const SPEED_CURVE= 2.2;    // >1 = slow near the dead zone, ramping up at edges
+const ACCEL_TAU  = 0.35;   // seconds — inertia / weight of the drift
+const SNAP_TAU   = 0.11;   // seconds — arrow-key snap responsiveness
+const TILT_X_MAX = 21;     // deg — scene pitch with cursor height
+const TILT_Y_MAX = 26;     // deg — scene yaw with cursor side
+const TILT_TAU   = 0.07;   // seconds — tilt tracking; low = follows circles live
+const FAN_DEG    = 4;      // deg — per-card fan based on distance from center
+const DEPTH_PX   = 240;    // how far off-center cards recede into the scene
 
-function zinePage(s) {
-  if (s === 0) return { l: '',                             r: 'zine/z1.jpg'         };
-  if (s === 8) return { l: 'zine/z16.jpg',                r: ''                    };
-  return { l: 'zine/z' + (s*2) + '.jpg', r: 'zine/z' + (s*2+1) + '.jpg' };
-}
-function zineSetImg(el, src) {
-  el.src = src || '';
-  el.style.visibility = src ? 'visible' : 'hidden';
-}
-function zineUpdateHint() {
-  const h = document.getElementById('zine-hint');
-  if (!h) return;
-  if      (zineState === 0) h.innerHTML = 'Click to open &nbsp;→';
-  else if (zineState === 8) h.innerHTML = '← &nbsp;Click to go back';
-  else                      h.innerHTML = '← Click left page &nbsp;·&nbsp; Click right page →';
-}
-function zineUpdateCursor() {
-  const l = document.getElementById('zp-l'), r = document.getElementById('zp-r');
-  if (!l) return;
-  l.style.cursor = zineState > 0 ? 'pointer' : 'default';
-  r.style.cursor = zineState < 8 ? 'pointer' : 'default';
-}
-function zineRenderStatic() {
-  const d = zinePage(zineState);
-  zineSetImg(document.getElementById('zp-l-img'), d.l);
-  zineSetImg(document.getElementById('zp-r-img'), d.r);
-  document.getElementById('zf-persp').style.display = 'none';
-  zineUpdateHint(); zineUpdateCursor();
-}
-function zineFlipAnim(dir) {
-  if (zineFlipping) return;
-  const next = dir === 'fwd' ? zineState + 1 : zineState - 1;
-  if (next < 0 || next > 8) return;
-  zineFlipping = true;
+/* mobile (≤700px): center card fills most of the screen, ~30% of each
+   neighbor peeks in, vertical scatter is exaggerated, touch drag scrolls */
+const SPACING_M  = 0.67;   // neighbor centers sit 67vw apart
+const W_SCALE_M  = 1.65;   // manifest widths × this (capped at 92vw)
+const DY_SCALE_M = 3.0;    // manifest dy × this
+const RZ_SCALE_M = 1.6;    // static lean × this
+const THROW_GAIN = 0.3;    // touch momentum → how far the release glides
 
-  const curr = zinePage(zineState), nx = zinePage(next);
-  const persp = document.getElementById('zf-persp');
-  const page  = document.getElementById('zf-page');
-  const front = document.getElementById('zf-front-img');
-  const back  = document.getElementById('zf-back-img');
-  const bFace = document.querySelector('.zf-back');
-  const lImg  = document.getElementById('zp-l-img');
-  const rImg  = document.getElementById('zp-r-img');
+const stage   = document.getElementById('stage');
+const titleEl = document.getElementById('title');
 
-  // Both directions use the same pivot (left edge of right slot = spine).
-  // Forward:  start 0°   → end -180°  (right page peels to the left)
-  // Backward: start -180° → end 0°    (exact reverse — left page un-peels from the left)
-  persp.style.left              = '36vw';
-  persp.style.perspectiveOrigin = '0% 50%';
-  page.style.transformOrigin    = 'left center';
-  bFace.style.transform         = 'rotateY(180deg)';
+/* ── BUILD CARDS ── */
+const cards = ITEMS.map(item => {
+  // a card whose caption carries a link becomes that link itself
+  const link = (item.sub || []).find(s => s && typeof s === 'object' && s.href);
+  const el = document.createElement(link ? 'a' : 'div');
+  el.className = link ? 'card link' : 'card';
+  if (link) {
+    el.href = link.href;
+    el.target = '_blank';
+    el.rel = 'noopener';
+    // a drag that ends on the card is a scroll, not a click — don't navigate
+    el.addEventListener('click', e => { if (dragMoved > 5) e.preventDefault(); });
+  }
+  el.style.aspectRatio = '1.6';
+  stage.appendChild(el);
+  const c = { el, item, media: null, isVideo: false, ar: 1.6,
+              title: item.title, sub: item.sub || [] };
 
-  if (dir === 'fwd') {
-    zineSetImg(lImg, curr.l);   // static left: current left (stays visible)
-    zineSetImg(rImg, nx.r);     // static right: next right (revealed behind flip)
-    zineSetImg(front, curr.r);  // flip front: current right page (being turned)
-    zineSetImg(back,  nx.l);    // flip back: next left page (revealed on underside)
+  const isVideo = /\.(webm|mp4|mov)$/i.test(item.src);
+  const m = isVideo ? document.createElement('video') : document.createElement('img');
+  if (isVideo) {
+    m.muted = true; m.loop = true; m.autoplay = true;
+    m.playsInline = true; m.preload = 'metadata';
   } else {
-    zineSetImg(lImg, nx.l);     // static left: prev left (revealed as flip sweeps right)
-    zineSetImg(rImg, curr.r);   // static right: current right (visible while flip is on left)
-    zineSetImg(front, nx.r);    // flip front: prev right (destination — shown at end)
-    zineSetImg(back,  curr.l);  // flip back: current left (visible at animation start)
+    m.alt = item.title;
   }
-
-  const startAngle = dir === 'fwd' ? 'rotateY(0deg)'    : 'rotateY(-180deg)';
-  const endAngle   = dir === 'fwd' ? 'rotateY(-180deg)' : 'rotateY(0deg)';
-
-  page.style.transition = 'none';
-  page.style.transform  = startAngle;
-  persp.style.display   = 'block';
-
-  requestAnimationFrame(() => requestAnimationFrame(() => {
-    page.style.transition = 'transform 0.7s cubic-bezier(0.645,0.045,0.355,1.000)';
-    page.style.transform  = endAngle;
-  }));
-
-  setTimeout(() => {
-    zineState = next;
-    zineRenderStatic();
-    zineFlipping = false;
-  }, 700);
-}
-function zineClick(side) {
-  if (zineFlipping) return;
-  if (side === 'right' && zineState < 8) zineFlipAnim('fwd');
-  if (side === 'left'  && zineState > 0) zineFlipAnim('bwd');
-}
-zineRenderStatic();
-
-(function() {
-  for (let i = 1; i <= 16; i++) {
-    const img = new Image();
-    img.src = 'zine/z' + i + '.jpg';
-  }
-})();
-
-const MOB_CLASS = { about:'m-active-about', desire:'m-active-desire', alter:'m-active-alter' };
-
-function mobGo(id) {
-  ['about','desire','alter'].forEach(k => {
-    const p = document.getElementById('mpill-' + k);
-    p.classList.remove('m-active-about','m-active-desire','m-active-alter');
-    if (k === id) p.classList.add(MOB_CLASS[k]);
+  m.addEventListener('error', () => {
+    el.innerHTML = '';
+    const ph = document.createElement('div');
+    ph.className = 'ph';
+    const s = document.createElement('span');
+    s.textContent = item.title;
+    ph.appendChild(s);
+    el.appendChild(ph);
+    c.media = null; c.isVideo = false;
   });
-  document.querySelectorAll('.m-section').forEach(s => s.classList.remove('active'));
-  const sec = document.getElementById('m-' + id);
-  if (sec) sec.classList.add('active');
+  // real aspect ratio comes from the file itself once its metadata arrives
+  m.addEventListener(isVideo ? 'loadedmetadata' : 'load', () => {
+    const w = isVideo ? m.videoWidth : m.naturalWidth;
+    const h = isVideo ? m.videoHeight : m.naturalHeight;
+    if (w && h) {
+      c.ar = w / h;
+      el.style.aspectRatio = String(c.ar);
+      sizeCard(c);
+    }
+  }, { once: true });
+  // completion signals for the preloader (first frame for video, full decode for img)
+  m.addEventListener(isVideo ? 'loadeddata' : 'load', () => markDone(c), { once: true });
+  m.addEventListener('error', () => markDone(c), { once: true });
+  c.m = m;
+  c.srcPath = 'media/' + item.src;   // src is assigned by the preloader, not here
+  el.appendChild(m);
+  if (isVideo) { c.media = m; c.isVideo = true; }
+  return c;
+});
+
+/* ── RESPONSIVE LAYOUT ── */
+let isMobile = false, spacingCur = SPACING, dyScaleCur = 1, rzScaleCur = 1;
+function sizeCard(c) {
+  let base = c.item.w;
+  if (isMobile) {
+    // narrow the size gap on phones: landscape media reads a touch bigger,
+    // portrait/tall media a touch smaller
+    const shapeAdj = c.ar >= 1 ? 1.15 : 0.85;
+    base = Math.min(base * W_SCALE_M * shapeAdj, 92);
+  }
+  // cap height at 72vh so portrait media never towers off-screen
+  const maxWvw = c.ar * 0.72 * innerHeight / innerWidth * 100;
+  c.el.style.width = Math.min(base, maxWvw).toFixed(2) + 'vw';
 }
+function applyLayout() {
+  isMobile   = matchMedia('(max-width: 700px)').matches;
+  spacingCur = isMobile ? SPACING_M  : SPACING;
+  dyScaleCur = isMobile ? DY_SCALE_M : 1;
+  rzScaleCur = isMobile ? RZ_SCALE_M : 1;
+  cards.forEach(sizeCard);
+}
+applyLayout();
+addEventListener('resize', applyLayout);
+
+/* ── PRELOADER: wait only for the cards visible at start, stream in
+      the rest afterwards (nearest-first, 2 downloads at a time) ── */
+const loaderEl  = document.getElementById('loader');
+const ringProg  = loaderEl.querySelector('.prog');
+const RING_C    = 2 * Math.PI * 56;
+const CRIT_DIST = 2;               // ring distance considered "visible at start"
+const MIN_SHOW  = 700;             // ms — let the ring animation read
+const loadT0    = performance.now();
+let revealed = false, doneCritical = 0, inFlight = 0;
+
+function ringDistIdx(i) { const d = Math.abs(i) % N; return Math.min(d, N - d); }
+const critical = [], queue = [];
+cards.forEach((c, i) => {
+  c.ringD = ringDistIdx(i);
+  (c.ringD <= CRIT_DIST ? critical : queue).push(c);
+});
+queue.sort((a, b) => a.ringD - b.ringD);
+critical.forEach(c => { c.critical = true; });
+
+function updateRing() {
+  const p = Math.max(0.04, doneCritical / critical.length);
+  ringProg.style.strokeDashoffset = String(RING_C * (1 - p));
+}
+function loadItem(c) {
+  if (c.srcSet) return;
+  c.srcSet = true;
+  if (c.isVideo) c.m.preload = 'auto';   // buffer fully even while paused off-center
+  c.m.src = c.srcPath;
+}
+function pump() {
+  if (!revealed) return;
+  while (inFlight < 2 && queue.length) {
+    const c = queue.shift();
+    if (c.srcSet) continue;
+    inFlight++;
+    loadItem(c);
+  }
+}
+function markDone(c) {
+  if (c.done) return;
+  c.done = true;
+  if (c.critical) {
+    doneCritical++;
+    updateRing();
+    if (doneCritical >= critical.length) reveal();
+  } else {
+    inFlight--;
+  }
+  pump();
+}
+function reveal() {
+  if (revealed) return;
+  revealed = true;
+  const wait = Math.max(0, MIN_SHOW - (performance.now() - loadT0));
+  setTimeout(() => {
+    ringProg.style.strokeDashoffset = '0';
+    loaderEl.classList.add('done');
+    setTimeout(() => loaderEl.remove(), 650);
+    pump();                        // start streaming the rest of the ring
+  }, wait);
+}
+critical.forEach(loadItem);
+updateRing();
+setTimeout(reveal, 8000);          // safety net — never trap the user on the loader
+
+/* ── STATE ── */
+let scrollU = 0;                 // scroll position in card units — unbounded (wraps)
+let vel     = 0;                 // cards per second
+let snap    = null;              // arrow-key target (unbounded index) or null
+let mx = 0.5, my = 0.5;          // raw cursor, normalized 0..1
+let smx = 0.5, smy = 0.5;        // smoothed cursor (fast — tilt follows live)
+let mouseIn = false;
+let titleIdx = -1, titleTimer = null;
+let overlayOpen = false;         // an About/Contact page covers the carousel and freezes it
+
+addEventListener('mousemove', e => {
+  if (usingTouch || overlayOpen) return;  // touch devices echo fake mousemoves — ignore them
+  mx = e.clientX / innerWidth;
+  my = e.clientY / innerHeight;
+  mouseIn = true;
+});
+document.addEventListener('mouseleave', () => { mouseIn = false; });
+
+/* ── DRAG: swipe on mobile, click-drag on desktop — release glides ── */
+let usingTouch = false, dragging = false, dragVel = 0, snapSoft = false;
+let dStartX = 0, dStartScroll = 0, dPrevScroll = 0, dPrevT = 0;
+let dragMoved = 0;               // px travelled — separates a click from a drag
+
+function dragStart(x) {
+  dragging = true; snap = null; vel = 0; dragVel = 0;
+  dStartX = x; dragMoved = 0;
+  dStartScroll = dPrevScroll = scrollU;
+  dPrevT = performance.now();
+}
+function dragMove(x) {
+  const dx = x - dStartX;
+  dragMoved = Math.max(dragMoved, Math.abs(dx));
+  scrollU = dStartScroll - dx / (spacingCur * innerWidth);
+  const now = performance.now();
+  const dtm = Math.max(8, now - dPrevT) / 1000;
+  dragVel = 0.75 * ((scrollU - dPrevScroll) / dtm) + 0.25 * dragVel;
+  dPrevScroll = scrollU; dPrevT = now;
+}
+function dragEnd() {
+  dragging = false;
+  const throwU = Math.max(-2, Math.min(2, dragVel * THROW_GAIN));
+  snap = Math.round(scrollU + throwU);   // glide, then settle centered
+  snapSoft = true;
+}
+
+addEventListener('touchstart', e => {
+  usingTouch = true; mouseIn = false;
+  if (overlayOpen) return;       // let the open page scroll natively
+  dragStart(e.touches[0].clientX);
+}, { passive: true });
+addEventListener('touchmove', e => {
+  if (!dragging) return;
+  e.preventDefault();
+  dragMove(e.touches[0].clientX);
+}, { passive: false });
+addEventListener('touchend', () => { if (dragging) dragEnd(); });
+
+addEventListener('mousedown', e => {
+  if (usingTouch || overlayOpen || e.button !== 0) return;
+  // nav + caption links stay clickable; card links still drag (a click is
+  // distinguished from a drag by distance, in the card's own click handler)
+  if (e.target instanceof Element && e.target.closest('nav, #title')) return;
+  e.preventDefault();                               // stops native image dragging
+  dragStart(e.clientX);
+});
+addEventListener('mousemove', e => { if (dragging && !usingTouch) dragMove(e.clientX); });
+addEventListener('mouseup',   () => { if (dragging && !usingTouch) dragEnd(); });
+document.addEventListener('mouseleave', () => { if (dragging && !usingTouch) dragEnd(); });
+
+addEventListener('keydown', e => {
+  if (overlayOpen) return;       // arrows scroll the open page instead
+  let dir = 0;
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') dir = 1;
+  if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   dir = -1;
+  if (!dir) return;
+  e.preventDefault();
+  const from = (snap !== null) ? snap : Math.round(scrollU);
+  snap = from + dir;             // unbounded — the ring just keeps turning
+  snapSoft = false;              // arrow steps stay snappy
+  vel = 0;
+});
+
+/* ── VIEWS: Work (the carousel) / About / Contact ── */
+const PAGES = { about: document.getElementById('about'), contact: document.getElementById('contact') };
+const viewLinks = [...document.querySelectorAll('nav a[data-view]')];
+
+function setView(v) {
+  // page → page swaps with no fade: crossfading two translucent panels would
+  // let the carousel flash through the gap between them
+  const swap = overlayOpen && v !== 'work';
+  overlayOpen = (v !== 'work');
+  for (const name in PAGES) {
+    const p = PAGES[name], on = (name === v);
+    if (swap) p.style.transition = 'none';
+    p.classList.toggle('show', on);
+    if (on) p.scrollTop = 0;
+  }
+  if (swap) {
+    void PAGES[v].offsetHeight;          // flush the instant swap before restoring
+    for (const name in PAGES) PAGES[name].style.transition = '';
+  }
+  titleEl.classList.toggle('viewhide', overlayOpen);
+  viewLinks.forEach(a => a.classList.toggle('active', a.dataset.view === v));
+  // drop whatever the carousel was doing so it isn't mid-glide on return
+  if (overlayOpen) { mouseIn = false; dragging = false; snap = null; vel = 0; }
+}
+viewLinks.forEach(a => a.addEventListener('click', e => { e.preventDefault(); setView(a.dataset.view); }));
+addEventListener('keydown', e => { if (e.key === 'Escape' && overlayOpen) setView('work'); });
+
+/* no backend here — Send hands the message to the visitor's own mail client */
+const contactForm = document.getElementById('contactForm');
+contactForm.addEventListener('submit', e => {
+  e.preventDefault();
+  const msg  = contactForm.message.value.trim();
+  const from = contactForm.from.value.trim();
+  if (!msg) { contactForm.message.focus(); return; }
+  const body = msg + (from ? '\n\n— ' + from : '');
+  location.href = 'mailto:armanfaruqui@hotmail.com'
+    + '?subject=' + encodeURIComponent('Portfolio enquiry')
+    + '&body='    + encodeURIComponent(body);
+});
+
+function renderTitle(c) {
+  titleEl.innerHTML = '';
+  const main = document.createElement('div');
+  main.textContent = c.title;
+  titleEl.appendChild(main);
+  c.sub.forEach(s => {
+    const d = document.createElement('div');
+    d.className = 'sub';
+    if (typeof s === 'string') {
+      d.textContent = s;
+    } else {
+      const a = document.createElement('a');
+      a.href = s.href;
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.textContent = s.text;
+      d.appendChild(a);
+    }
+    titleEl.appendChild(d);
+  });
+}
+function setTitle(i) {
+  if (i === titleIdx) return;
+  titleIdx = i;
+  titleEl.classList.add('hide');
+  clearTimeout(titleTimer);
+  titleTimer = setTimeout(() => {
+    renderTitle(cards[i]);
+    titleEl.classList.remove('hide');
+  }, 180);
+}
+
+/* cursor offset from center → drift speed (cards/sec) */
+function driftSpeed(nx) {
+  const off = nx - 0.5;
+  const a = Math.abs(off);
+  if (a <= DEAD_ZONE) return 0;
+  const t = Math.min(1, (a - DEAD_ZONE) / (FULL_ZONE - DEAD_ZONE));
+  return Math.sign(off) * MAX_SPEED * Math.pow(t, SPEED_CURVE);
+}
+
+const ease = (dt, tau) => 1 - Math.exp(-dt / tau);
+
+/* offset of card i from the carousel center, wrapped onto the ring [-N/2, N/2) */
+function ringOffset(i) {
+  let un = (i - scrollU) % N;
+  if (un < -N / 2) un += N;
+  if (un >= N / 2) un -= N;
+  return un;
+}
+
+/* ── MAIN LOOP ── */
+let last = performance.now();
+function frame(now) {
+  const dt = Math.min((now - last) / 1000, 0.05);
+  last = now;
+
+  // tilt tracks the cursor almost live — wiggle it, make circles, it follows
+  smx += ((mouseIn ? mx : 0.5) - smx) * ease(dt, TILT_TAU);
+  smy += ((mouseIn ? my : 0.5) - smy) * ease(dt, TILT_TAU);
+
+  // cursor-driven drift (with acceleration = weight) — paused while dragging
+  const target = (mouseIn && snap === null && !dragging) ? driftSpeed(mx) : 0;
+  if (snap !== null && mouseIn && driftSpeed(mx) !== 0) snap = null; // mouse takes over
+  vel += (target - vel) * ease(dt, ACCEL_TAU);
+  scrollU += vel * dt;
+
+  // snap — snappy for arrow keys, a softer glide for drag/swipe throws
+  if (snap !== null && !dragging) {
+    scrollU += (snap - scrollU) * ease(dt, snapSoft ? 0.22 : SNAP_TAU);
+    if (Math.abs(snap - scrollU) < 0.002) { scrollU = snap; snap = null; }
+  }
+
+  // scene tilt — pitch and yaw combine, so diagonal / circular motion reads fully
+  // (no cursor on touch devices, so the scene stays level there)
+  const rotX = isMobile ? 0 : (0.5 - smy) * TILT_X_MAX;   // cursor high → tilts up
+  const rotY = isMobile ? 0 : (smx - 0.5) * -TILT_Y_MAX;  // cursor right → tilts right
+
+  const vw = innerWidth;
+  const hideAt   = isMobile ? 1.8 : Math.min(3.8, N / 2 - 0.1);
+  const playNear = isMobile ? 1.5 : 2.8;
+  for (let i = 0; i < cards.length; i++) {
+    const c  = cards[i];
+    const un = ringOffset(i);
+    const x  = un * spacingCur * vw;
+    const y  = c.item.dy * dyScaleCur + Math.abs(un) * 10;
+    const z  = -Math.min(Math.abs(un), 2.8) * DEPTH_PX;
+    const fan = un * -FAN_DEG;
+
+    c.el.style.transform =
+      'translate(-50%, -50%) ' +
+      'translate3d(' + x.toFixed(1) + 'px, ' + y.toFixed(1) + 'px, ' + z.toFixed(1) + 'px) ' +
+      'rotateX(' + rotX.toFixed(2) + 'deg) ' +
+      'rotateY(' + (rotY + fan).toFixed(2) + 'deg) ' +
+      'rotateZ(' + (c.item.rz * rzScaleCur).toFixed(2) + 'deg)';
+
+    // most-centered card always wins the overlap
+    c.el.style.zIndex = String(1000 - Math.round(Math.abs(un) * 100));
+
+    // hide far-off cards (and the one crossing the back seam of the ring)
+    c.el.style.visibility = Math.abs(un) > hideAt ? 'hidden' : 'visible';
+
+    // only run videos near the viewport
+    if (c.isVideo && c.media) {
+      const nearby = !overlayOpen && Math.abs(un) < playNear;  // nothing plays behind a page
+      if (nearby && c.media.paused) c.media.play().catch(() => {});
+      else if (!nearby && !c.media.paused) c.media.pause();
+    }
+  }
+
+  setTitle(((Math.round(scrollU) % N) + N) % N);
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
 </script>
 </body>
 </html>
