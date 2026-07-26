@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Arman Faruqui — Work</title>
-<link rel="preload" as="image" href="media/icon.png">
+<link rel="preload" as="image" href="media/web/icon.png">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -273,7 +273,7 @@ a.card.link { cursor: pointer; }
       <circle class="prog"  cx="60" cy="60" r="56"></circle>
     </svg>
     <div class="icon">
-      <img src="media/icon.png" alt="">
+      <img src="media/web/icon.png" alt="">
     </div>
   </div>
 </div>
@@ -314,7 +314,9 @@ a.card.link { cursor: pointer; }
 <script>
 /* ════════════════════════════════════════════════════════════
    MEDIA MANIFEST — the carousel ring, in order. `src` is the
-   actual file in ./media/; `title` is the display name shown at
+   actual file in ./media/web/ (the web-optimised set: H.264 mp4
+   capped at 1200px, stills capped at 1400px — the untouched
+   originals stay in ./media/); `title` is the display name shown at
    the bottom (from descriptions.txt — numbering stripped, and
    the extension is the one chosen for display, not the real one).
    `sub` = optional extra caption lines; strings are plain text,
@@ -323,19 +325,19 @@ a.card.link { cursor: pointer; }
    dy = vertical offset (px)   rz = static lean in degrees
 ════════════════════════════════════════════════════════════ */
 const ITEMS = [
-  { src: '1.websiteOrb.webm',     title: 'désiré_parkShoot.mp4',       w: 52, dy:  18, rz: -2.0 },
-  { src: '2.veevee_blender.webm', title: 'veevee_design.mp4',          w: 48, dy:  36, rz:  1.6 },
+  { src: '1.websiteOrb.mp4',      title: 'désiré_parkShoot.mp4',       w: 52, dy:  18, rz: -2.0 },
+  { src: '2.veevee_blender.mp4',  title: 'veevee_design.mp4',          w: 48, dy:  36, rz:  1.6 },
   { src: '3.Gamja.jpg',           title: 'veevee_worn.JPG',            w: 46, dy: -14, rz:  0.0 },
-  { src: '4.ondule_blender.webm', title: 'ondulé_design.mp4',          w: 50, dy:   8, rz:  2.2 },
-  { src: '5.showingRing.webm',    title: 'ondulé_worn.mp4',            w: 48, dy: -28, rz: -1.2 },
+  { src: '4.ondule_blender.mp4',  title: 'ondulé_design.mp4',          w: 50, dy:   8, rz:  2.2 },
+  { src: '5.showingRing.mp4',     title: 'ondulé_worn.mp4',            w: 48, dy: -28, rz: -1.2 },
   { src: '6.kisaWeb.jpg',         title: 'digital_painting1.jpg',      w: 46, dy:  26, rz:  1.0 },
-  { src: '7.2.5D.webm',           title: 'digital_painting2.mp4',      w: 54, dy:  -6, rz: -1.7 },
-  { src: '8.zineComp.webm',       title: 'désiré_zine.mp4',            w: 50, dy:  22, rz:  1.4 },
-  { src: '8.5.readingZine.webm',  title: 'readingZine.mp4',            w: 46, dy: -20, rz: -0.8 },
-  { src: '8.7.Website.webm',      title: 'desire_website.mp4',         w: 50, dy:  12, rz:  1.1,
+  { src: '7.2.5D.mp4',            title: 'digital_painting2.mp4',      w: 54, dy:  -6, rz: -1.7 },
+  { src: '8.zineComp.mp4',        title: 'désiré_zine.mp4',            w: 50, dy:  22, rz:  1.4 },
+  { src: '8.5.readingZine.mp4',   title: 'readingZine.mp4',            w: 46, dy: -20, rz: -0.8 },
+  { src: '8.7.Website.mp4',       title: 'desire_website.mp4',         w: 50, dy:  12, rz:  1.1,
     sub: [{ text: 'www.desire.jewelry', href: 'http://www.desire.jewelry/' }] },
-  { src: '9.softServe.webm',      title: '2D_anim_1.mp4',              w: 48, dy:  30, rz:  2.0 },
-  { src: '10.Graduation.webm',    title: '2D_anim2.mp4',               w: 52, dy: -10, rz: -1.4 },
+  { src: '9.softServe.mp4',       title: '2D_anim_1.mp4',              w: 48, dy:  30, rz:  2.0 },
+  { src: '10.Graduation.mp4',     title: '2D_anim2.mp4',               w: 52, dy: -10, rz: -1.4 },
   { src: '11.Cross.jpg',          title: 'gods_algorithm_pendant.jpg', w: 44, dy:  14, rz:  0.6,
     sub: ["custom pendant designed for 2x grammy nominee artist Sean Leon for his upcoming album 'Gods Algorithm'"] },
   { src: '12.SeanWearing.jpg',    title: 'sean_wearing.jpg',           w: 46, dy: -24, rz: -2.2,
@@ -392,18 +394,21 @@ const cards = ITEMS.map(item => {
   }
   el.style.aspectRatio = '1.6';
   stage.appendChild(el);
-  const c = { el, item, media: null, isVideo: false, ar: 1.6,
+  const isVideo = /\.(webm|mp4|mov)$/i.test(item.src);
+  const c = { el, item, isVideo, ar: 1.6, attached: false,
               title: item.title, sub: item.sub || [] };
 
-  const isVideo = /\.(webm|mp4|mov)$/i.test(item.src);
   const m = isVideo ? document.createElement('video') : document.createElement('img');
   if (isVideo) {
-    m.muted = true; m.loop = true; m.autoplay = true;
-    m.playsInline = true; m.preload = 'metadata';
+    m.muted = true; m.loop = true; m.playsInline = true;
+    m.disablePictureInPicture = true;
+    // no autoplay attribute: the file isn't even attached until the card
+    // nears center — attachVideo()/the main loop drive playback instead
+    m.preload = 'auto';
   } else {
     m.alt = item.title;
   }
-  m.addEventListener('error', () => {
+  function showPlaceholder() {
     el.innerHTML = '';
     const ph = document.createElement('div');
     ph.className = 'ph';
@@ -411,25 +416,33 @@ const cards = ITEMS.map(item => {
     s.textContent = item.title;
     ph.appendChild(s);
     el.appendChild(ph);
-    c.media = null; c.isVideo = false;
-  });
-  // real aspect ratio comes from the file itself once its metadata arrives
-  m.addEventListener(isVideo ? 'loadedmetadata' : 'load', () => {
-    const w = isVideo ? m.videoWidth : m.naturalWidth;
-    const h = isVideo ? m.videoHeight : m.naturalHeight;
-    if (w && h) {
-      c.ar = w / h;
-      el.style.aspectRatio = String(c.ar);
-      sizeCard(c);
-    }
-  }, { once: true });
-  // completion signals for the preloader (first frame for video, full decode for img)
-  m.addEventListener(isVideo ? 'loadeddata' : 'load', () => markDone(c), { once: true });
-  m.addEventListener('error', () => markDone(c), { once: true });
+    c.isVideo = false; c.dead = true;
+  }
+  function setAR(w, h) {
+    if (!w || !h) return;
+    c.ar = w / h;
+    el.style.aspectRatio = String(c.ar);
+    sizeCard(c);
+  }
   c.m = m;
-  c.srcPath = 'media/' + item.src;   // src is assigned by the preloader, not here
+  c.srcPath = 'media/web/' + item.src;   // attached on demand, not here
+
+  if (isVideo) {
+    // The poster does three jobs: it's what the card shows before (and after)
+    // the video file is attached, it carries the aspect ratio, and its load is
+    // the preloader's completion signal — so start-up never fetches a video.
+    c.posterPath = c.srcPath.replace(/\.\w+$/, '_poster.jpg');
+    const p = new Image();
+    p.addEventListener('load',  () => { setAR(p.naturalWidth, p.naturalHeight); markDone(c); }, { once: true });
+    p.addEventListener('error', () => { showPlaceholder(); markDone(c); }, { once: true });
+    c.posterImg = p;
+    // a detach calls load() with no src; ignore the events that stirs up
+    m.addEventListener('error', () => { if (c.attached) showPlaceholder(); });
+  } else {
+    m.addEventListener('error', () => { showPlaceholder(); markDone(c); }, { once: true });
+    m.addEventListener('load',  () => { setAR(m.naturalWidth, m.naturalHeight); markDone(c); }, { once: true });
+  }
   el.appendChild(m);
-  if (isVideo) { c.media = m; c.isVideo = true; }
   return c;
 });
 
@@ -483,8 +496,14 @@ function updateRing() {
 function loadItem(c) {
   if (c.srcSet) return;
   c.srcSet = true;
-  if (c.isVideo) c.m.preload = 'auto';   // buffer fully even while paused off-center
-  c.m.src = c.srcPath;
+  if (c.posterImg) {
+    // a video preloads its poster and nothing more — the mp4 itself is fetched
+    // by attachVideo() once the card nears center, and released when it leaves
+    c.m.poster = c.posterPath;
+    c.posterImg.src = c.posterPath;
+  } else {
+    c.m.src = c.srcPath;
+  }
 }
 function pump() {
   if (!revealed) return;
@@ -695,6 +714,24 @@ function ringOffset(i) {
   return un;
 }
 
+/* ── VIDEO LIFECYCLE ──
+   A <video> holding a decoded buffer costs far more memory than the file on
+   disk, and mobile Safari kills the tab when the total gets away from it. So a
+   card's mp4 is attached only while it is near center and handed straight back
+   afterwards; the rest of the time the card shows its poster. */
+function attachVideo(c) {
+  if (c.attached || c.dead) return;
+  c.attached = true;
+  c.m.src = c.srcPath;
+}
+function detachVideo(c) {
+  if (!c.attached) return;
+  c.attached = false;
+  c.m.pause();
+  c.m.removeAttribute('src');
+  c.m.load();          // the load() is what actually frees the buffer; the poster returns
+}
+
 /* ── MAIN LOOP ── */
 let last = performance.now();
 function frame(now) {
@@ -724,7 +761,12 @@ function frame(now) {
 
   const vw = innerWidth;
   const hideAt   = isMobile ? 1.8 : Math.min(3.8, N / 2 - 0.1);
-  const playNear = isMobile ? 1.5 : 2.8;
+  // ring distance at which a video is attached / released. A phone has no
+  // hardware budget for a row of live decoders, so there it's the centered card
+  // and little else; the gap between the two thresholds is hysteresis, so a card
+  // parked on the boundary doesn't thrash.
+  const VID_ON  = isMobile ? 0.6 : 2.6;
+  const VID_OFF = isMobile ? 1.5 : 3.6;
   for (let i = 0; i < cards.length; i++) {
     const c  = cards[i];
     const un = ringOffset(i);
@@ -746,11 +788,16 @@ function frame(now) {
     // hide far-off cards (and the one crossing the back seam of the ring)
     c.el.style.visibility = Math.abs(un) > hideAt ? 'hidden' : 'visible';
 
-    // only run videos near the viewport
-    if (c.isVideo && c.media) {
-      const nearby = !overlayOpen && Math.abs(un) < playNear;  // nothing plays behind a page
-      if (nearby && c.media.paused) c.media.play().catch(() => {});
-      else if (!nearby && !c.media.paused) c.media.pause();
+    // attach / release the video file, then run only what's near the viewport
+    if (c.isVideo && c.srcSet) {
+      const a = Math.abs(un);
+      if (a <= VID_ON) attachVideo(c);
+      else if (a >= VID_OFF) detachVideo(c);
+      if (c.attached) {
+        const nearby = !overlayOpen && a <= VID_ON;   // nothing plays behind a page
+        if (nearby && c.m.paused) c.m.play().catch(() => {});
+        else if (!nearby && !c.m.paused) c.m.pause();
+      }
     }
   }
 
