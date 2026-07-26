@@ -185,25 +185,63 @@ something.
 **`index.html`** — the load model changed shape, not just paths:
 
 - Manifest `src` → `.mp4`, all paths → `media/web/`.
-- **A video's poster now does three jobs**: it's what the card paints before/after the file is
-  attached, it supplies the aspect ratio (video `loadedmetadata` is no longer used for this),
-  and its `load` event is the preloader's completion signal. So the preloader never touches a
-  video file — startup is posters and stills only.
-- `preload='auto'` is gone from `loadItem()`. Videos are attached by `attachVideo()` /
-  released by `detachVideo()` on ring distance, with hysteresis:
-  `VID_ON/VID_OFF` = 0.6/1.5 mobile, 2.6/3.6 desktop.
-- `detachVideo()` does `pause()` → `removeAttribute('src')` → **`load()`**. The `load()` is the
-  part that actually frees the buffer; without it the memory stays held.
-- `c.media` was removed — `c.m` is the single media reference. `playNear` is gone, folded
-  into `VID_ON`.
-- The video `error` handler is guarded by `if (c.attached)`, because detaching calls `load()`
-  with no src and that must not be mistaken for a broken file.
+- **A video's poster now does three jobs**: it's a real `<img>` layered *under* the video for
+  the life of the card, it supplies the aspect ratio (video `loadedmetadata` is no longer used
+  for this), and its `load` event is the preloader's completion signal. So the preloader never
+  touches a video file — startup is posters and stills only.
+- **Every video's `src` is attached once, by the preloader, and never released.** There is no
+  attach/detach on scroll position. Only *playback* is gated: `PLAY_NEAR` = 2.2 mobile /
+  3.8 desktop, which sits just above mobile `hideAt` (1.8) so a card is already running before
+  it is even on screen. A paused card keeps its last frame and resumes instantly.
+- `c.media` was removed — `c.m` is the single media reference.
+
+**The white flash on mobile swipe — round 2 (this is the part I got wrong the first time).**
+
+The first attempt attached the mp4 only near center and released it after
+(`attachVideo`/`detachVideo`, `VID_ON`/`VID_OFF`). Verified fine in Chrome; **on a real iPhone
+it failed on both counts** — videos sat still until swiped onto, then flashed white for about a
+second. Two iOS-specific reasons, neither reproducible in this environment:
+
+1. **iOS Safari ignores `preload`.** It will not fetch media data until `play()` actually runs.
+   So attaching `src` as a card approached bought nothing — the fetch still began at swipe time.
+   Attaching early is only useful if the video is also *playing* early.
+2. **A `<video>` in a 3D/`perspective` context gets its own compositing layer, and on iOS that
+   layer paints opaque before it has any frames** — straight over the poster `<img>` sitting
+   behind it. So the poster underlay alone did not stop the flash.
+
+Fixes, in the order they matter:
+
+- **The video element is `opacity: 0` until its first `playing` event**, then transitions to 1
+  (`.card video { opacity: 0 }` / `.card video.ready { opacity: 1 }`). An empty video layer can
+  no longer paint over anything. A card is therefore always either a still poster or moving
+  video — never a blank rectangle. This is the load-bearing fix.
+- **The attach/detach machinery is gone.** Re-fetching a video every time it neared center was
+  the direct cause of "sits still, then flashes". Videos are attached once and kept.
+- `autoplay` + `muted` + `playsinline` are set as **attributes as well as properties** — iOS
+  only honours some of them as attributes. Autoplay is also what makes iOS fetch at all, given
+  it ignores `preload`.
+- The poster `<img>` underlay stays (it is what shows during the fetch/decode gap), as does
+  `.card img, .card video { position:absolute; inset:0 }` + `.card video { z-index:1 }`.
+- The video `error` handler is guarded by `if (c.srcSet)`.
 
 **Measured after the change** (local, port 4174):
 
-- Cold load: **20 requests, ~2.2 MB, zero video bytes** (was 32 MB).
-- Concurrent attached videos — **mobile: max 2** (was all 10 buffered, 3 playing);
-  desktop: max 6.
+- All 10 video `src`s attached at load; `muted`/`playsinline`/`autoplay` present as attributes.
+- Every video starts at computed `opacity: 0`; adding `ready` resolves it to `1`, and the
+  poster underneath is opaque in both states. The `playing` handler does add `ready`.
+- Swept scroll 0→19 in 0.25 steps on the mobile branch: **152/152 visible video cards were in
+  the play set** — nothing on screen is ever paused. Max **5** simultaneous playing on mobile.
+  (`PLAY_NEAR` 2.2 vs 2.6 was measured: identical coverage, one fewer decoder — hence 2.2.)
+- Poster `<img>` and `<video>` occupy the same box to the pixel (832×555 on the center card),
+  so there's no seam between the two layers. Image-only cards unaffected by the switch to
+  absolute positioning.
+
+**What this environment fundamentally cannot check** — worth stating plainly, because trusting
+it once already produced a fix that failed on device. With `document.hidden` permanently true
+(§4), Chrome **never fetches media data at all**: with `src` set on all 10 videos, the mp4
+request count was *zero*. So no amount of local testing here observes buffering, decoding,
+`playing` events, first-frame timing, or the compositing behaviour that caused the flash.
+Anything about how video actually behaves must be checked on the device.
 - Detached cards sit at `networkState: 0` (NETWORK_EMPTY) with their poster painting.
 - All 19 aspect ratios resolve correctly from posters/stills; no card falls back to placeholder.
 - No page console errors. (Two "message channel closed" exceptions are Chrome-extension noise.)
@@ -211,6 +249,18 @@ something.
 **Not verified, and can't be from here:** actual playback, and the crash itself. `document.hidden`
 is permanently true in both browser surfaces (§4), so no video ever reaches `readyState > 0`.
 **This needs one pass on a real iPhone before it can be called done.**
+
+The number to watch is **5 videos playing at once on mobile, all 10 attached**. iOS grants a
+limited pool of hardware decode sessions; past it, extra videos silently fall back to *software*
+decode — the exact thing the WebM→H.264 move was meant to escape. This is a deliberate trade:
+the smooth-playback requirement pushed back toward the reference site's model (attach
+everything, autoplay, never release), which is the opposite direction from the crash fix. It is
+affordable now only because the videos went 28.7 MB VP9 → 6.9 MB H.264.
+
+If the OOM crash returns, the dial is `PLAY_NEAR` (mobile 2.2 → 1.2 caps it at ~3 playing).
+Reintroducing detach is the last resort, not the first — it is what caused the stall-and-flash.
+The `opacity: 0` until `playing` gate should stay regardless; it is independent of all this and
+is what guarantees a card never shows a blank rectangle.
 
 Left undone deliberately:
 - `media/` originals are still on disk — 32 MB of dead weight if the whole folder is deployed.

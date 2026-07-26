@@ -74,11 +74,25 @@ nav a.active {
 a.card.link { cursor: pointer; }
 .card img,
 .card video {
+  position: absolute;             /* stacked, not flowed — a video card holds both */
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
+/* The poster stays in the DOM under the video for the life of the card. The
+   video itself is invisible until its first frame actually plays — on iOS the
+   video's compositing layer paints opaque before it has frames, which is the
+   white flash. Revealing it only on `playing` means the poster covers the whole
+   fetch/decode gap, so a card is either a still poster or moving video, never
+   a blank rectangle. */
+.card video {
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.2s linear;
+}
+.card video.ready { opacity: 1; }
 
 /* placeholder shown until a real file (1.mp4 / 1.jpg / …) exists in media/ */
 .ph {
@@ -395,16 +409,22 @@ const cards = ITEMS.map(item => {
   el.style.aspectRatio = '1.6';
   stage.appendChild(el);
   const isVideo = /\.(webm|mp4|mov)$/i.test(item.src);
-  const c = { el, item, isVideo, ar: 1.6, attached: false,
+  const c = { el, item, isVideo, ar: 1.6,
               title: item.title, sub: item.sub || [] };
 
   const m = isVideo ? document.createElement('video') : document.createElement('img');
   if (isVideo) {
     m.muted = true; m.loop = true; m.playsInline = true;
+    m.autoplay = true;              // iOS ignores preload — autoplay is what makes it fetch
     m.disablePictureInPicture = true;
-    // no autoplay attribute: the file isn't even attached until the card
-    // nears center — attachVideo()/the main loop drive playback instead
     m.preload = 'auto';
+    // iOS only honours these as attributes, not just properties
+    m.setAttribute('muted', ''); m.setAttribute('playsinline', ''); m.setAttribute('autoplay', '');
+    // A <video> in a 3D context gets its own compositing layer, and on iOS that
+    // layer paints opaque *before* it has any frames — straight over the poster
+    // behind it. So the element stays fully transparent until it is genuinely
+    // playing; until then what you see is the poster.
+    m.addEventListener('playing', () => m.classList.add('ready'), { once: true });
   } else {
     m.alt = item.title;
   }
@@ -425,19 +445,22 @@ const cards = ITEMS.map(item => {
     sizeCard(c);
   }
   c.m = m;
-  c.srcPath = 'media/web/' + item.src;   // attached on demand, not here
+  c.srcPath = 'media/web/' + item.src;   // assigned by the preloader, not here
 
   if (isVideo) {
-    // The poster does three jobs: it's what the card shows before (and after)
-    // the video file is attached, it carries the aspect ratio, and its load is
-    // the preloader's completion signal — so start-up never fetches a video.
+    // The poster does three jobs: it's a real <img> layered under the video for
+    // the life of the card (so nothing ever flashes through), it carries the
+    // aspect ratio, and its load is the preloader's completion signal — which is
+    // why start-up never fetches a video file at all.
     c.posterPath = c.srcPath.replace(/\.\w+$/, '_poster.jpg');
-    const p = new Image();
+    const p = document.createElement('img');
+    p.alt = item.title;
     p.addEventListener('load',  () => { setAR(p.naturalWidth, p.naturalHeight); markDone(c); }, { once: true });
     p.addEventListener('error', () => { showPlaceholder(); markDone(c); }, { once: true });
     c.posterImg = p;
+    el.appendChild(p);                 // under the video — see .card video { z-index: 1 }
     // a detach calls load() with no src; ignore the events that stirs up
-    m.addEventListener('error', () => { if (c.attached) showPlaceholder(); });
+    m.addEventListener('error', () => { if (c.srcSet) showPlaceholder(); });
   } else {
     m.addEventListener('error', () => { showPlaceholder(); markDone(c); }, { once: true });
     m.addEventListener('load',  () => { setAR(m.naturalWidth, m.naturalHeight); markDone(c); }, { once: true });
@@ -496,14 +519,12 @@ function updateRing() {
 function loadItem(c) {
   if (c.srcSet) return;
   c.srcSet = true;
-  if (c.posterImg) {
-    // a video preloads its poster and nothing more — the mp4 itself is fetched
-    // by attachVideo() once the card nears center, and released when it leaves
-    c.m.poster = c.posterPath;
-    c.posterImg.src = c.posterPath;
-  } else {
-    c.m.src = c.srcPath;
-  }
+  // The poster is the preloader's completion signal (it's the thing that has to
+  // be on screen); the video is attached at the same time and then kept for the
+  // life of the page. Re-fetching a video every time it nears center is what
+  // made cards sit still and then flash on iOS.
+  if (c.posterImg) c.posterImg.src = c.posterPath;
+  c.m.src = c.srcPath;
 }
 function pump() {
   if (!revealed) return;
@@ -714,24 +735,6 @@ function ringOffset(i) {
   return un;
 }
 
-/* ── VIDEO LIFECYCLE ──
-   A <video> holding a decoded buffer costs far more memory than the file on
-   disk, and mobile Safari kills the tab when the total gets away from it. So a
-   card's mp4 is attached only while it is near center and handed straight back
-   afterwards; the rest of the time the card shows its poster. */
-function attachVideo(c) {
-  if (c.attached || c.dead) return;
-  c.attached = true;
-  c.m.src = c.srcPath;
-}
-function detachVideo(c) {
-  if (!c.attached) return;
-  c.attached = false;
-  c.m.pause();
-  c.m.removeAttribute('src');
-  c.m.load();          // the load() is what actually frees the buffer; the poster returns
-}
-
 /* ── MAIN LOOP ── */
 let last = performance.now();
 function frame(now) {
@@ -761,12 +764,11 @@ function frame(now) {
 
   const vw = innerWidth;
   const hideAt   = isMobile ? 1.8 : Math.min(3.8, N / 2 - 0.1);
-  // ring distance at which a video is attached / released. A phone has no
-  // hardware budget for a row of live decoders, so there it's the centered card
-  // and little else; the gap between the two thresholds is hysteresis, so a card
-  // parked on the boundary doesn't thrash.
-  const VID_ON  = isMobile ? 0.6 : 2.6;
-  const VID_OFF = isMobile ? 1.5 : 3.6;
+  // Videos start playing before they're even on screen (hideAt is 1.8 on mobile),
+  // so a card is always already running by the time you swipe onto it. Kept just
+  // above hideAt rather than higher: 2.2 covers everything visible with margin
+  // while holding mobile to 5 simultaneous decoders instead of 6.
+  const PLAY_NEAR = isMobile ? 2.2 : 3.8;
   for (let i = 0; i < cards.length; i++) {
     const c  = cards[i];
     const un = ringOffset(i);
@@ -788,16 +790,12 @@ function frame(now) {
     // hide far-off cards (and the one crossing the back seam of the ring)
     c.el.style.visibility = Math.abs(un) > hideAt ? 'hidden' : 'visible';
 
-    // attach / release the video file, then run only what's near the viewport
+    // the file stays attached — only playback is gated, so a paused card keeps
+    // its last frame and resumes instantly instead of re-fetching
     if (c.isVideo && c.srcSet) {
-      const a = Math.abs(un);
-      if (a <= VID_ON) attachVideo(c);
-      else if (a >= VID_OFF) detachVideo(c);
-      if (c.attached) {
-        const nearby = !overlayOpen && a <= VID_ON;   // nothing plays behind a page
-        if (nearby && c.m.paused) c.m.play().catch(() => {});
-        else if (!nearby && !c.m.paused) c.m.pause();
-      }
+      const nearby = !overlayOpen && Math.abs(un) <= PLAY_NEAR;  // nothing plays behind a page
+      if (nearby && c.m.paused) c.m.play().catch(() => {});
+      else if (!nearby && !c.m.paused) c.m.pause();
     }
   }
 
