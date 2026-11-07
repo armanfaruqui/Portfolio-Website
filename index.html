@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Arman Faruqui — Work</title>
+<meta name="description" content="Arman Faruqui — designer and project manager in Montreal. Jewelry, digital art, animation, and community projects.">
+<link rel="icon" href="media/web/icon.png">
 <link rel="preload" as="image" href="media/web/icon.png">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -23,7 +25,7 @@ html, body {
   background: var(--bg);
   font-family: var(--font);
   color: var(--ink);
-  touch-action: none;             /* the page owns all touch gestures */
+  touch-action: auto;
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -56,6 +58,9 @@ nav a.active {
 #stage {
   position: absolute;
   inset: 0;
+  overflow: hidden;
+  overflow: clip;
+  touch-action: pan-y pinch-zoom;
   perspective: 1200px;
   perspective-origin: 50% 50%;
 }
@@ -154,7 +159,7 @@ a.card.link { cursor: pointer; }
   display: flex;
   overflow-y: auto;               /* the page can't scroll — these panels can */
   overscroll-behavior: contain;
-  touch-action: pan-y;
+  touch-action: pan-y pinch-zoom;
   padding: 88px 28px 48px;        /* clears the nav */
   background: var(--bg);
   opacity: 0;
@@ -183,7 +188,7 @@ a.card.link { cursor: pointer; }
   text-underline-offset: 3px;
 }
 .page a:hover { color: var(--ink); }
-#title.viewhide { opacity: 0; }   /* view switch — independent of the per-card fade */
+#title.viewhide { opacity: 0; visibility: hidden; pointer-events: none; }   /* view switch — independent of the per-card fade */
 
 /* ── CONTACT FORM ── */
 #contactForm { margin-top: 26px; }
@@ -231,7 +236,7 @@ a.card.link { cursor: pointer; }
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: opacity 0.55s ease;
+  transition: opacity 0.2s ease;
 }
 #loader.done { opacity: 0; pointer-events: none; }
 #loader .wrap {
@@ -276,11 +281,27 @@ a.card.link { cursor: pointer; }
   .page .inner { font-size: 16px; line-height: 1.62; }
   #contactForm input, #contactForm textarea, #contactForm button { font-size: 16px; }
 }
+
+[hidden] { display: none !important; }
+#stage { user-select: none; -webkit-user-select: none; }
+nav { padding-inline: 12px; flex-wrap: wrap; row-gap: 12px; }
+#title > div { overflow-wrap: anywhere; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 5px; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+nav a { padding: 12px 6px; margin: -12px -6px; min-height: 44px; }
+.page { touch-action: pan-y pinch-zoom; padding-bottom: max(48px, env(safe-area-inset-bottom)); }
+#fallback { position: fixed; inset: 0; overflow: auto; z-index: 9500; background: white; padding: 90px 24px; text-align: center; line-height: 1.6; }
+#fallback a { color: inherit; }
+#fallback img { max-width: min(100%, 600px); height: auto; border-radius: 22px; }
+.fallback-gallery { display: grid; gap: 40px; margin: 32px auto; max-width: 700px; }
+#loader { display: none; }
+.enhanced #loader { display: flex; }
+@media (max-height: 500px) { nav { top: 18px; } #title { font-size: 14px; bottom: max(40px, calc(env(safe-area-inset-bottom) + 36px)); } #title .sub { font-size: 12px; margin-top: 3px; } .page { padding-top: 70px; } }
 </style>
 </head>
 <body>
 
-<div id="loader">
+<div id="loader" role="status" aria-label="Loading portfolio">
   <div class="wrap">
     <svg class="ring" viewBox="0 0 120 120">
       <circle class="track" cx="60" cy="60" r="56"></circle>
@@ -292,39 +313,46 @@ a.card.link { cursor: pointer; }
   </div>
 </div>
 
-<nav>
-  <a href="#" data-view="work" class="active">Work</a>
-  <a href="#" data-view="about">About</a>
-  <a href="#" data-view="contact">Contact</a>
+<nav aria-label="Main navigation">
+  <a href="#work" data-view="work" class="active">Work</a>
+  <a href="#about" data-view="about">About</a>
+  <a href="#contact" data-view="contact">Contact</a>
 </nav>
 
-<div id="stage"></div>
+<main id="stage" aria-label="Selected work" aria-roledescription="carousel"></main>
 <div id="title"></div>
+<p id="workStatus" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
 
-<div id="about" class="page">
+<section id="about" class="page" tabindex="-1" aria-labelledby="aboutHeading" inert>
   <div class="inner">
+    <h1 id="aboutHeading" class="sr-only">About Arman</h1>
     <p>I'm Arman, a designer and project manager based in Montreal. I build things that live in two places at once: as objects you can hold, and as the digital worlds that make people want them.</p>
-    <p>My degree from Concordia in design and computer science, which meant learning 3D, UX/UI, web development, programming and game design in the same room. That range is the reason both of the projects on this site were built almost entirely in house.</p>
+    <p>My degree from Concordia was in design and computer science, which meant learning 3D, UX/UI, web development, programming and game design in the same room. That range is the reason both of the projects on this site were built almost entirely in house.</p>
     <p><strong><a href="https://www.instagram.com/desires.atelier/" target="_blank" rel="noopener">Désiré</a></strong> is my independent luxury jewelry brand, built at the intersection of anime, gaming and alternative fashion. I model every piece in Blender, iterate with manufacturers through to finished sterling silver, enamel and moissanite, then shoot, render, animate, edit and write the campaigns that carry them. The storefront, the site, the social channels and the SEO are mine too. One person, full pipeline.</p>
     <p><strong><a href="https://www.briqueparbrique.com/en/altermode" target="_blank" rel="noopener">Alter-mode</a></strong> is a clothing repair and alterations initiative I founded at Brique par Brique, a nonprofit in Parc-Extension. Six editions in, it has raised thousands of dollars, upcycled hundreds of garments and earned coverage from CBC and CityNews. I handle the programming, partnerships, production and reporting, alongside the team of aunties whose skill is the whole reason it works.</p>
     <p>Different scales, same instinct: work out what the thing actually needs, then learn how to make it.</p>
     <p class="last">Currently open to collaborations — <a href="mailto:armanfaruqui@hotmail.com">armanfaruqui@hotmail.com</a>.</p>
   </div>
-</div>
+</section>
 
-<div id="contact" class="page">
+<section id="contact" class="page" tabindex="-1" aria-labelledby="contactHeading" inert>
   <div class="inner">
+    <h1 id="contactHeading" class="sr-only">Contact Arman</h1>
     <p>Currently open to collaborations and commissions.</p>
     <p class="last"><a href="mailto:armanfaruqui@hotmail.com">armanfaruqui@hotmail.com</a></p>
-    <form id="contactForm" novalidate>
-      <input type="email" name="from" autocomplete="email" placeholder="your email (optional)">
-      <textarea name="message" placeholder="your message" required></textarea>
+    <form id="contactForm">
+      <label for="contactFrom" class="sr-only">Your email (optional)</label>
+      <input id="contactFrom" type="email" name="from" autocomplete="email" placeholder="your email (optional)">
+      <label for="contactMessage" class="sr-only">Your message</label>
+      <textarea id="contactMessage" name="message" maxlength="4000" placeholder="your message" required></textarea>
       <button type="submit">Send</button>
       <p class="hint">Opens in your mail app.</p>
     </form>
   </div>
-</div>
+</section>
 
+<section id="fallback" aria-label="Portfolio introduction"><h1>Arman Faruqui</h1><p>Designer and project manager in Montreal.</p><p>Jewelry, digital art, animation, and community projects.</p><p><a href="mailto:armanfaruqui@hotmail.com">armanfaruqui@hotmail.com</a></p><noscript><div class="fallback-gallery"><figure><img loading="lazy" src="media/web/1.Orb_Desktop_poster.jpg" alt="Orb jewelry campaign in a park" width="1200" height="676"><figcaption>désiré_parkShoot.mp4</figcaption></figure><figure><img loading="lazy" src="media/web/2.veevee_blender_poster.jpg" alt="Veevee pendant design in Blender" width="1200" height="960"><figcaption>veevee_design.mp4</figcaption></figure><figure><img loading="lazy" src="media/web/3.Gamja.jpg" alt="Veevee pendant worn" width="1400" height="1120"><figcaption>veevee_worn.JPG</figcaption></figure><figure><img loading="lazy" src="media/web/4.ondule_blender_poster.jpg" alt="Ondulé ring design in Blender" width="1200" height="960"><figcaption>ondulé_design.mp4</figcaption></figure><figure><img loading="lazy" src="media/web/5.showingRing_poster.jpg" alt="Ondulé ring worn" width="1200" height="960"><figcaption>ondulé_worn.mp4</figcaption></figure><figure><img loading="lazy" src="media/web/6.kisaWeb.jpg" alt="Digital character painting" width="1400" height="1120"><figcaption>digital_painting1.jpg</figcaption></figure><figure><img loading="lazy" src="media/web/7.2.5D_poster.jpg" alt="Animated digital painting" width="676" height="1200"><figcaption>digital_painting2.mp4</figcaption></figure><figure><img loading="lazy" src="media/web/8.zineComp_poster.jpg" alt="Désiré printed zine layout" width="1200" height="864"><figcaption>désiré_zine.mp4</figcaption></figure><figure><img loading="lazy" src="media/web/8.5.readingZine_poster.jpg" alt="Reading the Désiré zine" width="676" height="1200"><figcaption>readingZine.mp4</figcaption></figure><figure><img loading="lazy" src="media/web/8.7.Website_poster.jpg" alt="Désiré jewelry website" width="1200" height="720"><figcaption>desire_website.mp4</figcaption><p><a href="https://desire.jewelry/">www.desire.jewelry</a></p></figure><figure><img loading="lazy" src="media/web/9.softServe_poster.jpg" alt="Soft-serve 2D animation" width="800" height="1000"><figcaption>2D_anim_1.mp4</figcaption></figure><figure><img loading="lazy" src="media/web/10.Graduation_poster.jpg" alt="Graduation 2D animation" width="1000" height="1000"><figcaption>2D_anim2.mp4</figcaption></figure><figure><img loading="lazy" src="media/web/11.Cross.jpg" alt="Custom pendant for Sean Leon" width="1400" height="1120"><figcaption>gods_algorithm_pendant.jpg</figcaption></figure><figure><img loading="lazy" src="media/web/12.SeanWearing.jpg" alt="Sean Leon wearing the custom pendant" width="1400" height="1120"><figcaption>sean_wearing.jpg</figcaption></figure><figure><img loading="lazy" src="media/web/13.Alter-modeNews.jpg" alt="CBC coverage of Alter-mode" width="1278" height="1022"><figcaption>altermode_cbcNews.jpg</figcaption><p><a href="https://www.youtube.com/watch?v=KdIOFlqd9jk">link to the segment</a></p></figure><figure><img loading="lazy" src="media/web/14.alterModePoster.jpg" alt="Alter-mode clothing repair event poster" width="960" height="1200"><figcaption>altermode_poster_august.jpg</figcaption><p><a href="https://www.briqueparbrique.com/en/altermode">link to our website</a></p></figure><figure><img loading="lazy" src="media/web/15.Cereal.jpg" alt="Désiré campaign photograph: Cereal" width="1400" height="1120"><figcaption>désiré_parkShoot_1.jpg</figcaption></figure><figure><img loading="lazy" src="media/web/16.Arman.jpg" alt="Désiré campaign photograph: Arman" width="1378" height="1102"><figcaption>désiré_parkShoot_2.jpg</figcaption></figure><figure><img loading="lazy" src="media/web/17.Imani.jpg" alt="Désiré campaign photograph: Imani" width="1400" height="1120"><figcaption>désiré_parkShoot_3.jpg</figcaption></figure></div></noscript></section>
+<script>setTimeout(function () { if (!window.portfolioReady) { document.getElementById('fallback').hidden = false; document.getElementById('loader')?.remove(); } }, 5000);</script>
 <script>
 /* ════════════════════════════════════════════════════════════
    MEDIA MANIFEST — the carousel ring, in order. `src` is the
@@ -339,33 +367,226 @@ a.card.link { cursor: pointer; }
    dy = vertical offset (px)   rz = static lean in degrees
 ════════════════════════════════════════════════════════════ */
 const ITEMS = [
-  { src: '1.Orb_Desktop.mp4', srcMobile: '1.Orb_Mobile.mp4',
-                                  title: 'désiré_parkShoot.mp4',       w: 52, dy:  18, rz: -2.0 },
-  { src: '2.veevee_blender.mp4',  title: 'veevee_design.mp4',          w: 48, dy:  36, rz:  1.6 },
-  { src: '3.Gamja.jpg',           title: 'veevee_worn.JPG',            w: 46, dy: -14, rz:  0.0 },
-  { src: '4.ondule_blender.mp4',  title: 'ondulé_design.mp4',          w: 50, dy:   8, rz:  2.2 },
-  { src: '5.showingRing.mp4',     title: 'ondulé_worn.mp4',            w: 48, dy: -28, rz: -1.2 },
-  { src: '6.kisaWeb.jpg',         title: 'digital_painting1.jpg',      w: 46, dy:  26, rz:  1.0 },
-  { src: '7.2.5D.mp4',            title: 'digital_painting2.mp4',      w: 54, dy:  -6, rz: -1.7 },
-  { src: '8.zineComp.mp4',        title: 'désiré_zine.mp4',            w: 50, dy:  22, rz:  1.4 },
-  { src: '8.5.readingZine.mp4',   title: 'readingZine.mp4',            w: 46, dy: -20, rz: -0.8 },
-  { src: '8.7.Website.mp4',       title: 'desire_website.mp4',         w: 50, dy:  12, rz:  1.1,
-    sub: [{ text: 'www.desire.jewelry', href: 'http://www.desire.jewelry/' }] },
-  { src: '9.softServe.mp4',       title: '2D_anim_1.mp4',              w: 48, dy:  30, rz:  2.0 },
-  { src: '10.Graduation.mp4',     title: '2D_anim2.mp4',               w: 52, dy: -10, rz: -1.4 },
-  { src: '11.Cross.jpg',          title: 'gods_algorithm_pendant.jpg', w: 44, dy:  14, rz:  0.6,
-    sub: ["custom pendant designed for 2x grammy nominee artist Sean Leon for his upcoming album 'Gods Algorithm'"] },
-  { src: '12.SeanWearing.jpg',    title: 'sean_wearing.jpg',           w: 46, dy: -24, rz: -2.2,
-    sub: ["custom pendant designed for 2x grammy nominee artist Sean Leon for his upcoming album 'Gods Algorithm'",
-          'image is property of @donotdisturb_mag'] },
-  { src: '13.Alter-modeNews.jpg', title: 'altermode_cbcNews.jpg',      w: 50, dy:  10, rz:  1.2,
-    sub: [{ text: 'link to the segment', href: 'https://www.youtube.com/watch?v=KdIOFlqd9jk' }] },
-  { src: '14.alterModePoster.jpg', title: 'altermode_poster_august.jpg', w: 40, dy: -16, rz: -0.6,
-    sub: [{ text: 'link to our website', href: 'https://www.briqueparbrique.com/en/altermode' }] },
-  { src: '15.Cereal.jpg',         title: 'désiré_parkShoot_1.jpg',     w: 48, dy:  28, rz:  1.8 },
-  { src: '16.Arman.jpg',          title: 'désiré_parkShoot_2.jpg',     w: 46, dy: -12, rz: -1.0 },
-  { src: '17.Imani.jpg',          title: 'désiré_parkShoot_3.jpg',     w: 44, dy:  20, rz:  0.8 },
+  {
+    "src": "1.Orb_Desktop.mp4",
+    "srcMobile": "1.Orb_Mobile.mp4",
+    "title": "désiré_parkShoot.mp4",
+    "w": 52,
+    "dy": 18,
+    "rz": -2,
+    "alt": "Orb jewelry campaign in a park",
+    "width": 1200,
+    "height": 676,
+    "mobileWidth": 960,
+    "mobileHeight": 1200
+  },
+  {
+    "src": "2.veevee_blender.mp4",
+    "title": "veevee_design.mp4",
+    "w": 48,
+    "dy": 36,
+    "rz": 1.6,
+    "alt": "Veevee pendant design in Blender",
+    "width": 1200,
+    "height": 960
+  },
+  {
+    "src": "3.Gamja.jpg",
+    "title": "veevee_worn.JPG",
+    "w": 46,
+    "dy": -14,
+    "rz": 0,
+    "alt": "Veevee pendant worn",
+    "width": 1400,
+    "height": 1120
+  },
+  {
+    "src": "4.ondule_blender.mp4",
+    "title": "ondulé_design.mp4",
+    "w": 50,
+    "dy": 8,
+    "rz": 2.2,
+    "alt": "Ondulé ring design in Blender",
+    "width": 1200,
+    "height": 960
+  },
+  {
+    "src": "5.showingRing.mp4",
+    "title": "ondulé_worn.mp4",
+    "w": 48,
+    "dy": -28,
+    "rz": -1.2,
+    "alt": "Ondulé ring worn",
+    "width": 1200,
+    "height": 960
+  },
+  {
+    "src": "6.kisaWeb.jpg",
+    "title": "digital_painting1.jpg",
+    "w": 46,
+    "dy": 26,
+    "rz": 1,
+    "alt": "Digital character painting",
+    "width": 1400,
+    "height": 1120
+  },
+  {
+    "src": "7.2.5D.mp4",
+    "title": "digital_painting2.mp4",
+    "w": 54,
+    "dy": -6,
+    "rz": -1.7,
+    "alt": "Animated digital painting",
+    "width": 676,
+    "height": 1200
+  },
+  {
+    "src": "8.zineComp.mp4",
+    "title": "désiré_zine.mp4",
+    "w": 50,
+    "dy": 22,
+    "rz": 1.4,
+    "alt": "Désiré printed zine layout",
+    "width": 1200,
+    "height": 864
+  },
+  {
+    "src": "8.5.readingZine.mp4",
+    "title": "readingZine.mp4",
+    "w": 46,
+    "dy": -20,
+    "rz": -0.8,
+    "alt": "Reading the Désiré zine",
+    "width": 676,
+    "height": 1200
+  },
+  {
+    "src": "8.7.Website.mp4",
+    "title": "desire_website.mp4",
+    "w": 50,
+    "dy": 12,
+    "rz": 1.1,
+    "sub": [
+      {
+        "text": "www.desire.jewelry",
+        "href": "https://desire.jewelry/"
+      }
+    ],
+    "alt": "Désiré jewelry website",
+    "width": 1200,
+    "height": 720
+  },
+  {
+    "src": "9.softServe.mp4",
+    "title": "2D_anim_1.mp4",
+    "w": 48,
+    "dy": 30,
+    "rz": 2,
+    "alt": "Soft-serve 2D animation",
+    "width": 800,
+    "height": 1000
+  },
+  {
+    "src": "10.Graduation.mp4",
+    "title": "2D_anim2.mp4",
+    "w": 52,
+    "dy": -10,
+    "rz": -1.4,
+    "alt": "Graduation 2D animation",
+    "width": 1000,
+    "height": 1000
+  },
+  {
+    "src": "11.Cross.jpg",
+    "title": "gods_algorithm_pendant.jpg",
+    "w": 44,
+    "dy": 14,
+    "rz": 0.6,
+    "sub": [
+      "custom pendant designed for 2x grammy nominee artist Sean Leon for his upcoming album 'Gods Algorithm'"
+    ],
+    "alt": "Custom pendant for Sean Leon",
+    "width": 1400,
+    "height": 1120
+  },
+  {
+    "src": "12.SeanWearing.jpg",
+    "title": "sean_wearing.jpg",
+    "w": 46,
+    "dy": -24,
+    "rz": -2.2,
+    "sub": [
+      "custom pendant designed for 2x grammy nominee artist Sean Leon for his upcoming album 'Gods Algorithm'",
+      "image is property of @donotdisturb_mag"
+    ],
+    "alt": "Sean Leon wearing the custom pendant",
+    "width": 1400,
+    "height": 1120
+  },
+  {
+    "src": "13.Alter-modeNews.jpg",
+    "title": "altermode_cbcNews.jpg",
+    "w": 50,
+    "dy": 10,
+    "rz": 1.2,
+    "sub": [
+      {
+        "text": "link to the segment",
+        "href": "https://www.youtube.com/watch?v=KdIOFlqd9jk"
+      }
+    ],
+    "alt": "CBC coverage of Alter-mode",
+    "width": 1278,
+    "height": 1022
+  },
+  {
+    "src": "14.alterModePoster.jpg",
+    "title": "altermode_poster_august.jpg",
+    "w": 40,
+    "dy": -16,
+    "rz": -0.6,
+    "sub": [
+      {
+        "text": "link to our website",
+        "href": "https://www.briqueparbrique.com/en/altermode"
+      }
+    ],
+    "alt": "Alter-mode clothing repair event poster",
+    "width": 960,
+    "height": 1200
+  },
+  {
+    "src": "15.Cereal.jpg",
+    "title": "désiré_parkShoot_1.jpg",
+    "w": 48,
+    "dy": 28,
+    "rz": 1.8,
+    "alt": "Désiré campaign photograph: Cereal",
+    "width": 1400,
+    "height": 1120
+  },
+  {
+    "src": "16.Arman.jpg",
+    "title": "désiré_parkShoot_2.jpg",
+    "w": 46,
+    "dy": -12,
+    "rz": -1,
+    "alt": "Désiré campaign photograph: Arman",
+    "width": 1378,
+    "height": 1102
+  },
+  {
+    "src": "17.Imani.jpg",
+    "title": "désiré_parkShoot_3.jpg",
+    "w": 44,
+    "dy": 20,
+    "rz": 0.8,
+    "alt": "Désiré campaign photograph: Imani",
+    "width": 1400,
+    "height": 1120
+  }
 ];
+const IMAGE_VARIANTS = {"1.Orb_Desktop_poster.jpg":[{"file":"1.Orb_Desktop_poster-640.webp","width":640},{"file":"1.Orb_Desktop_poster-960.webp","width":960}],"1.Orb_Mobile_poster.jpg":[{"file":"1.Orb_Mobile_poster-640.webp","width":640},{"file":"1.Orb_Mobile_poster-768.webp","width":768}],"2.veevee_blender_poster.jpg":[{"file":"2.veevee_blender_poster-640.webp","width":640},{"file":"2.veevee_blender_poster-960.webp","width":960}],"3.Gamja.jpg":[{"file":"3.Gamja-640.webp","width":640},{"file":"3.Gamja-960.webp","width":960},{"file":"3.Gamja-1400.webp","width":1400}],"4.ondule_blender_poster.jpg":[{"file":"4.ondule_blender_poster-640.webp","width":640},{"file":"4.ondule_blender_poster-960.webp","width":960}],"5.showingRing_poster.jpg":[{"file":"5.showingRing_poster-640.webp","width":640},{"file":"5.showingRing_poster-960.webp","width":960}],"6.kisaWeb.jpg":[{"file":"6.kisaWeb-640.webp","width":640},{"file":"6.kisaWeb-960.webp","width":960},{"file":"6.kisaWeb-1400.webp","width":1400}],"7.2.5D_poster.jpg":[{"file":"7.2.5D_poster-540.webp","width":540}],"8.zineComp_poster.jpg":[{"file":"8.zineComp_poster-640.webp","width":640},{"file":"8.zineComp_poster-960.webp","width":960}],"8.5.readingZine_poster.jpg":[{"file":"8.5.readingZine_poster-540.webp","width":540}],"8.7.Website_poster.jpg":[{"file":"8.7.Website_poster-640.webp","width":640},{"file":"8.7.Website_poster-960.webp","width":960}],"9.softServe_poster.jpg":[{"file":"9.softServe_poster-640.webp","width":640},{"file":"9.softServe_poster-768.webp","width":768}],"10.Graduation_poster.jpg":[{"file":"10.Graduation_poster-640.webp","width":640},{"file":"10.Graduation_poster-960.webp","width":960}],"11.Cross.jpg":[{"file":"11.Cross-640.webp","width":640},{"file":"11.Cross-960.webp","width":960},{"file":"11.Cross-1400.webp","width":1400}],"12.SeanWearing.jpg":[{"file":"12.SeanWearing-640.webp","width":640},{"file":"12.SeanWearing-960.webp","width":960},{"file":"12.SeanWearing-1400.webp","width":1400}],"13.Alter-modeNews.jpg":[{"file":"13.Alter-modeNews-640.webp","width":640},{"file":"13.Alter-modeNews-960.webp","width":960},{"file":"13.Alter-modeNews-1278.webp","width":1278}],"14.alterModePoster.jpg":[{"file":"14.alterModePoster-640.webp","width":640},{"file":"14.alterModePoster-960.webp","width":960}],"15.Cereal.jpg":[{"file":"15.Cereal-640.webp","width":640},{"file":"15.Cereal-960.webp","width":960},{"file":"15.Cereal-1400.webp","width":1400}],"16.Arman.jpg":[{"file":"16.Arman-640.webp","width":640},{"file":"16.Arman-960.webp","width":960},{"file":"16.Arman-1378.webp","width":1378}],"17.Imani.jpg":[{"file":"17.Imani-640.webp","width":640},{"file":"17.Imani-960.webp","width":960},{"file":"17.Imani-1400.webp","width":1400}]};
 const N = ITEMS.length;
 
 /* ── TUNING ── */
@@ -391,439 +612,332 @@ const DY_SCALE_M = 3.0;    // manifest dy × this
 const RZ_SCALE_M = 1.6;    // static lean × this
 const THROW_GAIN = 0.3;    // touch momentum → how far the release glides
 
-const stage   = document.getElementById('stage');
+const stage = document.getElementById('stage');
 const titleEl = document.getElementById('title');
-
-/* ── BUILD CARDS ── */
-const cards = ITEMS.map(item => {
-  // a card whose caption carries a link becomes that link itself
-  const link = (item.sub || []).find(s => s && typeof s === 'object' && s.href);
-  const el = document.createElement(link ? 'a' : 'div');
-  el.className = link ? 'card link' : 'card';
-  if (link) {
-    el.href = link.href;
-    el.target = '_blank';
-    el.rel = 'noopener';
-    // a drag that ends on the card is a scroll, not a click — don't navigate
-    el.addEventListener('click', e => { if (dragMoved > 5) e.preventDefault(); });
-  }
-  el.style.aspectRatio = '1.6';
-  stage.appendChild(el);
-  const isVideo = /\.(webm|mp4|mov)$/i.test(item.src);
-  const c = { el, item, isVideo, ar: 1.6,
-              title: item.title, sub: item.sub || [] };
-
-  const m = isVideo ? document.createElement('video') : document.createElement('img');
-  if (isVideo) {
-    m.muted = true; m.loop = true; m.playsInline = true;
-    m.autoplay = true;              // iOS ignores preload — autoplay is what makes it fetch
-    m.disablePictureInPicture = true;
-    m.preload = 'auto';
-    // iOS only honours these as attributes, not just properties
-    m.setAttribute('muted', ''); m.setAttribute('playsinline', ''); m.setAttribute('autoplay', '');
-    // A <video> in a 3D context gets its own compositing layer, and on iOS that
-    // layer paints opaque *before* it has any frames — straight over the poster
-    // behind it. So the element stays fully transparent until it is genuinely
-    // playing; until then what you see is the poster.
-    m.addEventListener('playing', () => m.classList.add('ready'), { once: true });
-  } else {
-    m.alt = item.title;
-  }
-  function showPlaceholder() {
-    el.innerHTML = '';
-    const ph = document.createElement('div');
-    ph.className = 'ph';
-    const s = document.createElement('span');
-    s.textContent = item.title;
-    ph.appendChild(s);
-    el.appendChild(ph);
-    c.isVideo = false; c.dead = true;
-  }
-  function setAR(w, h) {
-    if (!w || !h) return;
-    c.ar = w / h;
-    el.style.aspectRatio = String(c.ar);
-    sizeCard(c);
-  }
-  c.m = m;
-  // paths are picked by mediaPaths() when the preloader assigns them, because an
-  // item with `srcMobile` serves a different file (and shape) below 700px
-
-  if (isVideo) {
-    // The poster does three jobs: it's a real <img> layered under the video for
-    // the life of the card (so nothing ever flashes through), it carries the
-    // aspect ratio, and its load is the preloader's completion signal — which is
-    // why start-up never fetches a video file at all.
-    const p = document.createElement('img');
-    p.alt = item.title;
-    // not once: a desktop↔mobile swap loads a new poster with a new aspect ratio
-    // (markDone ignores repeat calls)
-    p.addEventListener('load',  () => { setAR(p.naturalWidth, p.naturalHeight); markDone(c); });
-    p.addEventListener('error', () => { showPlaceholder(); markDone(c); }, { once: true });
-    c.posterImg = p;
-    el.appendChild(p);                 // under the video — see .card video { z-index: 1 }
-    // a detach calls load() with no src; ignore the events that stirs up
-    m.addEventListener('error', () => { if (c.srcSet) showPlaceholder(); });
-  } else {
-    m.addEventListener('error', () => { showPlaceholder(); markDone(c); }, { once: true });
-    m.addEventListener('load',  () => { setAR(m.naturalWidth, m.naturalHeight); markDone(c); }, { once: true });
-  }
-  el.appendChild(m);
-  return c;
-});
-
-/* ── RESPONSIVE LAYOUT ── */
+const statusEl = document.getElementById('workStatus');
+const coarsePointer = matchMedia('(pointer: coarse)');
+let scrollU = 0, vel = 0, snap = null, snapSoft = false;
+let mx = .5, my = .5, smx = .5, smy = .5, mouseIn = false;
+let dragging = false, pointerId = null, captureTarget = null;
+let dStartX = 0, dStartScroll = 0, dPrevScroll = 0, dPrevT = 0, dragVel = 0, dragMoved = 0;
 let isMobile = false, spacingCur = SPACING, dyScaleCur = 1, rzScaleCur = 1;
-function sizeCard(c) {
-  let base = c.item.w;
-  if (isMobile) {
-    // narrow the size gap on phones: landscape media reads a touch bigger,
-    // portrait/tall media a touch smaller
-    const shapeAdj = c.ar >= 1 ? 1.15 : 0.85;
-    base = Math.min(base * W_SCALE_M * shapeAdj, 92);
-  }
-  // cap height at 72vh so portrait media never towers off-screen
-  const maxWvw = c.ar * 0.72 * innerHeight / innerWidth * 100;
-  c.el.style.width = Math.min(base, maxWvw).toFixed(2) + 'vw';
-}
-function applyLayout() {
-  isMobile   = matchMedia('(max-width: 700px)').matches;
-  spacingCur = isMobile ? SPACING_M  : SPACING;
-  dyScaleCur = isMobile ? DY_SCALE_M : 1;
-  rzScaleCur = isMobile ? RZ_SCALE_M : 1;
-  cards.forEach(sizeCard);
-  // a window dragged across the breakpoint swaps cards that have a mobile cut
-  cards.forEach(c => {
-    if (!c.srcSet || !c.item.srcMobile || c.dead) return;
-    const { src, poster } = mediaPaths(c);
-    if (src === c.srcPath) return;
-    c.srcPath = src;
-    c.m.classList.remove('ready');                    // poster covers the swap
-    c.m.addEventListener('playing', () => c.m.classList.add('ready'), { once: true });
-    if (c.posterImg) c.posterImg.src = poster;
-    c.m.src = src;
-  });
+let viewportW = 1, viewportH = 1, captionTop = 1, cardTopBoundary = 76;
+let overlayOpen = false, currentView = 'work', titleIdx = -1, titleTimer;
+let raf = 0, last = 0, revealed = false, inFlight = 0;
+let desiredAnnouncement = false;
+let keyboardFocus = false;
+const loaderEl = document.getElementById('loader');
+const PAGES = { about: document.getElementById('about'), contact: document.getElementById('contact') };
+const viewLinks = [...document.querySelectorAll('nav a[data-view]')];
+const ease = (dt, tau) => 1 - Math.exp(-dt / tau);
+function ringOffset(i) { return ((i - scrollU + N / 2) % N + N) % N - N / 2; }
+function requestRender() {
+  if (!raf && !document.hidden) { last = performance.now(); raf = requestAnimationFrame(frame); }
 }
 function mediaPaths(c) {
   const file = (isMobile && c.item.srcMobile) || c.item.src;
-  const src  = 'media/web/' + file;
-  return { src, poster: src.replace(/\.\w+$/, '_poster.jpg') };
+  return { file, src: 'media/web/' + file, poster: 'media/web/' + file.replace(/\.\w+$/, '_poster.jpg') };
 }
-applyLayout();
-addEventListener('resize', applyLayout);
-
-/* ── PRELOADER: wait only for the cards visible at start, stream in
-      the rest afterwards (nearest-first, 2 downloads at a time) ── */
-const loaderEl  = document.getElementById('loader');
-const ringProg  = loaderEl.querySelector('.prog');
-const RING_C    = 2 * Math.PI * 56;
-const CRIT_DIST = 2;               // ring distance considered "visible at start"
-const MIN_SHOW  = 700;             // ms — let the ring animation read
-const loadT0    = performance.now();
-let revealed = false, doneCritical = 0, inFlight = 0;
-
-function ringDistIdx(i) { const d = Math.abs(i) % N; return Math.min(d, N - d); }
-const critical = [], queue = [];
-cards.forEach((c, i) => {
-  c.ringD = ringDistIdx(i);
-  (c.ringD <= CRIT_DIST ? critical : queue).push(c);
+function describe(item) { return item.alt || item.title.replace(/\.[^.]+$/, '').replace(/_/g, ' '); }
+const cards = ITEMS.map((item, index) => {
+  const link = (item.sub || []).find(s => typeof s === 'object' && s.href);
+  const el = document.createElement(link ? 'a' : 'div');
+  el.className = link ? 'card link' : 'card';
+  el.setAttribute('aria-label', `${index + 1} of ${N}: ${describe(item)}`);
+  if (link) {
+    el.href = link.href; el.target = '_blank'; el.rel = 'noopener'; el.draggable = false;
+    el.addEventListener('click', e => { if (e.detail !== 0 && dragMoved > 5) e.preventDefault(); });
+  } else { el.setAttribute('role', 'group'); el.setAttribute('aria-roledescription', 'slide'); }
+  const isVideo = /\.mp4$/i.test(item.src);
+  const c = { item, index, el, isVideo, title: item.title, sub: item.sub || [],
+    ar: item.width / item.height, done: false, imageRequested: false, imageFailed: false,
+    videoFailed: false, pendingPlay: null, blocked: false, wanted: false, generation: 0 };
+  const ph = document.createElement('div'); ph.className = 'ph'; ph.setAttribute('aria-hidden', 'true');
+  const label = document.createElement('span'); label.textContent = item.title; ph.append(label); el.append(ph);
+  const img = document.createElement('img'); img.alt = describe(item); img.decoding = 'async'; img.draggable = false;
+  c.image = img; el.append(img);
+  img.addEventListener('load', () => {
+    c.imageFailed = false; img.hidden = false; ph.hidden = true;
+    c.ar = img.naturalWidth / img.naturalHeight; sizeCard(c); markDone(c); requestRender();
+  });
+  img.addEventListener('error', () => {
+    // A missing responsive rendition must not hide an available original JPEG.
+    if (img.srcset && c.fallbackFor !== c.file) {
+      c.fallbackFor = c.file; img.removeAttribute('srcset');
+      const paths = mediaPaths(c); img.src = c.isVideo ? paths.poster : paths.src; return;
+    }
+    c.imageFailed = true; img.hidden = true; markDone(c); requestRender();
+  });
+  if (isVideo) {
+    const m = document.createElement('video'); c.m = m; c.posterImg = img;
+    m.muted = true; m.defaultMuted = true; m.loop = true; m.playsInline = true; m.preload = 'none';
+    m.setAttribute('muted', ''); m.setAttribute('playsinline', ''); m.setAttribute('aria-hidden', 'true');
+    m.disablePictureInPicture = true; m.tabIndex = -1;
+    m.addEventListener('playing', () => {
+      if (!c.wanted || overlayOpen || document.hidden) { m.pause(); return; }
+      m.classList.add('ready'); ph.hidden = true; c.blocked = false;
+    });
+    m.addEventListener('loadedmetadata', () => {
+      if (c.imageFailed && m.videoWidth) { c.ar = m.videoWidth / m.videoHeight; sizeCard(c); requestRender(); }
+    });
+    m.addEventListener('error', () => {
+      c.videoFailed = true; c.wanted = false; m.pause(); m.classList.remove('ready');
+      // Never discard a working poster when a video cannot load.
+      ph.hidden = img.complete && img.naturalWidth > 0 && !img.hidden;
+    });
+    el.append(m);
+  } else c.m = img;
+  stage.append(el); return c;
 });
-queue.sort((a, b) => a.ringD - b.ringD);
-critical.forEach(c => { c.critical = true; });
 
-function updateRing() {
-  const p = Math.max(0.04, doneCritical / critical.length);
-  ringProg.style.strokeDashoffset = String(RING_C * (1 - p));
+function sizeCard(c) {
+  let base = c.item.w;
+  if (isMobile) base = Math.min(base * W_SCALE_M * (c.ar >= 1 ? 1.15 : .85), 92);
+  c.width = Math.min(base * viewportW / 100, c.ar * .72 * viewportH);
+  c.el.style.width = c.width.toFixed(2) + 'px';
+  c.el.style.aspectRatio = String(c.ar);
+}
+function applyLayout() {
+  viewportW = stage.clientWidth; viewportH = stage.clientHeight;
+  isMobile = viewportW <= 700;
+  spacingCur = isMobile ? SPACING_M : SPACING;
+  dyScaleCur = isMobile ? DY_SCALE_M : 1; rzScaleCur = isMobile ? RZ_SCALE_M : 1;
+  captionTop = titleEl.getBoundingClientRect().top;
+  cards.forEach(c => {
+    const { file } = mediaPaths(c);
+    if (c.file && c.file !== file) {
+      c.file = file; c.ar = isMobile ? c.item.mobileWidth / c.item.mobileHeight : c.item.width / c.item.height;
+      c.generation++; c.pendingPlay = null; c.blocked = false; c.videoFailed = false;
+      if (c.isVideo) { c.m.pause(); c.m.classList.remove('ready'); c.srcPath = null; c.m.removeAttribute('src'); c.m.load(); }
+      if (c.imageRequested) assignImage(c);
+    }
+    if (!c.file && c.item.srcMobile) c.ar = isMobile ? c.item.mobileWidth / c.item.mobileHeight : c.item.width / c.item.height;
+    sizeCard(c);
+    if (c.imageRequested) c.image.sizes = Math.ceil(c.width) + 'px';
+  });
+  requestRender();
+}
+function assignImage(c) {
+  const { file, poster, src } = mediaPaths(c); c.file = file;
+  const imageFile = c.isVideo ? file.replace(/\.mp4$/, '_poster.jpg') : file;
+  const variants = IMAGE_VARIANTS[imageFile];
+  c.image.width = isMobile && c.item.mobileWidth ? c.item.mobileWidth : c.item.width;
+  c.image.height = isMobile && c.item.mobileHeight ? c.item.mobileHeight : c.item.height;
+  c.image.fetchPriority = c.index === ((Math.round(scrollU) % N) + N) % N ? 'high' : 'low';
+  if (variants) {
+    c.image.sizes = Math.ceil(c.width || viewportW) + 'px';
+    c.image.srcset = variants.map(v => `media/web/responsive/${v.file} ${v.width}w`).join(', ');
+  }
+  c.image.src = c.isVideo ? poster : src;
 }
 function loadItem(c) {
-  if (c.srcSet) return;
-  c.srcSet = true;
-  // The poster is the preloader's completion signal (it's the thing that has to
-  // be on screen); the video is attached at the same time and then kept for the
-  // life of the page. Re-fetching a video every time it nears center is what
-  // made cards sit still and then flash on iOS.
-  const { src, poster } = mediaPaths(c);
-  c.srcPath = src;
-  if (c.posterImg) c.posterImg.src = poster;
-  c.m.src = src;
-}
-function pump() {
-  if (!revealed) return;
-  while (inFlight < 2 && queue.length) {
-    const c = queue.shift();
-    if (c.srcSet) continue;
-    inFlight++;
-    loadItem(c);
-  }
+  if (c.imageRequested) return;
+  c.imageRequested = true; inFlight++;
+  c.loadTimer = setTimeout(() => { markDone(c); }, 6000);
+  assignImage(c);
 }
 function markDone(c) {
-  if (c.done) return;
-  c.done = true;
-  if (c.critical) {
-    doneCritical++;
-    updateRing();
-    if (doneCritical >= critical.length) reveal();
-  } else {
-    inFlight--;
-  }
-  pump();
+  if (!c.done) { c.done = true; clearTimeout(c.loadTimer); inFlight = Math.max(0, inFlight - 1); }
+  if (c.index === 0) reveal();
+  requestRender();
 }
 function reveal() {
   if (revealed) return;
-  revealed = true;
-  const wait = Math.max(0, MIN_SHOW - (performance.now() - loadT0));
-  setTimeout(() => {
-    ringProg.style.strokeDashoffset = '0';
-    loaderEl.classList.add('done');
-    setTimeout(() => loaderEl.remove(), 650);
-    pump();                        // start streaming the rest of the ring
-  }, wait);
+  revealed = true; loaderEl.classList.add('done');
+  setTimeout(() => loaderEl.remove(), 250); requestRender();
 }
-critical.forEach(loadItem);
-updateRing();
-setTimeout(reveal, 8000);          // safety net — never trap the user on the loader
-
-/* ── STATE ── */
-let scrollU = 0;                 // scroll position in card units — unbounded (wraps)
-let vel     = 0;                 // cards per second
-let snap    = null;              // arrow-key target (unbounded index) or null
-let mx = 0.5, my = 0.5;          // raw cursor, normalized 0..1
-let smx = 0.5, smy = 0.5;        // smoothed cursor (fast — tilt follows live)
-let mouseIn = false;
-let titleIdx = -1, titleTimer = null;
-let overlayOpen = false;         // an About/Contact page covers the carousel and freezes it
-
-addEventListener('mousemove', e => {
-  if (usingTouch || overlayOpen) return;  // touch devices echo fake mousemoves — ignore them
-  mx = e.clientX / innerWidth;
-  my = e.clientY / innerHeight;
-  mouseIn = true;
-});
-document.addEventListener('mouseleave', () => { mouseIn = false; });
-
-/* ── DRAG: swipe on mobile, click-drag on desktop — release glides ── */
-let usingTouch = false, dragging = false, dragVel = 0, snapSoft = false;
-let dStartX = 0, dStartScroll = 0, dPrevScroll = 0, dPrevT = 0;
-let dragMoved = 0;               // px travelled — separates a click from a drag
-
-function dragStart(x) {
-  dragging = true; snap = null; vel = 0; dragVel = 0;
-  dStartX = x; dragMoved = 0;
-  dStartScroll = dPrevScroll = scrollU;
-  dPrevT = performance.now();
+function ensureImages() {
+  if (overlayOpen) return;
+  const nearby = cards.filter(c => Math.abs(ringOffset(c.index)) <= (isMobile ? 2.5 : 4.2));
+  nearby.sort((a, b) => Math.abs(ringOffset(a.index)) - Math.abs(ringOffset(b.index)));
+  for (const c of nearby) { if (inFlight >= 2) break; if (!c.imageRequested && (revealed || c.index === 0)) loadItem(c); }
 }
-function dragMove(x) {
-  const dx = x - dStartX;
-  dragMoved = Math.max(dragMoved, Math.abs(dx));
-  scrollU = dStartScroll - dx / (spacingCur * innerWidth);
-  const now = performance.now();
-  const dtm = Math.max(8, now - dPrevT) / 1000;
-  dragVel = 0.75 * ((scrollU - dPrevScroll) / dtm) + 0.25 * dragVel;
-  dPrevScroll = scrollU; dPrevT = now;
-}
-function dragEnd() {
-  dragging = false;
-  const throwU = Math.max(-2, Math.min(2, dragVel * THROW_GAIN));
-  snap = Math.round(scrollU + throwU);   // glide, then settle centered
-  snapSoft = true;
-}
-
-addEventListener('touchstart', e => {
-  usingTouch = true; mouseIn = false;
-  if (overlayOpen) return;       // let the open page scroll natively
-  dragStart(e.touches[0].clientX);
-}, { passive: true });
-addEventListener('touchmove', e => {
-  if (!dragging) return;
-  e.preventDefault();
-  dragMove(e.touches[0].clientX);
-}, { passive: false });
-addEventListener('touchend', () => { if (dragging) dragEnd(); });
-
-addEventListener('mousedown', e => {
-  if (usingTouch || overlayOpen || e.button !== 0) return;
-  // nav + caption links stay clickable; card links still drag (a click is
-  // distinguished from a drag by distance, in the card's own click handler)
-  if (e.target instanceof Element && e.target.closest('nav, #title')) return;
-  e.preventDefault();                               // stops native image dragging
-  dragStart(e.clientX);
-});
-addEventListener('mousemove', e => { if (dragging && !usingTouch) dragMove(e.clientX); });
-addEventListener('mouseup',   () => { if (dragging && !usingTouch) dragEnd(); });
-document.addEventListener('mouseleave', () => { if (dragging && !usingTouch) dragEnd(); });
-
-addEventListener('keydown', e => {
-  if (overlayOpen) return;       // arrows scroll the open page instead
-  let dir = 0;
-  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') dir = 1;
-  if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   dir = -1;
-  if (!dir) return;
-  e.preventDefault();
-  const from = (snap !== null) ? snap : Math.round(scrollU);
-  snap = from + dir;             // unbounded — the ring just keeps turning
-  snapSoft = false;              // arrow steps stay snappy
-  vel = 0;
-});
-
-/* ── VIEWS: Work (the carousel) / About / Contact ── */
-const PAGES = { about: document.getElementById('about'), contact: document.getElementById('contact') };
-const viewLinks = [...document.querySelectorAll('nav a[data-view]')];
-
-function setView(v) {
-  // page → page swaps with no fade: crossfading two translucent panels would
-  // let the carousel flash through the gap between them
-  const swap = overlayOpen && v !== 'work';
-  overlayOpen = (v !== 'work');
-  for (const name in PAGES) {
-    const p = PAGES[name], on = (name === v);
-    if (swap) p.style.transition = 'none';
-    p.classList.toggle('show', on);
-    if (on) p.scrollTop = 0;
-  }
-  if (swap) {
-    void PAGES[v].offsetHeight;          // flush the instant swap before restoring
-    for (const name in PAGES) PAGES[name].style.transition = '';
-  }
-  titleEl.classList.toggle('viewhide', overlayOpen);
-  viewLinks.forEach(a => a.classList.toggle('active', a.dataset.view === v));
-  // drop whatever the carousel was doing so it isn't mid-glide on return
-  if (overlayOpen) { mouseIn = false; dragging = false; snap = null; vel = 0; }
-}
-viewLinks.forEach(a => a.addEventListener('click', e => { e.preventDefault(); setView(a.dataset.view); }));
-addEventListener('keydown', e => { if (e.key === 'Escape' && overlayOpen) setView('work'); });
-
-/* no backend here — Send hands the message to the visitor's own mail client */
-const contactForm = document.getElementById('contactForm');
-contactForm.addEventListener('submit', e => {
-  e.preventDefault();
-  const msg  = contactForm.message.value.trim();
-  const from = contactForm.from.value.trim();
-  if (!msg) { contactForm.message.focus(); return; }
-  const body = msg + (from ? '\n\n— ' + from : '');
-  location.href = 'mailto:armanfaruqui@hotmail.com'
-    + '?subject=' + encodeURIComponent('Portfolio enquiry')
-    + '&body='    + encodeURIComponent(body);
-});
-
-function renderTitle(c) {
-  titleEl.innerHTML = '';
-  const main = document.createElement('div');
-  main.textContent = c.title;
-  titleEl.appendChild(main);
-  c.sub.forEach(s => {
-    const d = document.createElement('div');
-    d.className = 'sub';
-    if (typeof s === 'string') {
-      d.textContent = s;
-    } else {
-      const a = document.createElement('a');
-      a.href = s.href;
-      a.target = '_blank';
-      a.rel = 'noopener';
-      a.textContent = s.text;
-      d.appendChild(a);
-    }
-    titleEl.appendChild(d);
+function playVideo(c) {
+  if (c.videoFailed || c.blocked || c.pendingPlay || !c.m.paused) return;
+  const generation = c.generation;
+  const attempt = c.m.play(); c.pendingPlay = attempt;
+  if (!attempt) { c.pendingPlay = null; return; }
+  attempt.catch(error => {
+    if (generation === c.generation && c.wanted && error.name !== 'AbortError') { c.blocked = true; }
+  }).finally(() => {
+    if (c.pendingPlay === attempt) c.pendingPlay = null;
+    if (generation === c.generation && !c.wanted) c.m.pause();
   });
 }
+function syncVideos() {
+  for (const c of cards) {
+    if (!c.isVideo) continue;
+    const want = revealed && !overlayOpen && !document.hidden &&
+      c.done && Math.abs(ringOffset(c.index)) <= (isMobile ? 2.2 : 3);
+    c.wanted = want; c.m.autoplay = want;
+    if (!want) { if (!c.m.paused) c.m.pause(); continue; }
+    const { src } = mediaPaths(c);
+    if (src !== c.srcPath) { c.srcPath = src; c.m.src = src; }
+    playVideo(c);
+  }
+}
+function retryBlocked() { cards.forEach(c => { c.blocked = false; }); syncVideos(); }
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) { cancelAnimationFrame(raf); raf = 0; mouseIn = false; endDrag(true); }
+  syncVideos(); requestRender();
+});
+addEventListener('pagehide', () => { cards.forEach(c => { if (c.isVideo) { c.wanted = false; c.m.pause(); } }); });
+addEventListener('pageshow', requestRender);
+
+function step(dir) {
+  mouseIn = false; vel = 0; snap = (snap !== null ? snap : Math.round(scrollU)) + dir;
+  snapSoft = false; desiredAnnouncement = true; retryBlocked(); requestRender();
+}
+stage.addEventListener('dragstart', e => e.preventDefault());
+document.addEventListener('pointerdown', () => { keyboardFocus = false; }, true);
+stage.addEventListener('pointerdown', e => {
+  if (overlayOpen || e.button !== 0) return;
+  if (!e.isPrimary) { endDrag(true); return; }
+  dragging = true; pointerId = e.pointerId; captureTarget = e.target;
+  captureTarget.setPointerCapture(pointerId);
+  mouseIn = false; snap = null; vel = 0; dragVel = 0; dragMoved = 0;
+  dStartX = e.clientX; dStartScroll = dPrevScroll = scrollU; dPrevT = performance.now();
+  retryBlocked(); requestRender();
+});
+addEventListener('pointermove', e => {
+  if (overlayOpen) return;
+  if (e.pointerType === 'mouse' && !(keyboardFocus && stage.contains(document.activeElement))) {
+    mx = e.clientX / viewportW; my = e.clientY / viewportH; mouseIn = true;
+    if (!dragging && driftSpeed(mx)) snap = null;
+    requestRender();
+  }
+  if (dragging && e.pointerId === pointerId) {
+    const dx = e.clientX - dStartX; dragMoved = Math.max(dragMoved, Math.abs(dx));
+    scrollU = dStartScroll - dx / (spacingCur * viewportW);
+    const now = performance.now(); const dt = Math.max(8, now - dPrevT) / 1000;
+    dragVel = .75 * (scrollU - dPrevScroll) / dt + .25 * dragVel;
+    dPrevScroll = scrollU; dPrevT = now; desiredAnnouncement = true; requestRender();
+  }
+});
+function endDrag(cancelled = false) {
+  if (!dragging) return;
+  dragging = false;
+  if (captureTarget?.hasPointerCapture(pointerId)) captureTarget.releasePointerCapture(pointerId);
+  pointerId = null; captureTarget = null;
+  snap = Math.round(scrollU + (cancelled ? 0 : Math.max(-2, Math.min(2, dragVel * THROW_GAIN))));
+  snapSoft = true; requestRender();
+}
+addEventListener('pointerup', e => { if (e.pointerId === pointerId) endDrag(); });
+addEventListener('pointercancel', e => { if (e.pointerId === pointerId) endDrag(true); });
+stage.addEventListener('lostpointercapture', () => endDrag(true));
+document.addEventListener('mouseleave', () => { mouseIn = false; requestRender(); });
+addEventListener('blur', () => { mouseIn = false; endDrag(true); requestRender(); });
+document.addEventListener('focusin', () => { mouseIn = false; vel = 0; requestRender(); });
+addEventListener('keydown', e => {
+  if (e.key === 'Tab') keyboardFocus = true;
+  if (e.key === 'Escape' && overlayOpen) { navigate('work'); return; }
+  if (overlayOpen || e.altKey || e.ctrlKey || e.metaKey || /INPUT|TEXTAREA|SELECT/.test(e.target.tagName)) return;
+  const dir = ['ArrowRight','ArrowDown'].includes(e.key) ? 1 : ['ArrowLeft','ArrowUp'].includes(e.key) ? -1 : 0;
+  if (dir) { e.preventDefault(); step(dir); }
+});
+
+function setView(v, focus = true) {
+  if (!['work','about','contact'].includes(v)) v = 'work';
+  const swap = overlayOpen && v !== 'work'; currentView = v; overlayOpen = v !== 'work';
+  endDrag(true); mouseIn = false; snap = null; vel = 0;
+  for (const [name, p] of Object.entries(PAGES)) {
+    const on = name === v; if (swap) p.style.transition = 'none';
+    p.classList.toggle('show', on); p.inert = !on; p.setAttribute('aria-hidden', String(!on));
+    if (on) p.scrollTop = 0;
+  }
+  if (swap) { void PAGES[v].offsetHeight; Object.values(PAGES).forEach(p => p.style.transition = ''); }
+  stage.inert = overlayOpen; stage.setAttribute('aria-hidden', String(overlayOpen));
+  titleEl.inert = overlayOpen; titleEl.setAttribute('aria-hidden', String(overlayOpen));
+  titleEl.classList.toggle('viewhide', overlayOpen); 
+  viewLinks.forEach(a => {
+    const on = a.dataset.view === v; a.classList.toggle('active', on);
+    if (on) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current');
+  });
+  document.title = `Arman Faruqui — ${v[0].toUpperCase() + v.slice(1)}`;
+  if (focus) (overlayOpen ? PAGES[v] : viewLinks[0]).focus({preventScroll:true});
+  if (overlayOpen) { reveal(); cancelAnimationFrame(raf); raf = 0; }
+  syncVideos(); if (!overlayOpen) requestRender();
+}
+function navigate(v) { if (location.hash !== '#' + v) history.pushState(null, '', '#' + v); setView(v); }
+viewLinks.forEach(a => a.addEventListener('click', e => { e.preventDefault(); navigate(a.dataset.view); }));
+addEventListener('popstate', () => setView(location.hash.slice(1) || 'work'));
+addEventListener('hashchange', () => { if (location.hash.slice(1) !== currentView) setView(location.hash.slice(1)); });
+
+const contactForm = document.getElementById('contactForm');
+contactForm.addEventListener('submit', e => {
+  e.preventDefault(); const field = contactForm.elements.message;
+  field.setCustomValidity(field.value.trim() ? '' : 'Please enter a message.');
+  if (!contactForm.reportValidity()) return;
+  const from = contactForm.elements.from.value.trim();
+  location.href = 'mailto:armanfaruqui@hotmail.com?subject=' + encodeURIComponent('Portfolio enquiry') +
+    '&body=' + encodeURIComponent(field.value.trim() + (from ? '\n\n— ' + from : ''));
+});
+contactForm.elements.message.addEventListener('input', () => contactForm.elements.message.setCustomValidity(''));
+function renderTitle(c) {
+  titleEl.replaceChildren(); const main = document.createElement('div'); main.textContent = c.title; titleEl.append(main);
+  c.sub.forEach(s => {
+    const d = document.createElement('div'); d.className = 'sub';
+    if (typeof s === 'string') d.textContent = s;
+    else { const a = document.createElement('a'); a.href = s.href; a.target = '_blank'; a.rel = 'noopener'; a.textContent = s.text; d.append(a); }
+    titleEl.append(d);
+  });
+  if (desiredAnnouncement) { statusEl.textContent = describe(c.item); desiredAnnouncement = false; }
+  applyLayout();
+}
 function setTitle(i) {
-  if (i === titleIdx) return;
-  titleIdx = i;
-  titleEl.classList.add('hide');
+  if (i === titleIdx) return; const initial = titleIdx < 0; titleIdx = i;
   clearTimeout(titleTimer);
-  titleTimer = setTimeout(() => {
-    renderTitle(cards[i]);
-    titleEl.classList.remove('hide');
-  }, 180);
+  if (initial) { titleEl.classList.remove('hide'); renderTitle(cards[i]); return; }
+  titleEl.classList.add('hide');
+  titleTimer = setTimeout(() => { renderTitle(cards[i]); titleEl.classList.remove('hide'); }, 180);
 }
-
-/* cursor offset from center → drift speed (cards/sec) */
 function driftSpeed(nx) {
-  const off = nx - 0.5;
-  const a = Math.abs(off);
-  if (a <= DEAD_ZONE) return 0;
-  const t = Math.min(1, (a - DEAD_ZONE) / (FULL_ZONE - DEAD_ZONE));
-  return Math.sign(off) * MAX_SPEED * Math.pow(t, SPEED_CURVE);
+  const off = nx - .5, a = Math.abs(off);
+  return a <= DEAD_ZONE ? 0 : Math.sign(off) * MAX_SPEED * Math.pow(Math.min(1, (a - DEAD_ZONE) / (FULL_ZONE - DEAD_ZONE)), SPEED_CURVE);
 }
-
-const ease = (dt, tau) => 1 - Math.exp(-dt / tau);
-
-/* offset of card i from the carousel center, wrapped onto the ring [-N/2, N/2) */
-function ringOffset(i) {
-  let un = (i - scrollU) % N;
-  if (un < -N / 2) un += N;
-  if (un >= N / 2) un -= N;
-  return un;
-}
-
-/* ── MAIN LOOP ── */
-let last = performance.now();
 function frame(now) {
-  const dt = Math.min((now - last) / 1000, 0.05);
-  last = now;
-
-  // tilt tracks the cursor almost live — wiggle it, make circles, it follows
-  smx += ((mouseIn ? mx : 0.5) - smx) * ease(dt, TILT_TAU);
-  smy += ((mouseIn ? my : 0.5) - smy) * ease(dt, TILT_TAU);
-
-  // cursor-driven drift (with acceleration = weight) — paused while dragging
-  const target = (mouseIn && snap === null && !dragging) ? driftSpeed(mx) : 0;
-  if (snap !== null && mouseIn && driftSpeed(mx) !== 0) snap = null; // mouse takes over
-  vel += (target - vel) * ease(dt, ACCEL_TAU);
+  raf = 0; if (overlayOpen || document.hidden) return;
+  const dt = Math.min((now - last) / 1000, .05); last = now;
+  const movingPointer = mouseIn;
+  const tx = movingPointer ? mx : .5, ty = movingPointer ? my : .5;
+  smx += (tx - smx) * ease(dt, TILT_TAU); smy += (ty - smy) * ease(dt, TILT_TAU);
+  const target = movingPointer && snap === null && !dragging ? driftSpeed(mx) : 0;
+  vel += (target - vel) * ease(dt, ACCEL_TAU); if (Math.abs(vel) < .0001) vel = 0;
   scrollU += vel * dt;
-
-  // snap — snappy for arrow keys, a softer glide for drag/swipe throws
   if (snap !== null && !dragging) {
-    scrollU += (snap - scrollU) * ease(dt, snapSoft ? 0.22 : SNAP_TAU);
-    if (Math.abs(snap - scrollU) < 0.002) { scrollU = snap; snap = null; }
+    scrollU = scrollU + (snap - scrollU) * ease(dt, snapSoft ? .22 : SNAP_TAU);
+    if (Math.abs(snap - scrollU) < .002) { scrollU = snap; snap = null; }
   }
-
-  // scene tilt — pitch and yaw combine, so diagonal / circular motion reads fully
-  // (no cursor on touch devices, so the scene stays level there)
-  const rotX = isMobile ? 0 : (0.5 - smy) * TILT_X_MAX;   // cursor high → tilts up
-  const rotY = isMobile ? 0 : (smx - 0.5) * -TILT_Y_MAX;  // cursor right → tilts right
-
-  const vw = innerWidth;
-  const hideAt   = isMobile ? 1.8 : Math.min(3.8, N / 2 - 0.1);
-  // Videos start playing before they're even on screen (hideAt is 1.8 on mobile),
-  // so a card is always already running by the time you swipe onto it. Kept just
-  // above hideAt rather than higher: 2.2 covers everything visible with margin
-  // while holding mobile to 5 simultaneous decoders instead of 6.
-  const PLAY_NEAR = isMobile ? 2.2 : 3.8;
-  for (let i = 0; i < cards.length; i++) {
-    const c  = cards[i];
-    const un = ringOffset(i);
-    const x  = un * spacingCur * vw;
-    const y  = c.item.dy * dyScaleCur + Math.abs(un) * 10;
-    const z  = -Math.min(Math.abs(un), 2.8) * DEPTH_PX;
-    const fan = un * -FAN_DEG;
-
-    c.el.style.transform =
-      'translate(-50%, -50%) ' +
-      'translate3d(' + x.toFixed(1) + 'px, ' + y.toFixed(1) + 'px, ' + z.toFixed(1) + 'px) ' +
-      'rotateX(' + rotX.toFixed(2) + 'deg) ' +
-      'rotateY(' + (rotY + fan).toFixed(2) + 'deg) ' +
-      'rotateZ(' + (c.item.rz * rzScaleCur).toFixed(2) + 'deg)';
-
-    // most-centered card always wins the overlap
-    c.el.style.zIndex = String(1000 - Math.round(Math.abs(un) * 100));
-
-    // hide far-off cards (and the one crossing the back seam of the ring)
-    c.el.style.visibility = Math.abs(un) > hideAt ? 'hidden' : 'visible';
-
-    // the file stays attached — only playback is gated, so a paused card keeps
-    // its last frame and resumes instantly instead of re-fetching
-    if (c.isVideo && c.srcSet) {
-      const nearby = !overlayOpen && Math.abs(un) <= PLAY_NEAR;  // nothing plays behind a page
-      if (nearby && c.m.paused) c.m.play().catch(() => {});
-      else if (!nearby && !c.m.paused) c.m.pause();
-    }
+  const rotX = isMobile ? 0 : (.5 - smy) * TILT_X_MAX;
+  const rotY = isMobile ? 0 : (smx - .5) * -TILT_Y_MAX;
+  const hideAt = isMobile ? 1.8 : Math.min(3.8, N / 2 - .1);
+  for (const c of cards) {
+    const un = ringOffset(c.index), visible = Math.abs(un) <= hideAt;
+    c.el.style.visibility = visible ? 'visible' : 'hidden';
+    c.el.inert = !visible; c.el.setAttribute('aria-hidden', String(!visible));
+    c.el.style.willChange = visible && (dragging || movingPointer || snap !== null) ? 'transform' : 'auto';
+    if (!visible) continue;
+    const y = c.item.dy * dyScaleCur + Math.abs(un) * 10;
+    c.el.style.top = '46%';
+    c.el.style.transform = `translate(-50%, -50%) translate3d(${(un * spacingCur * viewportW).toFixed(1)}px, ${y.toFixed(1)}px, ${(-Math.min(Math.abs(un),2.8)*DEPTH_PX).toFixed(1)}px) rotateX(${rotX.toFixed(2)}deg) rotateY(${(rotY-un*FAN_DEG).toFixed(2)}deg) rotateZ(${(c.item.rz*rzScaleCur).toFixed(2)}deg)`;
+    c.el.style.zIndex = String(1000 - Math.round(Math.abs(un)*100));
   }
-
-  setTitle(((Math.round(scrollU) % N) + N) % N);
-  requestAnimationFrame(frame);
+  setTitle(((Math.round(scrollU) % N) + N) % N); ensureImages(); syncVideos();
+  const settling = Math.abs(smx-tx) > .0001 || Math.abs(smy-ty) > .0001;
+  if (!raf && (vel || snap !== null || settling || target)) raf = requestAnimationFrame(frame);
 }
-requestAnimationFrame(frame);
+addEventListener('resize', applyLayout); visualViewport?.addEventListener('resize', applyLayout);
+coarsePointer.addEventListener('change', applyLayout);
+const layoutObserver = new ResizeObserver(applyLayout);
+[titleEl, document.querySelector('nav')].forEach(el => layoutObserver.observe(el));
+document.body.classList.add('enhanced');
+document.getElementById('fallback').hidden = true;
+setTitle(0); applyLayout();
+setView(location.hash.slice(1) || 'work', false);
+window.portfolioReady = true;
+setTimeout(reveal, 1800);
+requestRender();
+
 </script>
 </body>
 </html>

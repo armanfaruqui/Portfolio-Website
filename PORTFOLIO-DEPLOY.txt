@@ -1,0 +1,53 @@
+PORTFOLIO — LOCAL CHANGES AND RELEASE NOTES
+
+This portfolio is a static website. Its entry point is index.html.
+DEPLOY.md and blocksy-child.zip in this directory belong to the separate jewelry
+WordPress site. Do not use them to deploy this portfolio.
+
+Required release files:
+- index.html
+- The referenced images, posters, icon and MP4 files in media/web/
+- All files in media/web/responsive/ (46 WebP renditions)
+
+Keep the original media files in media/ as local masters. Do not delete them.
+media/web/1.websiteOrb.mp4 and 1.websiteOrb_poster.jpg are legacy unused assets;
+they can be excluded from uploads without deleting the local copies.
+
+Preserve filename case. Serve WebP as image/webp, MP4 as video/mp4, JPEG as
+image/jpeg, and HTML as text/html; charset=utf-8. Enable MP4 byte-range responses.
+Enable gzip or Brotli for HTML. Revalidate index.html and unversioned media URLs;
+do not apply immutable caching to assets that will be overwritten in place.
+Upload new media before replacing index.html so references never point to missing
+files. Invalidate any existing HTML cache after publishing.
+
+The updated carousel:
+- Clips its off-screen cards inside the stage to prevent mobile viewport overflow.
+- Uses stage dimensions and the original 700px mobile breakpoint.
+- Loads nearby images in priority order, using responsive WebP renditions with
+  original-JPEG recovery if a rendition fails.
+- Attaches video sources only near the visitor's current position. Once attached,
+  they remain attached until the responsive Orb cut changes. Pause/resume does
+  not clear sources or intentionally re-fetch the same clip.
+- Keeps the poster behind video, and hides video until a playing event.
+- Stops the animation loop when settled or covered; pauses media in hidden tabs.
+- Restores the original autoplay, cursor tilt, drift, card geometry and swipe motion.
+  There are no added playback buttons, previous/next buttons or visible counter. Keyboard navigation, Pointer Events, cancellation and pinch-zoom gestures remain.
+- Isolates inactive views with inert and supports #work, #about and #contact URLs.
+- Keeps the original contact form appearance with improved field validation;
+  Send opens a mailto draft in the visitor's email application.
+
+No third-party form provider, analytics, hosting account or deployment was added.
+Add canonical/social metadata only after confirming the actual production URL and
+the desired preview image. The description and favicon are included already.
+
+Before publishing:
+1. Confirm index.html and responsive assets are uploaded together.
+2. Check all 19 works, caption links and About/Contact routes on the hosted URL.
+3. Check iPhone/iPad Safari and Android hardware, especially low-power mode,
+   rapid swipes, orientation changes, background/restore and long sessions.
+4. Verify HTTPS, cache policy, media MIME types and range responses on the host.
+5. Check keyboard navigation and VoiceOver/NVDA with the actual release.
+
+Automated local tests and the untouched pre-change index.html backup are retained
+in the Codex workspace portfolio-fix directory linked from the completion report.
+

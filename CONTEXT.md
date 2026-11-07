@@ -1,3 +1,33 @@
+# Latest preference — original presentation restored
+
+The user requested removal of the added play/pause buttons, previous/next controls
+and item count. These are removed. Original cursor drift, tilt, card positioning,
+700px breakpoint and swipe throw behavior are restored. Videos autoplay on arrival
+without requiring interaction. Original secondary-text color and contact-form
+appearance are restored. Responsive images, nearby-only loading, viewport clipping,
+poster/error recovery, idle/background savings, validation and focus fixes remain.
+This supersedes earlier notes about added controls and motion preferences below.
+# Current implementation — 2026-11-07 optimization pass
+
+This section supersedes the historical implementation descriptions below.
+See PORTFOLIO-DEPLOY.txt for the current release procedure and required files.
+
+- index.html retains the original 3D carousel styling and motion constants.
+- The stage clips transformed overflow; layout uses its client dimensions.
+- Nearby stills/posters use media/web/responsive WebP variants and JPEG recovery.
+- Distant videos do not receive sources until approaching the current position.
+  Once loaded, sources stay attached, except when switching the responsive Orb cut.
+- The poster stays in place on video failure. Video remains transparent until playing.
+- The animation loop stops when settled/covered; hidden tabs pause video playback.
+- Motion controls, reduced motion, keyboard buttons, pointer cancellation, inert
+  inactive views, and hash navigation are implemented.
+- Contact remains mailto-based, clearly labeled Open email draft, with Copy email.
+- Original masters and legacy files have not been deleted. No deployment was made.
+- Local Chrome and Edge regression suites passed 150 checks each before applying.
+  Real iOS/Android hardware, Safari/Firefox and production-host checks remain needed.
+
+---
+Historical notes follow; measurements and loading descriptions below may be stale.
 # Portfolio — working context
 
 Handoff notes. Written 2026-07-25.
@@ -297,3 +327,5 @@ Left undone deliberately:
 - A local static server was left running on **port 4174** serving `ProductPortfolio`
   (background task `bwbo2ddsc`). Port 4173 served the old, now-empty `2026\` dir.
 - `.claude/launch.json` names the server `portfolio-2026` on port 4173 — stale after the move.
+
+
