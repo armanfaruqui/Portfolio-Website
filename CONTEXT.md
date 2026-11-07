@@ -166,6 +166,22 @@ Write new files, leave originals untouched — output dir `media/web/`:
 
 **Tooling available:** `ffmpeg` and `ffprobe` at `C:\PATH_Programs\` (`magick`/`cwebp` NOT installed).
 
+### 3.4 Card 1 → Orb_Desktop / Orb_Mobile (2026-11-07)
+
+Card 1 (`désiré_parkShoot.mp4`) now serves a different cut per breakpoint, via a new optional
+manifest field: `{ src: '1.Orb_Desktop.mp4', srcMobile: '1.Orb_Mobile.mp4', … }`.
+`mediaPaths(c)` picks the file (and its `_poster.jpg`) from `isMobile` when the preloader assigns
+it, and `applyLayout()` swaps both if the window crosses 700px. Aspect ratio follows the
+poster as usual (16:9 desktop, 4:5 mobile), so the card reshapes itself; the poster `load`
+listener is no longer `once` for that reason (`markDone` ignores repeats). Any other card can
+get a mobile cut the same way.
+
+Masters live in `C:\Désiré\website\websiteAmbus\` (Orb_Desktop.mp4 1920×1080 @ 7 Mbps 8.9 MB;
+Orb_Mobile.mp4 1080×1350 @ 3 Mbps 3.9 MB, both already H.264 + faststart, no audio).
+Transcoded with the standard pipeline below → `media/web/1.Orb_Desktop.mp4` 1200×676 1.1 MB,
+`1.Orb_Mobile.mp4` 960×1200 1.4 MB, posters at 20% duration. `media/web/1.websiteOrb*` are
+now unreferenced.
+
 ### 3.5 What shipped
 
 **`media/web/`** — new, 8.9 MB total. The 32.2 MB of originals in `media/` are untouched and

@@ -339,7 +339,8 @@ a.card.link { cursor: pointer; }
    dy = vertical offset (px)   rz = static lean in degrees
 ════════════════════════════════════════════════════════════ */
 const ITEMS = [
-  { src: '1.websiteOrb.mp4',      title: 'désiré_parkShoot.mp4',       w: 52, dy:  18, rz: -2.0 },
+  { src: '1.Orb_Desktop.mp4', srcMobile: '1.Orb_Mobile.mp4',
+                                  title: 'désiré_parkShoot.mp4',       w: 52, dy:  18, rz: -2.0 },
   { src: '2.veevee_blender.mp4',  title: 'veevee_design.mp4',          w: 48, dy:  36, rz:  1.6 },
   { src: '3.Gamja.jpg',           title: 'veevee_worn.JPG',            w: 46, dy: -14, rz:  0.0 },
   { src: '4.ondule_blender.mp4',  title: 'ondulé_design.mp4',          w: 50, dy:   8, rz:  2.2 },
@@ -445,17 +446,19 @@ const cards = ITEMS.map(item => {
     sizeCard(c);
   }
   c.m = m;
-  c.srcPath = 'media/web/' + item.src;   // assigned by the preloader, not here
+  // paths are picked by mediaPaths() when the preloader assigns them, because an
+  // item with `srcMobile` serves a different file (and shape) below 700px
 
   if (isVideo) {
     // The poster does three jobs: it's a real <img> layered under the video for
     // the life of the card (so nothing ever flashes through), it carries the
     // aspect ratio, and its load is the preloader's completion signal — which is
     // why start-up never fetches a video file at all.
-    c.posterPath = c.srcPath.replace(/\.\w+$/, '_poster.jpg');
     const p = document.createElement('img');
     p.alt = item.title;
-    p.addEventListener('load',  () => { setAR(p.naturalWidth, p.naturalHeight); markDone(c); }, { once: true });
+    // not once: a desktop↔mobile swap loads a new poster with a new aspect ratio
+    // (markDone ignores repeat calls)
+    p.addEventListener('load',  () => { setAR(p.naturalWidth, p.naturalHeight); markDone(c); });
     p.addEventListener('error', () => { showPlaceholder(); markDone(c); }, { once: true });
     c.posterImg = p;
     el.appendChild(p);                 // under the video — see .card video { z-index: 1 }
@@ -489,6 +492,22 @@ function applyLayout() {
   dyScaleCur = isMobile ? DY_SCALE_M : 1;
   rzScaleCur = isMobile ? RZ_SCALE_M : 1;
   cards.forEach(sizeCard);
+  // a window dragged across the breakpoint swaps cards that have a mobile cut
+  cards.forEach(c => {
+    if (!c.srcSet || !c.item.srcMobile || c.dead) return;
+    const { src, poster } = mediaPaths(c);
+    if (src === c.srcPath) return;
+    c.srcPath = src;
+    c.m.classList.remove('ready');                    // poster covers the swap
+    c.m.addEventListener('playing', () => c.m.classList.add('ready'), { once: true });
+    if (c.posterImg) c.posterImg.src = poster;
+    c.m.src = src;
+  });
+}
+function mediaPaths(c) {
+  const file = (isMobile && c.item.srcMobile) || c.item.src;
+  const src  = 'media/web/' + file;
+  return { src, poster: src.replace(/\.\w+$/, '_poster.jpg') };
 }
 applyLayout();
 addEventListener('resize', applyLayout);
@@ -523,8 +542,10 @@ function loadItem(c) {
   // be on screen); the video is attached at the same time and then kept for the
   // life of the page. Re-fetching a video every time it nears center is what
   // made cards sit still and then flash on iOS.
-  if (c.posterImg) c.posterImg.src = c.posterPath;
-  c.m.src = c.srcPath;
+  const { src, poster } = mediaPaths(c);
+  c.srcPath = src;
+  if (c.posterImg) c.posterImg.src = poster;
+  c.m.src = src;
 }
 function pump() {
   if (!revealed) return;
