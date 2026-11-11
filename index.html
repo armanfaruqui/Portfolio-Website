@@ -453,7 +453,7 @@ nav.services-nav::before { content: ''; position: absolute; top: -30px; bottom: 
     <header class="intro measure">
       <h1 id="collaborateHeading">Collaborate</h1>
       <p>I design things, get them made, and bring people into a room with them. One person, the whole pipeline, and you see every step.</p>
-      <a class="cta book" href="#contact">Book a 20-minute call</a><span class="placeholder" data-booking-note>[Booking link to come. Until then this opens the form.]</span>
+      <a class="cta book" href="#contact">Book a 20-minute call</a>
     </header>
 
     <div class="offers">
@@ -495,7 +495,7 @@ nav.services-nav::before { content: ''; position: absolute; top: -30px; bottom: 
 
     <section id="sean-case-study" class="case" aria-labelledby="seanCaseHeading">
       <h2 id="seanCaseHeading" tabindex="-1">The God's Algorithm pendant</h2>
-      <p class="client">For Sean Leon <span class="placeholder">[credit line as agreed with Sean]</span></p>
+      <p class="client">For Sean Leon</p>
       <div class="case-media">
         <figure>
           <div class="frame">
@@ -1351,7 +1351,6 @@ const BOOKING_URL = '';
 document.querySelectorAll('a.book').forEach(a => {
   if (BOOKING_URL) { a.href = BOOKING_URL; a.target = '_blank'; a.rel = 'noopener'; }
 });
-if (BOOKING_URL) document.querySelector('[data-booking-note]')?.remove();
 
 // The enquiry form. Set FORM_ENDPOINT to a form service URL (Formspree,
 // Web3Forms, Basin or similar) and the message is posted from the page.
