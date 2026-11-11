@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Arman Faruqui, Work</title>
-<meta name="description" content="Arman Faruqui is a designer in Montréal. Product films, custom jewelry and talks, made by one person from first sketch to finished piece.">
+<title>Arman Faruqui | Work</title>
+<meta name="description" content="Arman Faruqui is a designer in Montréal. Product films, custom jewelry, pop-ups and installations, made by one person from first sketch to finished piece.">
 <link rel="icon" href="media/web/icon.png">
 <link rel="preload" as="image" href="media/web/icon.png">
 <style>
@@ -152,7 +152,7 @@ a.card.link { cursor: pointer; color: inherit; text-decoration: none; }
 }
 #title .sub a:hover { color: var(--ink); }
 
-/* ── PAGES (About / Contact) ── */
+/* ── PAGES (About / Collaborate) ── */
 .page {
   position: fixed;
   inset: 0;
@@ -190,43 +190,6 @@ a.card.link { cursor: pointer; color: inherit; text-decoration: none; }
 }
 .page a:hover { color: var(--ink); }
 #title.viewhide { opacity: 0; visibility: hidden; pointer-events: none; }   /* view switch, independent of the per-card fade */
-
-/* ── CONTACT FORM ── */
-#contactForm { margin-top: 26px; }
-#contactForm input,
-#contactForm textarea {
-  width: 100%;
-  font-family: inherit;
-  font-size: 15px;
-  line-height: 1.6;
-  color: var(--ink);
-  text-align: center;
-  background: transparent;
-  border: 1px solid rgba(0,0,0,0.13);
-  border-radius: 14px;
-  padding: 12px 16px;
-  outline: none;
-  transition: border-color 0.2s;
-}
-#contactForm input::placeholder,
-#contactForm textarea::placeholder { color: var(--ink-soft); }
-#contactForm input:focus,
-#contactForm textarea:focus { border-color: var(--ink); }
-#contactForm textarea { margin-top: 10px; min-height: 132px; resize: vertical; }
-#contactForm button {
-  margin-top: 14px;
-  font-family: inherit;
-  font-size: 15px;
-  color: var(--bg);
-  background: var(--ink);
-  border: 0;
-  border-radius: 999px;
-  padding: 11px 30px;
-  cursor: pointer;
-  transition: opacity 0.2s;
-}
-#contactForm button:hover { opacity: 0.82; }
-#contactForm .hint { margin-top: 12px; font-size: 13px; color: var(--ink-soft); }
 
 /* ── PRELOADER ── */
 #loader {
@@ -280,7 +243,6 @@ a.card.link { cursor: pointer; color: inherit; text-decoration: none; }
   .card { border-radius: 22px; }
   .page { padding: 96px 22px 44px; }
   .page .inner { font-size: 16px; line-height: 1.62; }
-  #contactForm input, #contactForm textarea, #contactForm button { font-size: 16px; }
 }
 
 [hidden] { display: none !important; }
@@ -300,83 +262,165 @@ nav a { padding: 12px 6px; margin: -12px -6px; min-height: 44px; }
 @media (max-height: 500px) { nav { top: 18px; } #title { font-size: 14px; bottom: max(40px, calc(env(safe-area-inset-bottom) + 36px)); } #title .sub { font-size: 12px; margin-top: 3px; } .page { padding-top: 70px; } }
 nav.services-nav { isolation: isolate; }
 nav.services-nav::before { content: ''; position: absolute; top: -30px; bottom: -18px; left: 0; right: 0; background: var(--bg); z-index: -1; }
-/* Collaborate uses the same panel system as About and Contact. */
-#collaborate .services-inner { width: 100%; max-width: 1120px; text-align: left; margin: 0 auto; }
-#collaborate h1 { font-size: clamp(30px, 4vw, 46px); line-height: 1.12; font-weight: 500; letter-spacing: -.035em; }
-#collaborate h2 { font-size: 23px; line-height: 1.2; font-weight: 500; letter-spacing: -.02em; }
-.services-intro { max-width: 680px; margin-bottom: 32px; }
-.services-intro p { margin-top: 18px; font-size: 17px; line-height: 1.55; }
-.offers { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
-.offer { display: flex; flex-direction: column; padding: 25px; border: 1px solid #e4e1db; border-radius: 22px; background: #faf9f6; }
-.offer-number { color: #72716c; font-size: 12px; margin-bottom: 18px; font-variant-numeric: tabular-nums; }
-#collaborate .offer h2 { font-size: 21px; margin-bottom: 16px; }
-.offer p { font-size: 14px; line-height: 1.55; }
-.offer-facts { list-style: none; border-top: 1px solid #e4e1db; margin: 22px 0 16px; padding-top: 14px; font-size: 14px; }
-.offer-facts li + li { margin-top: 10px; }
-.offer-facts strong { font-weight: 600; }
-#collaborate .offer .good-for { color: #66645f; font-size: 13px; margin: 0 0 22px; }
-.offer-link { margin-top: auto; font-size: 13px; padding: 8px 0; }
-#collaborate .pricing-note { color: #66645f; font-size: 13px; line-height: 1.6; margin: 18px 0 0; max-width: 850px; }
-.service-section { border-top: 1px solid #e4e1db; margin-top: 56px; padding-top: 38px; scroll-margin-top: 88px; }
-.eyebrow { font-size: 12px; color: #66645f; margin-bottom: 12px; }
-#collaborate .case-client { margin-top: 14px; }
-.case-media { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 18px; margin: 28px 0; }
-.case-media figure { min-width: 0; }
-.case-media figure > img, .case-video-wrap { width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; background: #f5f3ee; border-radius: 18px; }
-.case-media img { display: block; }
-.case-media figure > img { object-fit: cover; object-position: center; }
-.case-video-wrap { position: relative; overflow: hidden; }
-.case-video-wrap img, .case-video-wrap video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
-.case-video-wrap video { opacity: 0; transition: opacity .2s linear; }
-.case-video-wrap video.ready { opacity: 1; }
-.case-media figcaption { font-size: 12px; line-height: 1.5; margin-top: 10px; color: #66645f; }
-.case-media figcaption span { display: block; font-size: 11px; }
-.case-facts { max-width: 880px; }
-.case-facts > div { display: grid; grid-template-columns: 105px minmax(0,1fr); gap: 20px; margin-top: 18px; }
-.case-facts dt { font-weight: 600; }
-.case-facts dd { margin: 0; }
-#collaborate .case-closing { color: #66645f; margin-top: 25px; max-width: 800px; }
-.process-list { list-style: decimal-leading-zero; padding-left: 25px; margin-top: 24px; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 20px 50px; }
-.process-list li { padding-left: 8px; }
-.process-list li::marker { font-size: 12px; color: #66645f; }
-.faq-list { margin-top: 20px; }
-.faq-list details { border-bottom: 1px solid #e4e1db; padding: 15px 0; }
-.faq-list summary { cursor: pointer; font-weight: 500; padding: 5px 0; }
-.faq-list p { max-width: 780px; margin-top: 12px; color: #66645f; }
-.service-cta { padding-bottom: 15px; }
-#collaborate .service-cta p { margin-top: 14px; }
-#collaborate .email-cta { display: inline-block; padding: 12px 24px; background: var(--ink); color: white; border-radius: 999px; text-decoration: none; margin-top: 24px; }
-.email-address { display: inline-block; font-size: 14px; margin: 16px 0 0 18px; overflow-wrap: anywhere; }
-@media (max-width: 850px) { .offers { grid-template-columns: 1fr; } .offer { padding: 24px; } .offer-number { margin-bottom: 12px; } .case-media { gap: 12px; } }
-@media (max-width: 700px) {
-  nav { gap: 18px; flex-wrap: nowrap; }
-  nav a { font-size: 14px; white-space: nowrap; }
-  #collaborate { padding: 92px 22px 40px; }
-  .services-intro { margin-bottom: 25px; }
-  .services-intro p { font-size: 16px; }
-  .service-section { margin-top: 38px; padding-top: 28px; }
-  .case-media { grid-template-columns: 1fr; gap: 24px; }
-  .case-facts > div { grid-template-columns: 1fr; gap: 4px; }
-  .process-list { grid-template-columns: 1fr; }
-  .email-address { display: block; margin-left: 0; }
+/* ── COLLABORATE ──
+   Same panel as About. Four type sizes (28 / 17 / 15 / 13), the site's own
+   colours, thin rules instead of cards. */
+#collaborate .inner.collab { width: 100%; max-width: 1040px; margin: 0 auto; text-align: left; }
+.collab h1 { font-size: 28px; font-weight: 400; line-height: 1.2; letter-spacing: -0.01em; }
+.collab h2 { font-size: 17px; font-weight: 600; line-height: 1.4; }
+.collab h3 { font-size: 17px; font-weight: 600; line-height: 1.4; }
+.collab .measure { max-width: 640px; }
+.collab .intro p { margin-top: 18px; font-size: 17px; line-height: 1.6; }
+.collab .small { font-size: 13px; color: var(--ink-soft); line-height: 1.5; }
+.cta {
+  display: inline-block;
+  margin-top: 26px;
+  font-family: inherit;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--bg);
+  background: var(--ink);
+  border: 0;
+  border-radius: 999px;
+  padding: 11px 28px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
 }
-@media (max-width: 360px) { nav { gap: 12px; } nav a { font-size: 13px; } }
+.cta:hover { opacity: 0.82; color: var(--bg); }
+.page a.cta, .page a.cta:hover { color: var(--bg); text-decoration: none; }
+.collab .placeholder { display: inline-block; margin-left: 14px; font-size: 13px; color: var(--ink-soft); }
+.collab > section { border-top: 1px solid rgba(0,0,0,0.13); margin-top: 64px; padding-top: 40px; scroll-margin-top: 88px; }
+.collab > section > h2 { margin-bottom: 8px; }
+
+/* offers */
+.offers { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 48px; margin-top: 64px; border-top: 1px solid rgba(0,0,0,0.13); }
+.offer { padding-top: 32px; display: flex; flex-direction: column; }
+.offer p { margin-top: 14px; }
+.offer .prices { list-style: none; margin-top: 22px; }
+.offer .prices li { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 9px 0; border-top: 1px solid rgba(0,0,0,0.08); }
+.offer .prices li:first-child { border-top: 0; padding-top: 0; }
+.offer .prices li span:last-child { white-space: nowrap; font-variant-numeric: tabular-nums; text-align: right; }
+.offer .prices li.wrap { flex-direction: column; gap: 2px; }
+.offer .prices li.wrap span:last-child { white-space: normal; text-align: left; }
+.offer .for { margin-top: 18px; font-size: 13px; color: var(--ink-soft); line-height: 1.5; }
+.offer .ask { display: inline-block; align-self: flex-start; margin-top: auto; padding-top: 22px; }
+.collab .currency { margin-top: 36px; max-width: 640px; }
+
+/* case studies */
+.case .client { margin-top: 6px; color: var(--ink-soft); }
+.case-media { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; margin: 32px 0 36px; }
+.case-media figure { min-width: 0; }
+.case-media .frame { position: relative; width: 100%; aspect-ratio: 1; border-radius: 28px; overflow: hidden; background: var(--card-light); }
+.case-media .frame img, .case-media .frame video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.case-media .frame.contain img { object-fit: contain; }
+.case-media .frame video { z-index: 1; opacity: 0; transition: opacity 0.2s linear; }
+.case-media .frame video.ready { opacity: 1; }
+.case-media figure.wide { grid-column: 1 / -1; }
+.case-media figure.wide .frame { aspect-ratio: 3 / 2; }
+.case-media figcaption { margin-top: 10px; font-size: 13px; color: var(--ink-soft); line-height: 1.45; }
+.case-media figcaption span { display: block; }
+.case dl { max-width: 640px; }
+.case dl div { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 16px; padding: 14px 0; border-top: 1px solid rgba(0,0,0,0.08); }
+.case dl div:first-child { border-top: 0; padding-top: 4px; }
+.case dt { font-weight: 600; }
+.case dd { margin: 0; }
+.case .press { margin-top: 20px; max-width: 640px; }
+
+/* how it works */
+.steps { list-style: none; counter-reset: step; max-width: 640px; }
+.steps li { counter-increment: step; display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 12px; padding: 16px 0; border-top: 1px solid rgba(0,0,0,0.08); }
+.steps li:first-child { border-top: 0; padding-top: 6px; }
+.steps li::before { content: counter(step, decimal-leading-zero); font-size: 13px; color: var(--ink-soft); font-variant-numeric: tabular-nums; padding-top: 3px; }
+
+/* straight answers */
+.answers { max-width: 640px; }
+.answers div { padding: 16px 0; border-top: 1px solid rgba(0,0,0,0.08); }
+.answers div:first-child { border-top: 0; padding-top: 6px; }
+.answers dt { font-weight: 600; }
+.answers dd { margin: 6px 0 0; }
+
+/* contact */
+#contact .measure p { margin-top: 10px; }
+#enquiryForm { margin-top: 36px; max-width: 640px; }
+#enquiryForm .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+#enquiryForm .field { margin-top: 14px; }
+#enquiryForm .row .field { margin-top: 0; }
+#enquiryForm .row + .field { margin-top: 14px; }
+#enquiryForm label { display: block; font-size: 13px; color: var(--ink-soft); margin-bottom: 7px; }
+#enquiryForm input, #enquiryForm select, #enquiryForm textarea {
+  width: 100%;
+  font-family: inherit;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid rgba(0,0,0,0.13);
+  border-radius: 14px;
+  padding: 11px 16px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+#enquiryForm select { appearance: none; -webkit-appearance: none; padding-right: 40px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%239c9c9c' stroke-width='1.3'/%3E%3C/svg%3E") no-repeat right 16px center; }
+#enquiryForm input::placeholder, #enquiryForm textarea::placeholder { color: var(--ink-soft); }
+#enquiryForm input:focus, #enquiryForm select:focus, #enquiryForm textarea:focus { border-color: var(--ink); }
+#enquiryForm textarea { min-height: 150px; resize: vertical; }
+#enquiryForm .cta { margin-top: 22px; }
+#enquiryForm .cta[disabled] { opacity: 0.5; cursor: default; }
+#enquiryForm .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+#enquiryStatus { margin-top: 14px; min-height: 1.5em; }
+#enquiryStatus:empty { display: none; }
+.collab .press-line { margin-top: 64px; padding-top: 24px; border-top: 1px solid rgba(0,0,0,0.13); }
+
+/* phone-only reach to the main action; appears once the intro button scrolls away */
+#collabStick {
+  position: fixed;
+  left: 50%;
+  bottom: max(18px, env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  z-index: 4500;
+  display: none;
+  margin: 0;
+  padding: 10px 22px;
+  font-size: 15px;
+  box-shadow: 0 6px 22px rgba(0,0,0,0.12);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.38s ease, visibility 0s linear 0.38s;
+  white-space: nowrap;
+}
+#collabStick.show { opacity: 1; visibility: visible; transition: opacity 0.38s ease, visibility 0s; }
+
+@media (max-width: 900px) {
+  .offers { grid-template-columns: 1fr; gap: 0; }
+  .offer { padding: 32px 0; border-top: 1px solid rgba(0,0,0,0.13); }
+  .offer:first-child { border-top: 0; }
+  .offer .ask { margin-top: 0; }
+}
+@media (max-width: 700px) {
+  nav { gap: 28px; flex-wrap: nowrap; }
+  nav a { white-space: nowrap; }
+  #collaborate { padding: 96px 22px 44px; }
+  .collab h1 { font-size: 28px; }
+  .collab h2, .collab h3 { font-size: 18px; }
+  .collab .intro p { font-size: 18px; }
+  .collab .small, .offer .for, .case-media figcaption, #enquiryForm label, .steps li::before { font-size: 14px; }
+  .collab > section { margin-top: 48px; padding-top: 32px; }
+  .offers { margin-top: 48px; }
+  .offer { padding: 28px 0; }
+  .case-media { grid-template-columns: 1fr; gap: 22px; }
+  .case-media .frame { border-radius: 22px; }
+  .case-media figure.wide .frame { aspect-ratio: 5 / 4; }
+  .case dl div { grid-template-columns: 1fr; gap: 4px; }
+  .steps li { grid-template-columns: 34px minmax(0, 1fr); }
+  #enquiryForm .row { grid-template-columns: 1fr; gap: 0; }
+  #enquiryForm .row .field + .field { margin-top: 14px; }
+  #enquiryForm input, #enquiryForm select, #enquiryForm textarea { font-size: 16px; }
+  #collabStick { display: inline-block; }
+  .collab .placeholder { display: block; margin: 10px 0 0; }
+}
+@media (max-width: 360px) { nav { gap: 18px; } nav a { font-size: 14px; } }
 @media (max-height: 500px) { #collaborate { padding-top: 76px; } }
-
-
-#enquiryForm { margin-top: 26px; max-width: 720px; }
-.enquiry-options { border: 0; display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 24px; }
-.enquiry-options legend { margin-bottom: 12px; font-size: 14px; }
-.enquiry-options button, #copyEnquiry { background: transparent; border: 1px solid #d5d3ce; color: var(--ink); border-radius: 999px; padding: 11px 16px; font: inherit; font-size: 14px; cursor: pointer; min-height: 44px; }
-.enquiry-options button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: white; }
-#enquiryForm label { display: block; font-size: 14px; margin-bottom: 8px; }
-#enquiryMessage { display: block; width: 100%; min-height: 210px; resize: vertical; background: transparent; color: var(--ink); border: 1px solid #d5d3ce; border-radius: 14px; padding: 16px; font: inherit; font-size: 16px; line-height: 1.6; }
-#enquiryMessage:focus { outline: 2px solid var(--ink); outline-offset: 2px; }
-#collaborate #enquiryHelp, #collaborate .enquiry-note, #enquiryStatus { font-size: 13px; color: #66645f; margin-top: 10px; }
-.enquiry-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; margin-top: 22px; }
-.enquiry-actions button[type="submit"] { border: 0; border-radius: 999px; padding: 14px 22px; background: var(--ink); color: white; font: inherit; font-size: 15px; cursor: pointer; min-height: 48px; }
-.enquiry-actions a { font-size: 14px; padding: 10px 0; }
-.enquiry-address { display: inline-block; margin-top: 18px; font-size: 14px; }
 
 </style>
 </head>
@@ -398,7 +442,6 @@ nav.services-nav::before { content: ''; position: absolute; top: -30px; bottom: 
   <a href="#work" data-view="work" class="active">Work</a>
   <a href="#about" data-view="about">About</a>
   <a href="#collaborate" data-view="collaborate">Collaborate</a>
-  <a href="#contact" data-view="contact">Contact</a>
 </nav>
 
 <main id="stage" aria-label="Selected work" aria-roledescription="carousel"></main>
@@ -406,127 +449,173 @@ nav.services-nav::before { content: ''; position: absolute; top: -30px; bottom: 
 <p id="workStatus" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
 
 <section id="collaborate" class="page" tabindex="-1" aria-labelledby="collaborateHeading" inert>
-  <div class="inner services-inner">
-    <header class="services-intro">
+  <div class="inner collab">
+    <header class="intro measure">
       <h1 id="collaborateHeading">Collaborate</h1>
-      <p>I design things, get them made, and make the films and pages that sell them. One person, the whole pipeline, and you see every step.</p>
+      <p>I design things, get them made, and bring people into a room with them. One person, the whole pipeline, and you see every step.</p>
+      <a class="cta book" href="#contact">Book a 20-minute call</a><span class="placeholder" data-booking-note>[Booking link to come. Until then this opens the form.]</span>
     </header>
+
     <div class="offers">
-      <article class="offer">
-        <span class="offer-number" aria-hidden="true">01</span>
-        <h2>Product films</h2>
+      <article class="offer" aria-labelledby="offerFilms">
+        <h2 id="offerFilms">Product films</h2>
         <p>Short films and stills that make a real product look like it belongs in its own world. I build the scene in 3D, light and animate it, and finish it for social, your site and ads.</p>
-        <ul class="offer-facts">
-          <li>A single 10-second loop: <strong>from $400</strong></li>
-          <li>A launch kit (one hero film, three cutdowns, five stills): <strong>from $1,500</strong></li>
-          <li>Usual turnaround: <strong>5 to 10 working days</strong></li>
+        <ul class="prices">
+          <li><span>A single 10-second loop</span><span>from $400</span></li>
+          <li><span>A launch kit: one hero film, three cutdowns, five stills</span><span>from $1,500</span></li>
+          <li><span>Usual turnaround</span><span>5 to 10 working days</span></li>
         </ul>
-        <p class="good-for">Good for: jewelry, accessories, fragrance, drinks, beauty, music releases.</p>
-        <a class="offer-link" href="#project-enquiry" data-offer="Product films">Ask about product films ↗</a>
+        <p class="for">For jewelry, accessories, fragrance, drinks, beauty and music releases.</p>
+        <a class="ask" href="#contact" data-offer="film">Ask about a product film</a>
       </article>
-      <article class="offer">
-        <span class="offer-number" aria-hidden="true">02</span>
-        <h2>Custom jewelry for artists and brands</h2>
+      <article class="offer" aria-labelledby="offerJewelry">
+        <h2 id="offerJewelry">Custom jewelry for artists and brands</h2>
         <p>A piece designed around your release, tour or brand, made in sterling silver, as a one-off or a small numbered run. I handle design, 3D modelling, manufacturing and quality checks, and can make the launch visuals too.</p>
-        <ul class="offer-facts">
-          <li>Design and 3D model: <strong>from $600</strong></li>
-          <li>Production: quoted per run, at cost plus a fixed margin you see up front</li>
-          <li>Usual timeline: <strong>6 to 10 weeks</strong> from first sketch to finished pieces</li>
+        <ul class="prices">
+          <li><span>Design and 3D model</span><span>from $600</span></li>
+          <li class="wrap"><span>Production</span><span>Quoted per run, at cost plus a fixed margin you see up front</span></li>
+          <li><span>Usual timeline</span><span>6 to 10 weeks</span></li>
         </ul>
-        <p class="good-for">Good for: album and tour merch that outlasts a T-shirt, gifts for collaborators, limited drops.</p>
-        <a class="offer-link" href="#project-enquiry" data-offer="Custom jewelry">Ask about a custom piece ↗</a>
+        <p class="for">For album and tour merch that outlasts a T-shirt, gifts for collaborators and limited drops.</p>
+        <a class="ask" href="#contact" data-offer="jewelry">Ask about a custom piece</a>
       </article>
-      <article class="offer">
-        <span class="offer-number" aria-hidden="true">03</span>
-        <h2>Pop-ups and installations</h2>
-        <p>I build places where people meet your brand in person: a pop-up, an interactive piece, a workshop people line up for. I plan the format, design the space, make the visuals (projection, hand-tracked screens, print) and run it on the day.</p>
-        <p>I lead Alter-mode, a clothing repair pop-up in Montréal. Eight editions, hundreds of garments upcycled, covered by CBC and CityNews.</p>
-        <ul class="offer-facts">
-          <li>Talk or workshop: <strong>from $300</strong></li>
-          <li>Interactive piece at your event: <strong>from $800</strong></li>
-          <li>Full pop-up, concept to teardown: <strong>from $2,000</strong></li>
+      <article class="offer" aria-labelledby="offerPopups">
+        <h2 id="offerPopups">Pop-ups and installations</h2>
+        <p>I build places where people meet your brand in person: a pop-up, an interactive piece, a workshop people line up for. I plan the format, design the space, make the visuals and run it on the day.</p>
+        <ul class="prices">
+          <li><span>Talk or workshop</span><span>from $300</span></li>
+          <li><span>Interactive piece at your event</span><span>from $800</span></li>
+          <li><span>Full pop-up, concept to teardown</span><span>from $2,000</span></li>
         </ul>
-        <p class="good-for">Good for: launches, festivals, cultural centres, shop windows.</p>
-        <a class="offer-link" href="#project-enquiry" data-offer="Pop-ups and installations">Ask about an event ↗</a>
+        <p class="for">For launches, festivals, cultural centres and shop windows.</p>
+        <a class="ask" href="#contact" data-offer="popup">Ask about a pop-up</a>
       </article>
     </div>
-    <p class="pricing-note">Prices are in Canadian dollars and I'm happy to quote in USD. Looking for zero-waste branded clothing for your organization? That goes through <a href="https://altermode.briqueparbrique.com/en/" target="_blank" rel="noopener">Alter-mode</a>.</p>
-    <section id="sean-case-study" class="service-section case-study" aria-labelledby="seanCaseHeading">
-      <p class="eyebrow">From screen to silver</p>
-      <h2 id="seanCaseHeading" tabindex="-1">Case study: the God's Algorithm pendant</h2>
-      <p class="case-client"><strong>For:</strong> Sean Leon</p>
+    <p class="currency small">Prices are in Canadian dollars and I'm happy to quote in USD. Looking for zero-waste branded clothing for your organization? That goes through <a href="https://altermode.briqueparbrique.com/en/" target="_blank" rel="noopener">Alter-mode</a>.</p>
+
+    <section id="sean-case-study" class="case" aria-labelledby="seanCaseHeading">
+      <h2 id="seanCaseHeading" tabindex="-1">The God's Algorithm pendant</h2>
+      <p class="client">For Sean Leon <span class="placeholder">[credit line as agreed with Sean]</span></p>
       <div class="case-media">
         <figure>
-          <div class="case-video-wrap">
-            <img data-case-src="media/web/sean-pendant-process_poster.webp" alt="3D render of the God's Algorithm pendant" width="800" height="800" decoding="async">
-            <video id="caseVideo" muted playsinline loop preload="none" aria-hidden="true" tabindex="-1" data-case-src="media/web/sean-pendant-process.mp4"></video>
+          <div class="frame">
+            <img data-src="media/web/sean-pendant-process_poster.webp" alt="The God's Algorithm pendant as a 3D model in Blender" width="800" height="800" decoding="async">
+            <video id="caseVideo" muted playsinline loop preload="none" aria-hidden="true" tabindex="-1" data-src="media/web/sean-pendant-process.mp4"></video>
           </div>
-          <figcaption>01 / The 3D render</figcaption>
+          <figcaption>gods_algorithm_blender.mp4<span>The 3D scene</span></figcaption>
         </figure>
         <figure>
-          <img data-case-src="media/web/sean-pendant-finished.webp" alt="The finished God's Algorithm pendant in sterling silver and enamel, held in hand" width="960" height="1280" decoding="async">
-          <figcaption>02 / The finished piece</figcaption>
+          <div class="frame">
+            <img data-src="media/web/sean-pendant-finished.webp" alt="The finished God's Algorithm pendant in sterling silver and enamel, held in a hand" width="960" height="1280" decoding="async">
+          </div>
+          <figcaption>gods_algorithm_sample.jpg<span>The finished piece</span></figcaption>
         </figure>
-        <figure>
-          <img data-case-src="media/web/responsive/12.SeanWearing-960.webp" alt="Sean Leon wearing the pendant" width="1400" height="1120" decoding="async">
-          <figcaption>03 / Sean wearing it <span>Photo: @donotdisturb_mag</span></figcaption>
+        <figure class="wide">
+          <div class="frame">
+            <img data-src="media/web/12.SeanWearing.jpg" data-srcset="media/web/responsive/12.SeanWearing-640.webp 640w, media/web/responsive/12.SeanWearing-960.webp 960w, media/web/responsive/12.SeanWearing-1400.webp 1400w" sizes="(max-width: 700px) 100vw, 1040px" alt="Sean Leon wearing the pendant" width="1400" height="1120" decoding="async" style="object-position: center 30%">
+          </div>
+          <figcaption>sean_wearing.jpg<span>Photo: @donotdisturb_mag</span></figcaption>
         </figure>
       </div>
-      <dl class="case-facts">
+      <dl>
         <div><dt>The ask</dt><dd>A pendant that belongs to the world of his GOD'S ALGORITHM project, something he could wear and that could later be released to fans.</dd></div>
-        <div><dt>What I did</dt><dd>Designed the cross from his references, modelled it in Blender, and worked with my manufacturer through one sample round to a finished piece in 925 sterling silver with enamel pockets and text engraving. I also shot and rendered the visuals.</dd></div>
-        <div><dt>Timeline</dt><dd>1.5 months for the sample, followed by 2 months for the 50-unit production run.</dd></div>
+        <div><dt>What I did</dt><dd>Designed the cross from his references, modelled it in Blender, and worked with my manufacturer through one round of samples to a finished piece in 925 sterling silver with enamel pockets and text engraving. I also shot and rendered the visuals.</dd></div>
+        <div><dt>Timeline</dt><dd>Six weeks from first sketch to the sample, then two months for the 50-unit production run.</dd></div>
         <div><dt>Result</dt><dd>Sean wears the piece. The 50-unit run goes on sale this holiday season.</dd></div>
       </dl>
-      <p class="case-closing">This is the process behind every custom piece: your idea, my 3D model, real samples in your hand, then the finished run.</p>
     </section>
-    <section class="service-section" aria-labelledby="processHeading">
+
+    <section id="alter-mode-case-study" class="case" aria-labelledby="alterCaseHeading">
+      <h2 id="alterCaseHeading" tabindex="-1">Alter-mode pop-ups</h2>
+      <p class="client">With Brique par Brique, a nonprofit in Parc-Extension, Montréal</p>
+      <div class="case-media">
+        <figure>
+          <div class="frame">
+            <img data-src="media/web/13.Alter-modeNews.jpg" data-srcset="media/web/responsive/13.Alter-modeNews-640.webp 640w, media/web/responsive/13.Alter-modeNews-960.webp 960w, media/web/responsive/13.Alter-modeNews-1278.webp 1278w" sizes="(max-width: 700px) 100vw, 506px" alt="CBC News segment on Alter-mode, filmed at a repair pop-up" width="1278" height="1022" decoding="async">
+          </div>
+          <figcaption>altermode_cbcNews.jpg<span><a href="https://www.youtube.com/watch?v=KdIOFlqd9jk" target="_blank" rel="noopener">Watch the segment</a></span></figcaption>
+        </figure>
+        <figure>
+          <div class="frame contain">
+            <img data-src="media/web/14.alterModePoster.jpg" data-srcset="media/web/responsive/14.alterModePoster-640.webp 640w, media/web/responsive/14.alterModePoster-960.webp 960w" sizes="(max-width: 700px) 100vw, 506px" alt="Poster for an Alter-mode clothing repair pop-up" width="960" height="1200" decoding="async">
+          </div>
+          <figcaption>altermode_poster_august.jpg<span>Event poster</span></figcaption>
+        </figure>
+        <figure class="wide">
+          <div class="frame">
+            <img data-src="media/web/altermode_website.jpg" data-srcset="media/web/responsive/altermode_website-640.webp 640w, media/web/responsive/altermode_website-960.webp 960w, media/web/responsive/altermode_website-1400.webp 1400w" sizes="(max-width: 700px) 100vw, 1040px" alt="The Alter-mode website for zero-waste branded clothing" width="1400" height="900" decoding="async">
+          </div>
+          <figcaption>altermode_website.jpg<span>The branded clothing line it grew into</span></figcaption>
+        </figure>
+      </div>
+      <dl>
+        <div><dt>The ask</dt><dd>Get a neighbourhood to repair clothes instead of throwing them out, and pay skilled immigrant and asylum-seeking women fairly to do it.</dd></div>
+        <div><dt>What I did</dt><dd>Built the format, the look, the partnerships and the promotion, and ran each event with the team of aunties whose skill is the reason it works.</dd></div>
+        <div><dt>Result</dt><dd>Eight editions, hundreds of garments upcycled, covered by <a href="https://www.cbc.ca/news/canada/montreal/alter-mode-montreal-sustainability-community-parc-extension-9.7069971" target="_blank" rel="noopener">CBC</a> and <a href="https://montreal.citynews.ca/2026/03/19/alter-mode-montreal-newcomers/" target="_blank" rel="noopener">CityNews</a>. It has since grown into a branded clothing line with orders from Concordia, Centre Phi, CAPE and RIDM.</dd></div>
+      </dl>
+    </section>
+
+    <section aria-labelledby="processHeading">
       <h2 id="processHeading">How it works</h2>
-      <ol class="process-list">
-        <li><strong>You tell me what you need.</strong> A message or a 20-minute call.</li>
-        <li><strong>I send a short plan and a fixed quote</strong> within two working days.</li>
-        <li><strong>You see the work as it's made.</strong> Sketches, the 3D scene, samples. Two rounds of changes are included.</li>
-        <li><strong>I deliver the files or the pieces,</strong> ready to use.</li>
+      <ol class="steps">
+        <li><span>You tell me what you need. A message or a 20-minute call.</span></li>
+        <li><span>I send a short plan and a fixed quote within two working days.</span></li>
+        <li><span>You see the work as it's made. Sketches, the 3D scene, samples. Two rounds of changes are included.</span></li>
+        <li><span>I deliver the files, the pieces or the event, ready to go.</span></li>
       </ol>
     </section>
-    <section class="service-section" aria-labelledby="faqHeading">
+
+    <section aria-labelledby="faqHeading">
       <h2 id="faqHeading">Straight answers</h2>
-      <div class="faq-list">
-        <details><summary>Do you use AI?</summary><p>Yes, as one tool inside my own process. I build and direct every scene in 3D myself, and sometimes use AI video models for the final render. I'll always tell you where.</p></details>
-        <details><summary>Who owns the work?</summary><p>You do, once the final invoice is paid. I ask to show it in my portfolio.</p></details>
-        <details><summary>How does payment work?</summary><p>Half to start, half on delivery. Card or bank transfer, in CAD or USD.</p></details>
-        <details><summary>Are you a studio?</summary><p>No. It's me. You talk to the person doing the work.</p></details>
-      </div>
+      <dl class="answers">
+        <div><dt>Do you use AI?</dt><dd>Yes, as one tool inside my own process. I build and direct every scene in 3D myself, and sometimes use AI video models for the final render. I'll always tell you where.</dd></div>
+        <div><dt>Who owns the work?</dt><dd>You do, once the final invoice is paid. I ask to show it in my portfolio.</dd></div>
+        <div><dt>How does payment work?</dt><dd>Half to start, half on delivery. Card or bank transfer, in CAD or USD.</dd></div>
+        <div><dt>Are you a studio?</dt><dd>No. It's me. You talk to the person doing the work.</dd></div>
+      </dl>
     </section>
-    <footer id="project-enquiry" class="service-section service-cta">
-      <h2>Have something in mind?</h2>
-      <p>A rough idea is enough. Pick a starting point, make it yours, and let's talk.</p>
-      <form id="enquiryForm">
-        <fieldset class="enquiry-options">
-          <legend>What are you thinking?</legend>
-          <button type="button" data-template="Product films" aria-pressed="false">Product film</button>
-          <button type="button" data-template="Custom jewelry" aria-pressed="false">Custom jewelry</button>
-          <button type="button" data-template="Pop-ups and installations" aria-pressed="false">Event or installation</button>
-          <button type="button" data-template="An idea" aria-pressed="true">Still exploring</button>
-        </fieldset>
-        <label for="enquiryMessage">Your message</label>
-        <textarea id="enquiryMessage" name="message" maxlength="4000" required aria-describedby="enquiryHelp">Hi Arman,
 
-I have an idea I'd love to talk through with you. Are you available for a quick chat?</textarea>
-        <p id="enquiryHelp">Add a link, a date or a budget if you have one. No full brief needed.</p>
-        <div class="enquiry-actions">
-          <button type="submit">Open email draft ↗</button>
-          <a id="enquiryGmail" target="_blank" rel="noopener">Use Gmail ↗</a>
-          <button type="button" id="copyEnquiry">Copy message</button>
+    <section id="contact" aria-labelledby="contactHeading">
+      <div class="measure">
+        <h2 id="contactHeading" tabindex="-1">Have something in mind?</h2>
+        <p>Tell me what you're making and when you need it.</p>
+        <a class="cta book" href="#enquiryForm">Book a 20-minute call</a>
+      </div>
+      <form id="enquiryForm" novalidate>
+        <div class="row">
+          <div class="field">
+            <label for="enquiryName">Name</label>
+            <input id="enquiryName" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="enquiryEmail">Email</label>
+            <input id="enquiryEmail" name="email" type="email" autocomplete="email" required>
+          </div>
         </div>
-        <p class="enquiry-note">Review and send from your email. Nothing is sent automatically.</p>
-        <p id="enquiryStatus" role="status" aria-live="polite"></p>
+        <div class="field">
+          <label for="enquiryNeed">What do you need?</label>
+          <select id="enquiryNeed" name="need">
+            <option value="" selected>Choose one, or leave it</option>
+            <option value="film">Product film</option>
+            <option value="jewelry">Custom jewelry</option>
+            <option value="popup">Pop-up or installation</option>
+            <option value="other">Something else</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="enquiryMessage">Message</label>
+          <textarea id="enquiryMessage" name="message" maxlength="4000" required></textarea>
+        </div>
+        <label class="hp" aria-hidden="true">Leave this empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label>
+        <button type="submit" class="cta">Send</button>
+        <p id="enquiryStatus" class="small" role="status" aria-live="polite"></p>
       </form>
-      <a class="enquiry-address" href="mailto:tuesdesire@gmail.com">tuesdesire@gmail.com</a>
-    </footer>
+    </section>
 
+    <p class="press-line small">Press, students, or anything that isn't a project: <a href="mailto:tuesdesire@gmail.com">tuesdesire@gmail.com</a></p>
   </div>
 </section>
+<a id="collabStick" class="cta book" href="#contact" hidden aria-hidden="true" tabindex="-1">Book a 20-minute call</a>
 
 
 <section id="about" class="page" tabindex="-1" aria-labelledby="aboutHeading" inert>
@@ -541,23 +630,7 @@ I have an idea I'd love to talk through with you. Are you available for a quick 
   </div>
 </section>
 
-<section id="contact" class="page" tabindex="-1" aria-labelledby="contactHeading" inert>
-  <div class="inner">
-    <h1 id="contactHeading" class="sr-only">Contact Arman</h1>
-    <p>Open to commissions and collaborations. See <a href="#collaborate">Collaborate</a>.</p>
-    <p class="last"><a href="mailto:tuesdesire@gmail.com">tuesdesire@gmail.com</a></p>
-    <form id="contactForm">
-      <label for="contactFrom" class="sr-only">Your email (optional)</label>
-      <input id="contactFrom" type="email" name="from" autocomplete="email" placeholder="your email (optional)">
-      <label for="contactMessage" class="sr-only">Your message</label>
-      <textarea id="contactMessage" name="message" maxlength="4000" placeholder="your message" required></textarea>
-      <button type="submit">Send</button>
-      <p class="hint">Opens in your mail app.</p>
-    </form>
-  </div>
-</section>
-
-<section id="fallback" aria-label="Portfolio introduction"><h1>Arman Faruqui</h1><p>Designer and community organizer in Montréal.</p><p>Jewelry, digital art, animation, and community projects.</p><p>Available for <a href="#collaborate">product films, custom jewelry and talks</a>.</p><p><a href="mailto:tuesdesire@gmail.com">tuesdesire@gmail.com</a></p><noscript><div class="fallback-gallery"><figure><img loading="lazy" src="media/web/1.Orb_Desktop_poster.jpg" alt="Orb jewelry campaign in a park" width="1200" height="676"><figcaption>désiré_parkShoot.mp4</figcaption></figure><figure><img loading="lazy" src="media/web/2.veevee_blender_poster.jpg" alt="Veevee pendant design in Blender" width="1200" height="960"><figcaption>veevee_design.mp4</figcaption></figure><figure><img loading="lazy" src="media/web/3.Gamja.jpg" alt="Veevee pendant worn" width="1400" height="1120"><figcaption>veevee_worn.JPG</figcaption></figure><figure><img loading="lazy" src="media/web/4.ondule_blender_poster.jpg" alt="Ondulé ring design in Blender" width="1200" height="960"><figcaption>ondulé_design.mp4</figcaption></figure><figure><img loading="lazy" src="media/web/5.showingRing_poster.jpg" alt="Ondulé ring worn" width="1200" height="960"><figcaption>ondulé_worn.mp4</figcaption></figure><figure><img loading="lazy" src="media/web/eye_ring_poster.jpg" alt="Animated toon-style eye ring" width="676" height="1200"><figcaption>eye_ring.mp4</figcaption></figure><figure><img loading="lazy" src="media/web/desire-desktop_poster.jpg" alt="Désiré jewelry website" width="1440" height="900"><figcaption>desire_website.mp4</figcaption><p><a href="https://desire.jewelry/">www.desire.jewelry</a></p></figure><figure><img loading="lazy" src="media/web/9.softServe_poster.jpg" alt="Soft-serve 2D animation" width="800" height="1000"><figcaption>2D_anim_1.mp4</figcaption></figure><figure><img loading="lazy" src="media/web/10.Graduation_poster.jpg" alt="Graduation 2D animation" width="1000" height="1000"><figcaption>2D_anim2.mp4</figcaption></figure><figure><img loading="lazy" src="media/web/7.2.5D_poster.jpg" alt="Packaging animation" width="676" height="1200"><figcaption>packaging_anim.mp4</figcaption></figure><figure><a href="https://www.instagram.com/p/DfCzlwaxdlM/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none"><img loading="lazy" src="media/web/ribbon_poster.jpg" alt="Veevee pendant with animated ribbons" width="676" height="1200"><figcaption>ribbon.mp4</figcaption></a></figure><figure><img loading="lazy" src="media/web/8.zineComp_poster.jpg" alt="Désiré printed zine layout" width="1200" height="864"><figcaption>désiré_zine.mp4</figcaption></figure><figure><img loading="lazy" src="media/web/8.5.readingZine_poster.jpg" alt="Reading the Désiré zine" width="676" height="1200"><figcaption>readingZine.mp4</figcaption></figure><figure><img loading="lazy" src="media/web/11.Cross.jpg" alt="Custom pendant for Sean Leon" width="1400" height="1120"><figcaption>gods_algorithm_pendant.jpg</figcaption></figure><figure><img loading="lazy" src="media/web/12.SeanWearing.jpg" alt="Sean Leon wearing the custom pendant" width="1400" height="1120"><figcaption>sean_wearing.jpg</figcaption></figure><figure><img loading="lazy" src="media/web/13.Alter-modeNews.jpg" alt="CBC coverage of Alter-mode" width="1278" height="1022"><figcaption>altermode_cbcNews.jpg</figcaption><p><a href="https://www.youtube.com/watch?v=KdIOFlqd9jk">link to the segment</a></p></figure><figure><img loading="lazy" src="media/web/14.alterModePoster.jpg" alt="Alter-mode clothing repair event poster" width="960" height="1200"><figcaption>altermode_poster_august.jpg</figcaption><p><a href="https://www.briqueparbrique.com/en/altermode">link to our website</a></p></figure><figure><a href="https://altermode.briqueparbrique.com/en/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none"><img loading="lazy" src="media/web/altermode_website.jpg" alt="Alter-mode website for zero-waste branded clothing" width="1400" height="900"><figcaption>altermode_website.jpg</figcaption></a><p><a href="https://altermode.briqueparbrique.com/en/" target="_blank" rel="noopener">Zero-waste branded clothing, visit the website</a></p></figure><figure><img loading="lazy" src="media/web/15.Cereal.jpg" alt="Désiré campaign photograph: Cereal" width="1400" height="1120"><figcaption>désiré_parkShoot_1.jpg</figcaption></figure><figure><img loading="lazy" src="media/web/16.Arman.jpg" alt="Désiré campaign photograph: Arman" width="1378" height="1102"><figcaption>désiré_parkShoot_2.jpg</figcaption></figure><figure><img loading="lazy" src="media/web/17.Imani.jpg" alt="Désiré campaign photograph: Imani" width="1400" height="1120"><figcaption>désiré_parkShoot_3.jpg</figcaption></figure></div></noscript></section>
+<section id="fallback" aria-label="Portfolio introduction"><h1>Arman Faruqui</h1><p>Designer and community organizer in Montréal.</p><p>Jewelry, digital art, animation, and community projects.</p><p>Available for <a href="#collaborate">product films, custom jewelry, pop-ups and installations</a>.</p><p><a href="mailto:tuesdesire@gmail.com">tuesdesire@gmail.com</a></p><noscript><div class="fallback-gallery"><figure><img loading="lazy" src="media/web/1.Orb_Desktop_poster.jpg" alt="Orb jewelry campaign in a park" width="1200" height="676"><figcaption>désiré_parkShoot.mp4</figcaption></figure><figure><img loading="lazy" src="media/web/2.veevee_blender_poster.jpg" alt="Veevee pendant design in Blender" width="1200" height="960"><figcaption>veevee_design.mp4</figcaption></figure><figure><img loading="lazy" src="media/web/3.Gamja.jpg" alt="Veevee pendant worn" width="1400" height="1120"><figcaption>veevee_worn.JPG</figcaption></figure><figure><img loading="lazy" src="media/web/4.ondule_blender_poster.jpg" alt="Ondulé ring design in Blender" width="1200" height="960"><figcaption>ondulé_design.mp4</figcaption></figure><figure><img loading="lazy" src="media/web/5.showingRing_poster.jpg" alt="Ondulé ring worn" width="1200" height="960"><figcaption>ondulé_worn.mp4</figcaption></figure><figure><img loading="lazy" src="media/web/eye_ring_poster.jpg" alt="Animated toon-style eye ring" width="676" height="1200"><figcaption>eye_ring.mp4</figcaption></figure><figure><img loading="lazy" src="media/web/desire-desktop_poster.jpg" alt="Désiré jewelry website" width="1440" height="900"><figcaption>desire_website.mp4</figcaption><p><a href="https://desire.jewelry/">www.desire.jewelry</a></p></figure><figure><img loading="lazy" src="media/web/9.softServe_poster.jpg" alt="Soft-serve 2D animation" width="800" height="1000"><figcaption>2D_anim_1.mp4</figcaption></figure><figure><img loading="lazy" src="media/web/10.Graduation_poster.jpg" alt="Graduation 2D animation" width="1000" height="1000"><figcaption>2D_anim2.mp4</figcaption></figure><figure><img loading="lazy" src="media/web/7.2.5D_poster.jpg" alt="Packaging animation" width="676" height="1200"><figcaption>packaging_anim.mp4</figcaption></figure><figure><a href="https://www.instagram.com/p/DfCzlwaxdlM/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none"><img loading="lazy" src="media/web/ribbon_poster.jpg" alt="Veevee pendant with animated ribbons" width="676" height="1200"><figcaption>ribbon.mp4</figcaption></a></figure><figure><img loading="lazy" src="media/web/8.zineComp_poster.jpg" alt="Désiré printed zine layout" width="1200" height="864"><figcaption>désiré_zine.mp4</figcaption></figure><figure><img loading="lazy" src="media/web/8.5.readingZine_poster.jpg" alt="Reading the Désiré zine" width="676" height="1200"><figcaption>readingZine.mp4</figcaption></figure><figure><img loading="lazy" src="media/web/11.Cross.jpg" alt="Custom pendant for Sean Leon" width="1400" height="1120"><figcaption>gods_algorithm_pendant.jpg</figcaption></figure><figure><img loading="lazy" src="media/web/12.SeanWearing.jpg" alt="Sean Leon wearing the custom pendant" width="1400" height="1120"><figcaption>sean_wearing.jpg</figcaption></figure><figure><img loading="lazy" src="media/web/13.Alter-modeNews.jpg" alt="CBC coverage of Alter-mode" width="1278" height="1022"><figcaption>altermode_cbcNews.jpg</figcaption><p><a href="https://www.youtube.com/watch?v=KdIOFlqd9jk">link to the segment</a></p></figure><figure><img loading="lazy" src="media/web/14.alterModePoster.jpg" alt="Alter-mode clothing repair event poster" width="960" height="1200"><figcaption>altermode_poster_august.jpg</figcaption><p><a href="https://www.briqueparbrique.com/en/altermode">link to our website</a></p></figure><figure><a href="https://altermode.briqueparbrique.com/en/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none"><img loading="lazy" src="media/web/altermode_website.jpg" alt="Alter-mode website for zero-waste branded clothing" width="1400" height="900"><figcaption>altermode_website.jpg</figcaption></a><p><a href="https://altermode.briqueparbrique.com/en/" target="_blank" rel="noopener">Zero-waste branded clothing, visit the website</a></p></figure><figure><img loading="lazy" src="media/web/15.Cereal.jpg" alt="Désiré campaign photograph: Cereal" width="1400" height="1120"><figcaption>désiré_parkShoot_1.jpg</figcaption></figure><figure><img loading="lazy" src="media/web/16.Arman.jpg" alt="Désiré campaign photograph: Arman" width="1378" height="1102"><figcaption>désiré_parkShoot_2.jpg</figcaption></figure><figure><img loading="lazy" src="media/web/17.Imani.jpg" alt="Désiré campaign photograph: Imani" width="1400" height="1120"><figcaption>désiré_parkShoot_3.jpg</figcaption></figure></div></noscript></section>
 <script>setTimeout(function () { if (!window.portfolioReady) { document.getElementById('fallback').hidden = false; document.getElementById('loader')?.remove(); } }, 5000);</script>
 <script>
 /* ════════════════════════════════════════════════════════════
@@ -889,7 +962,7 @@ let raf = 0, last = 0, revealed = false, inFlight = 0;
 let desiredAnnouncement = false;
 let keyboardFocus = false;
 const loaderEl = document.getElementById('loader');
-const PAGES = { 'collaborate': document.getElementById('collaborate'), about: document.getElementById('about'), contact: document.getElementById('contact') };
+const PAGES = { collaborate: document.getElementById('collaborate'), about: document.getElementById('about') };
 const viewLinks = [...document.querySelectorAll('nav a[data-view]')];
 const ease = (dt, tau) => 1 - Math.exp(-dt / tau);
 function ringOffset(i) { return ((i - scrollU + N / 2) % N + N) % N - N / 2; }
@@ -1104,11 +1177,19 @@ addEventListener('keydown', e => {
   if (dir) { e.preventDefault(); step(dir); }
 });
 
+const COLLAB_ALIASES = { 'work-with-me': 'collaborate', 'contact': 'contact', 'sean-case-study': 'sean-case-study', 'alter-mode-case-study': 'alter-mode-case-study', 'project-enquiry': 'contact' };
+// A hash is a view name, or the id of a block inside Collaborate (the old #contact lands on the form).
+function collabTarget(v) {
+  if (v === 'collaborate' || v === 'work-with-me') return null;
+  const id = COLLAB_ALIASES[v] || v;
+  const el = document.getElementById(id);
+  return el && PAGES.collaborate.contains(el) ? el : null;
+}
+function isRoute(v) { return ['work','collaborate','about'].includes(v) || v === 'work-with-me' || !!collabTarget(v); }
 function setView(v, focus = true) {
-  if (v === 'work-with-me') v = 'collaborate';
-  const caseRequested = v === 'sean-case-study';
-  if (caseRequested) v = 'collaborate';
-  if (!['work','collaborate','about','contact'].includes(v)) v = 'work';
+  const target = collabTarget(v);
+  if (v === 'work-with-me' || target) v = 'collaborate';
+  if (!['work','collaborate','about'].includes(v)) v = 'work';
   const swap = overlayOpen && v !== 'work'; currentView = v; overlayOpen = v !== 'work';
   endDrag(true); mouseIn = false; snap = null; vel = 0;
   for (const [name, p] of Object.entries(PAGES)) {
@@ -1117,10 +1198,10 @@ function setView(v, focus = true) {
     if (on) p.scrollTop = 0;
   }
   if (swap) { void PAGES[v].offsetHeight; Object.values(PAGES).forEach(p => p.style.transition = ''); }
-  document.querySelector('nav').classList.toggle('services-nav', v === 'collaborate');
+  document.querySelector('nav').classList.toggle('services-nav', overlayOpen);
   stage.inert = overlayOpen; stage.setAttribute('aria-hidden', String(overlayOpen));
   titleEl.inert = overlayOpen; titleEl.setAttribute('aria-hidden', String(overlayOpen));
-  titleEl.classList.toggle('viewhide', overlayOpen); 
+  titleEl.classList.toggle('viewhide', overlayOpen);
   viewLinks.forEach(a => {
     const on = a.dataset.view === v; a.classList.toggle('active', on);
     if (on) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current');
@@ -1128,27 +1209,18 @@ function setView(v, focus = true) {
   document.title = `Arman Faruqui | ${v === 'collaborate' ? 'Collaborate' : v[0].toUpperCase() + v.slice(1)}`;
   if (focus) (overlayOpen ? PAGES[v] : viewLinks[0]).focus({preventScroll:true});
   if (overlayOpen) { reveal(); cancelAnimationFrame(raf); raf = 0; }
-  if (caseRequested) {
-    document.getElementById('sean-case-study').scrollIntoView({block:'start',behavior:'instant'});
-    if (focus) document.getElementById('seanCaseHeading').focus({preventScroll:true});
+  if (target) {
+    target.scrollIntoView({block:'start',behavior:'instant'});
+    const heading = target.querySelector('[tabindex="-1"]');
+    if (focus && heading) heading.focus({preventScroll:true});
   }
-  syncVideos(); syncCaseMedia(); if (!overlayOpen) requestRender();
+  syncVideos(); syncCaseMedia(); syncStick(); if (!overlayOpen) requestRender();
 }
 function navigate(v) { if (location.hash !== '#' + v) history.pushState(null, '', '#' + v); setView(v); }
 viewLinks.forEach(a => a.addEventListener('click', e => { e.preventDefault(); navigate(a.dataset.view); }));
 addEventListener('popstate', () => setView(location.hash.slice(1) || 'work'));
 addEventListener('hashchange', () => { if (location.hash.slice(1) !== currentView) setView(location.hash.slice(1)); });
 
-const contactForm = document.getElementById('contactForm');
-contactForm.addEventListener('submit', e => {
-  e.preventDefault(); const field = contactForm.elements.message;
-  field.setCustomValidity(field.value.trim() ? '' : 'Please enter a message.');
-  if (!contactForm.reportValidity()) return;
-  const from = contactForm.elements.from.value.trim();
-  location.href = 'mailto:tuesdesire@gmail.com?subject=' + encodeURIComponent('Portfolio enquiry') +
-    '&body=' + encodeURIComponent(field.value.trim() + (from ? '\n\n— ' + from : ''));
-});
-contactForm.elements.message.addEventListener('input', () => contactForm.elements.message.setCustomValidity(''));
 function renderTitle(c) {
   titleEl.replaceChildren(); const main = document.createElement('div');
   if (c.item.href) {
@@ -1211,10 +1283,12 @@ function frame(now) {
   const settling = Math.abs(smx-tx) > .0001 || Math.abs(smy-ty) > .0001;
   if (!raf && (vel || snap !== null || settling || target)) raf = requestAnimationFrame(frame);
 }
-// Case-study media never competes with the carousel's initial downloads.
+// Collaborate media never competes with the carousel's initial downloads:
+// images and the one video get their sources only while the panel is open
+// and they are within 300px of the viewport.
 const casePanel = document.getElementById('collaborate');
 const caseVideo = document.getElementById('caseVideo');
-const caseImages = [...casePanel.querySelectorAll('img[data-case-src]')];
+const caseImages = [...casePanel.querySelectorAll('img[data-src]')];
 let caseVisible = false, casePending = null, caseBlocked = false, caseFailed = false;
 caseVideo.muted = true; caseVideo.defaultMuted = true;
 function syncCaseMedia() {
@@ -1222,14 +1296,18 @@ function syncCaseMedia() {
   if (open) {
     const bounds = casePanel.getBoundingClientRect();
     caseImages.forEach(img => {
-      const box = img.getBoundingClientRect();
-      if (!img.getAttribute('src') && box.top < bounds.bottom + 300 && box.bottom > bounds.top - 300) img.src = img.dataset.caseSrc;
+      if (img.getAttribute('src')) return;
+      const box = img.parentElement.getBoundingClientRect();
+      if (box.top < bounds.bottom + 300 && box.bottom > bounds.top - 300) {
+        if (img.dataset.srcset) img.srcset = img.dataset.srcset;
+        img.src = img.dataset.src;
+      }
     });
   }
   const want = open && caseVisible && !caseFailed;
   caseVideo.autoplay = want;
   if (!want) { caseVideo.pause(); return; }
-  if (!caseVideo.getAttribute('src')) caseVideo.src = caseVideo.dataset.caseSrc;
+  if (!caseVideo.getAttribute('src')) caseVideo.src = caseVideo.dataset.src;
   if (casePending || caseBlocked || !caseVideo.paused) return;
   const attempt = caseVideo.play(); casePending = attempt;
   attempt.catch(error => { if (error.name !== 'AbortError') caseBlocked = true; }).finally(() => {
@@ -1251,69 +1329,92 @@ casePanel.addEventListener('pointerdown', () => { caseBlocked = false; syncCaseM
 document.addEventListener('visibilitychange', syncCaseMedia);
 addEventListener('pagehide', () => caseVideo.pause());
 addEventListener('pageshow', syncCaseMedia);
+
+// Phone-only pill to the main action. Shown while Collaborate is open and
+// neither the intro button nor the contact block is on screen.
+const stick = document.getElementById('collabStick');
+const stickWatch = { intro: true, contact: false };
+function syncStick() {
+  const on = currentView === 'collaborate' && matchMedia('(max-width: 700px)').matches && !stickWatch.intro && !stickWatch.contact;
+  stick.hidden = false;
+  stick.classList.toggle('show', on);
+  stick.setAttribute('aria-hidden', String(!on)); stick.tabIndex = on ? 0 : -1;
+}
+new IntersectionObserver(entries => {
+  for (const en of entries) stickWatch[en.target.id === 'contact' ? 'contact' : 'intro'] = en.isIntersecting;
+  syncStick();
+}, {root: casePanel, threshold: 0}).observe(casePanel.querySelector('.intro .cta'));
+new IntersectionObserver(entries => { stickWatch.contact = entries[0].isIntersecting; syncStick(); }, {root: casePanel, threshold: 0}).observe(document.getElementById('contact'));
+
+// The booking link. Leave empty until there is one: the buttons then open the form.
+const BOOKING_URL = '';
+document.querySelectorAll('a.book').forEach(a => {
+  if (BOOKING_URL) { a.href = BOOKING_URL; a.target = '_blank'; a.rel = 'noopener'; }
+});
+if (BOOKING_URL) document.querySelector('[data-booking-note]')?.remove();
+
+// The enquiry form. Set FORM_ENDPOINT to a form service URL (Formspree,
+// Web3Forms, Basin or similar) and the message is posted from the page.
+// While it is empty, Send opens a mail draft instead so nothing is lost.
+const FORM_ENDPOINT = '';
+const FORM_EMAIL = 'tuesdesire@gmail.com';
 const enquiryForm = document.getElementById('enquiryForm');
-const enquiryMessage = document.getElementById('enquiryMessage');
 const enquiryStatus = document.getElementById('enquiryStatus');
-const enquiryTemplates = {
-  'Product films': "Hi Arman,\n\nI'm interested in a product film for my brand. I'd love to hear what you have in mind and what the next steps would be.\n\nA little about the product: ",
-  'Custom jewelry': "Hi Arman,\n\nI'd love to work with you on a custom piece of jewelry. Could we talk through the idea and what it would take to make it?\n\nThe idea: ",
-  'Pop-ups and installations': "Hi Arman,\n\nI'm planning an event and would love to explore working together on a pop-up, workshop or installation.\n\nA little about the event: ",
-  'An idea': enquiryMessage.value
-};
-const enquiryDrafts = {...enquiryTemplates};
-let enquiryTopic = 'An idea';
-function enquiryMail() {
-  return {subject: enquiryTopic === 'An idea' ? 'Let’s collaborate' : enquiryTopic + ' enquiry', body: enquiryMessage.value.trim()};
+const NEED_LABELS = { film: 'Product film', jewelry: 'Custom jewelry', popup: 'Pop-up or installation', other: 'Something else' };
+function enquiryValid() {
+  const f = enquiryForm.elements;
+  ['name','email','message'].forEach(n => f[n].setCustomValidity(''));
+  f.name.setCustomValidity(f.name.value.trim() ? '' : 'Your name, please.');
+  f.email.setCustomValidity(f.email.validity.valid && f.email.value.trim() ? '' : 'An email address I can reply to.');
+  f.message.setCustomValidity(f.message.value.trim() ? '' : 'A few words about what you need.');
+  const bad = [...enquiryForm.querySelectorAll('input, textarea')].find(el => !el.validity.valid);
+  if (bad) { enquiryStatus.textContent = bad.validationMessage; bad.focus(); return false; }
+  enquiryStatus.textContent = ''; return true;
 }
-function updateEnquiry() {
-  enquiryMessage.setCustomValidity(''); enquiryStatus.textContent = '';
-  const mail = enquiryMail();
-  document.getElementById('enquiryGmail').href = 'https://mail.google.com/mail/?view=cm&fs=1&to=tuesdesire%40gmail.com&su=' + encodeURIComponent(mail.subject) + '&body=' + encodeURIComponent(mail.body);
-}
-function chooseEnquiry(topic) {
-  enquiryDrafts[enquiryTopic] = enquiryMessage.value;
-  enquiryTopic = topic; enquiryMessage.value = enquiryDrafts[topic];
-  enquiryForm.querySelectorAll('[data-template]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.template === topic)));
-  updateEnquiry();
-}
-enquiryForm.querySelectorAll('[data-template]').forEach(b => b.addEventListener('click', () => chooseEnquiry(b.dataset.template)));
-enquiryMessage.addEventListener('input', updateEnquiry);
-enquiryForm.addEventListener('submit', e => {
+['name','email','message'].forEach(n => enquiryForm.elements[n].addEventListener('input', () => { enquiryForm.elements[n].setCustomValidity(''); enquiryStatus.textContent = ''; }));
+enquiryForm.addEventListener('submit', async e => {
   e.preventDefault();
-  enquiryMessage.setCustomValidity(enquiryMessage.value.trim() ? '' : 'Add a few words about your idea.');
-  if (!enquiryForm.reportValidity()) return;
-  const mail = enquiryMail();
-  location.href = 'mailto:tuesdesire@gmail.com?subject=' + encodeURIComponent(mail.subject) + '&body=' + encodeURIComponent(mail.body);
-});
-document.getElementById('copyEnquiry').addEventListener('click', async () => {
-  try {
-    await navigator.clipboard.writeText(enquiryMessage.value);
-    enquiryStatus.textContent = 'Message copied. Paste it into an email to tuesdesire@gmail.com.';
-  } catch {
-    enquiryMessage.focus(); enquiryMessage.select();
-    enquiryStatus.textContent = 'Select and copy your message, then email tuesdesire@gmail.com.';
+  if (!enquiryValid()) return;
+  const f = enquiryForm.elements;
+  const need = NEED_LABELS[f.need.value] || '';
+  const subject = need ? need + ' enquiry from ' + f.name.value.trim() : 'Enquiry from ' + f.name.value.trim();
+  if (!FORM_ENDPOINT) {
+    const body = f.message.value.trim() + '\n\n' + f.name.value.trim() + '\n' + f.email.value.trim() + (need ? '\n' + need : '');
+    location.href = 'mailto:' + FORM_EMAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    enquiryStatus.textContent = 'This opens a draft in your mail app. If nothing opened, write to ' + FORM_EMAIL + '.';
+    return;
   }
+  const button = enquiryForm.querySelector('[type="submit"]');
+  button.disabled = true; enquiryStatus.textContent = 'Sending.';
+  try {
+    const data = new FormData(enquiryForm);
+    data.set('need', need); data.set('_subject', subject);
+    const res = await fetch(FORM_ENDPOINT, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
+    if (!res.ok) throw new Error(String(res.status));
+    enquiryForm.reset();
+    enquiryStatus.textContent = 'Sent. I reply within two working days.';
+  } catch {
+    enquiryStatus.textContent = 'That did not go through. Email me instead at ' + FORM_EMAIL + '.';
+  } finally { button.disabled = false; }
 });
+// "Ask about" links under each offer preselect that offer in the form.
 document.addEventListener('click', e => {
   const link = e.target.closest('a[data-offer]');
   if (!link || e.defaultPrevented || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
-  e.preventDefault(); chooseEnquiry(link.dataset.offer);
-  document.getElementById('project-enquiry').scrollIntoView({block:'start',behavior:'instant'});
-  enquiryMessage.focus({preventScroll:true});
+  enquiryForm.elements.need.value = link.dataset.offer;
 });
-updateEnquiry();
 
-// All internal links share the same view routing, including dynamically built captions.
+// All internal links share the same view routing, including dynamically built captions
+// and the blocks inside Collaborate (#contact, the case studies).
 document.addEventListener('click', e => {
   const link = e.target.closest('a[href^="#"]');
   if (!link || link.closest('nav') || e.defaultPrevented || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
   const route = link.getAttribute('href').slice(1);
-  if (!['work','collaborate','about','contact','sean-case-study'].includes(route)) return;
+  if (route === 'enquiryForm') { e.preventDefault(); document.getElementById('enquiryName').focus(); return; }
+  if (!isRoute(route)) return;
   e.preventDefault();
-  if (link.dataset.offer && !contactForm.elements.message.value.trim()) {
-    contactForm.elements.message.value = `I'm interested in ${link.dataset.offer.toLowerCase()}.\n\nWhat I'm making:\nWhen I need it:\n`;
-  }
   navigate(route);
+  if (link.dataset.offer) enquiryForm.elements.need.focus({preventScroll:true});
 });
 
 addEventListener('resize', applyLayout); visualViewport?.addEventListener('resize', applyLayout);
