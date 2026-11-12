@@ -1189,14 +1189,13 @@ function setView(v, focus = true) {
   const target = collabTarget(v);
   if (v === 'work-with-me' || target) v = 'collaborate';
   if (!['work','collaborate','about'].includes(v)) v = 'work';
-  const swap = overlayOpen && v !== 'work'; currentView = v; overlayOpen = v !== 'work';
+  currentView = v; overlayOpen = v !== 'work';
   endDrag(true); mouseIn = false; snap = null; vel = 0;
   for (const [name, p] of Object.entries(PAGES)) {
-    const on = name === v; if (swap) p.style.transition = 'none';
+    const on = name === v;
     p.classList.toggle('show', on); p.inert = !on; p.setAttribute('aria-hidden', String(!on));
     if (on) p.scrollTop = 0;
   }
-  if (swap) { void PAGES[v].offsetHeight; Object.values(PAGES).forEach(p => p.style.transition = ''); }
   document.querySelector('nav').classList.toggle('services-nav', overlayOpen);
   stage.inert = overlayOpen; stage.setAttribute('aria-hidden', String(overlayOpen));
   titleEl.inert = overlayOpen; titleEl.setAttribute('aria-hidden', String(overlayOpen));
